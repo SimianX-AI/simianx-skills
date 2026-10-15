@@ -10,8 +10,8 @@
 <h1 align="center">Yapay zekâ ajanları için SimianX AI</h1>
 
 <p align="center">
-  Claude Code, Codex, Cursor, Copilot, Gemini CLI ve skill okuyan diğer tüm ajanları SimianX trading masasının bir istemcisine dönüştüren tek bir skill:
-  icra kalitesinde olay günlüğüne sahip otopilotlar, 8 ajanlı derin araştırma, canlı analiz, sınıflandırılmış haberler ve sektör katalizörleri.
+  Her ABD hissesi ve kripto paritesi için dört yapay zekâ analisti, bir de puanlı haber akışı.
+  Claude Code, Codex, Cursor ve skill okuyabilen tüm ajanlarda çalışır.
 </p>
 
 <p align="center">
@@ -34,130 +34,90 @@
 
 ---
 
-## SimianX neleri kapsar
+## SimianX neler yapar
 
-Aşağıdakilerin tümüne skill üzerinden ulaşılır ve hepsi [simianx.ai](https://www.simianx.ai) üzerinde yaşar; bağlantılar her yeteneğin arkasındaki ürün sayfasını açar.
+İşin büyük kısmını iki özellik üstlenir.
 
-**Piyasalar**
+- **Çok ajanlı canlı analiz.** Bir hisse ya da kripto paritesi ve bir zaman dilimi seçin; dört ajan aynı anda analize başlar. Gösterge ajanı grafiği okur. İstihbarat ajanı haber akışını izler. Temel analiz ajanı şirket bildirimlerine ve içeriden öğrenenlerin işlemlerine, coinlerde ise zincir üstü ve türev verilerine bakar. Karar ajanı bu üç görüşü tartıp giriş, zarar durdur ve hedef seviyeleriyle bir işlem önerir. → [Canlı analiz](https://www.simianx.ai/l)
+- **Puanlı haber akışı.** Her makale, etkilediği sembollerle, bir önem puanıyla ve yükseliş, düşüş ya da nötr yönlü bir yorumla etiketlenmiş olarak gelir. Piyasa Nabzı da bu akışla çalışır; haberler orada ani fiyat hareketleri, yeni zirve ve dipler ile fiyat boşluklarının yanında yer alır. Ajanınız akışı sayfa sayfa okuyabilir ya da kendi sembolleri için açık tutabilir. → [Piyasa Nabzı](https://www.simianx.ai/pulse)
 
-- **ABD hisseleri ve ETF'ler** — 13.000'den fazla kote enstrüman; kazanç raporları, dosyalamalar, finansal seriler ve piyasa saatleri farkındalığıyla. Zaman dilimleri `1m 15m 1H 1D 1W 1mo`. → [Hisse Analizi](https://www.simianx.ai/c)
-- **Kripto** — OKX, Binance, Bybit ve Coinbase üzerinde 1.500'den fazla coin ve 4.000'den fazla parite: spot ve USDT/USD perpetual swap'ler (`BTC` gibi yalın bir sembol perpetual'a çözümlenir). Zaman dilimleri `1m 5m 15m 1H 4H 1D`. → [Kripto Analizi](https://www.simianx.ai/l)
+İhtiyaç duyduğunuzda bunlar da var:
 
-**Ajanlar ne yapar**
+- **Derin araştırma.** Sekiz ajan bir hisse ya da coin üzerine tartışır; sonunda bir karar, bir işlem planı ve bir PDF sunar. Ajanınız ek sorular sorabilir. → [Derin analiz](https://www.simianx.ai/c)
+- **Sektör Takibi.** Birincil kaynaklardan derlenen katalizör takvimleri ve olaylar, ilk olarak biyofarma için. → [Sektör Takibi](https://www.simianx.ai/sectors)
+- **Otopilotlar.** Aynı dört canlı ajan tek bir sembolde, belirlenen bir zamanlamayla çalışır; sanal bir pozisyonu yönetir ve ajanınızın takip edebileceği bir olay günlüğü tutar. → [Otopilotlar](https://www.simianx.ai/autopilots)
+- **Modeli siz seçin.** Her ajanın arkasındaki modeli belirleyin; karar vermeden önce her modelin bugüne kadar nasıl işlem yaptığına bakın. → [Model lider tablosu](https://www.simianx.ai/crypto-leaderboard)
 
-- **Otopilotlar** — dört canlı ajan tek bir sembol üzerinde bir zamanlamaya göre çalışır ve izin verirseniz bir kağıt pozisyonu yönetir (piyasa, limit ve stop girişleri, kademeli ekleme/azaltma, stop-loss / take-profit, bir zamanlama kapısı). Her analiz, sinyal ve pozisyon değişikliği, imleçle okuduğunuz bir olay günlüğüne düşer; `signal.fired` ve `position.changed` bir son kullanma damgası taşır. Ajanınız bu portföyde elle de işlem yapabilir. → [Otopilotlar](https://www.simianx.ai/autopilots)
-- **Derin araştırma** — çalıştırma başına 8 ajanlı bir kurul: dört analist (hisseler: fundamentals, market, news, timing · kripto: fundamentals, market, news, derivatives), bir bull researcher (boğa) ve bir bear researcher (ayı), tartışmayı yöneten bir research manager ve kararı ile planı veren bir risk manager. Ufuklar `short`, `swing`, `long`; takip soruları; bir PDF raporu. → [Derin analiz](https://www.simianx.ai/c)
-- **Canlı analiz** — dört canlı ajan, tek seferlik: **indicator** (gösterge: grafikte trend, momentum, yapı), **intelligence** (istihbarat: haber akışı ve anlatı), **fundamental** (temel: finansallar ve olaylar, ya da bir coin için on-chain ve türevler) ve **decision** (karar: giriş, stop ve hedefiyle işlem önerisi). → [Canlı analiz](https://www.simianx.ai/l)
-- **Sınıflandırılmış haberler** — her makale hareket ettirdiği sembollere, değerine (`low` / `medium` / `high`) ve duygusuna göre puanlanır; liste olarak, makale bazında, 16 dile çevrilmiş olarak ya da canlı akış olarak. → [Hikayeler](https://www.simianx.ai/stories)
-- **Market Pulse** — 1, 5 ve 15 dakikalık pencerelerde fiyat şokları, 24 saatlik / 30 günlük / 52 haftalık zirveler ve dipler, günlük hareketler ve gap'ler, kripto ve hisseler için, 1–4 arası şiddetle. → [Piyasa Nabzı](https://www.simianx.ai/pulse)
-- **Sector Watch** — bir sektör için birincil kaynaklı katalizörler: bir takvim (PDUFA tarihleri, danışma komiteleri, deneme sonuçları), 1–4 şiddet ve yönle olaylar (onaylar, complete response letter'lar, topline sonuçlar, atamalar, denetimler, etiket güncellemeleri…), bileşenler, ilaç varlıkları ve takipler. Bugün canlı: **Biopharma · FDA onayları**; SEC dosyalamaları, FDA ve Federal Register duyuruları, ClinicalTrials.gov ve openFDA'dan derlenir. → [Sektör Takibi](https://www.simianx.ai/sectors)
-- **Seçtiğiniz modeller** — üç kademe (`fast`, `standard`, `frontier`) ve 7 sağlayıcıdan 50'den fazla model; ücretli bir plan bunları ajan başına ayarlayabilir; puan cinsinden fiyatlarla herkese açık bir katalog. → [Puan ve Tarifeler](https://www.simianx.ai/points)
-- **Lider tablosu** — her modelin gerçekte nasıl işlem yaptığı, böylece bir ajan karar modelini kanıta dayanarak seçebilir. → [Kripto AI Model Lider Tablosu](https://www.simianx.ai/crypto-leaderboard)
-
-**Planlar ve diller** — aylık puanlar, plan başına hız limitleri ve Plus altında 30 dakikalık veri gecikmesiyle Free, Starter, Plus ve Pro planları ([fiyatlandırma](https://www.simianx.ai/pricing)). API 16 dilde yanıt verir (`X-Language`). SimianX gerçek hesaplarda işlem yapmaz: otopilot pozisyonları, kendi runner'ınızla yansıtabileceğiniz kağıt pozisyonlardır.
+Piyasalar: `1m` ile `1mo` arası mumlarla 13.000'den fazla ABD hissesi ve ETF, `1m` ile `1D` arası mumlarla spot ve vadesiz 4.000'den fazla kripto paritesi. → [Hisse Analizi](https://www.simianx.ai/c) · [Kripto Analizi](https://www.simianx.ai/l)
 
 ## Tek cümleyle kurulum
 
-Bunu ajanınıza yapıştırın. Kurulum kılavuzunu alır, skill'i ajanınızın skill okuduğu yere koyar ve sizden bir anahtar ister:
+Bunu ajanınıza yapıştırın:
 
 ```text
 Install the SimianX skill from https://www.simianx.ai/INSTALL.md and set it up for this project.
 ```
 
-Komut mu tercih edersiniz? İkisi de skill okuyan her ajanla çalışır:
+Ajan, skill'i skill'leri aradığı yere koyar ve ardından oturum açmanızı sağlar: tarayıcıda bir bağlantıyı onaylarsınız ya da e-postanıza gönderdiğimiz 6 haneli kodu girersiniz. Yeni bir adres için hesap anında açılır. Sonunda ajanın `SIMIANX_API_KEY` içinde kendine ait bir API anahtarı olur; web sitesi oturumunuza ise hiçbir zaman erişemez.
+
+Terminalden kurmak isterseniz:
 
 ```bash
-npx skills add SimianX-AI/simianx-skills          # universal installer (pick your agents interactively)
-gh skill install SimianX-AI/simianx-skills simianx  # GitHub CLI, --agent <id> to target one agent
+npx skills add SimianX-AI/simianx-skills
+gh skill install SimianX-AI/simianx-skills simianx
 ```
 
-Ardından **"Beni SimianX'e giriş yaptır"** deyin. Ajan size tarayıcıda onaylayacağınız bir bağlantı verir ya da e-postayla 6 haneli bir kod gönderir; iki durumda da kapsamı ve bütçesi belirlenmiş kendi anahtarını alır ve onu `SIMIANX_API_KEY` olarak saklar. Henüz hesabınız yok mu? E-posta kodu bir hesap oluşturur. Dilerseniz [simianx.ai](https://www.simianx.ai) üzerinde **Hesabım → API anahtarları** bölümünden elle de bir anahtar oluşturup dışa aktarabilirsiniz:
+Her ajanın (Claude Code, Codex, Cursor, Copilot, Gemini CLI, Windsurf, Amp, Cline ve diğerleri) komutu ve dizini [INSTALL.md](INSTALL.md) dosyasında.
 
-```bash
-export SIMIANX_API_KEY=simx_live_...
-```
+## İlk çağrılar
 
-## Ajanınız için kurulum
-
-| Ajan | Yerel yol | Skill'in konulduğu yer |
+| Ne | Çağrı | Referans |
 |---|---|---|
-| Claude Code | `/plugin marketplace add SimianX-AI/simianx-skills` ardından `/plugin install simianx@simianx` | eklenti veya `~/.claude/skills/simianx` |
-| OpenAI Codex | `codex plugin marketplace add SimianX-AI/simianx-skills` ardından `/plugins` → **simianx** | `.agents/skills/simianx` |
-| Cursor | Customize → *From GitHub Repository* → `SimianX-AI/simianx-skills` (veya `npx skills add SimianX-AI/simianx-skills -a cursor`) | `.agents/skills/simianx` · `~/.cursor/skills` |
-| GitHub Copilot | `gh skill install SimianX-AI/simianx-skills simianx --agent github-copilot` | `.github/skills/simianx` · `~/.copilot/skills` |
-| Gemini CLI | `gemini skills install https://github.com/SimianX-AI/simianx-skills.git --path skills/simianx --consent` | `~/.gemini/skills/simianx` |
-| Windsurf / Devin | `npx skills add SimianX-AI/simianx-skills -a windsurf` | `.devin/skills/simianx` |
-| Amp | `amp skill add SimianX-AI/simianx-skills` | `~/.config/agents/skills/simianx` |
-| Cline · Roo Code · Kilo Code | `npx skills add SimianX-AI/simianx-skills -a cline` (veya `-a roo`, `-a kilo`) | `.cline/skills` · `.roo/skills` · `.kilo/skills` |
-| OpenCode · Zed · Kiro · Factory Droid · OpenHands · Goose · Antigravity | `npx skills add SimianX-AI/simianx-skills -a <agent>` | `.agents/skills/simianx` |
-| Diğer her şey | `skills/simianx/` dizinini ajanınızın taradığı dizine kopyalayın ya da `scripts/install.sh --agent auto` çalıştırın | bkz. [INSTALL.md](INSTALL.md) |
+| Tek seferlik canlı analiz | `POST /v1/analysis/live` → `GET /v1/analysis/live/{id}?wait=30` | [live](skills/simianx/references/live.md) |
+| Sembolleriniz için haberler | `GET /v1/news?symbols=NVDA&min_value=medium` | [news](skills/simianx/references/news.md) |
+| Haberler geldiği anda | `GET /v1/news/stream` (server-sent events, kaldığı yerden devam eder) | [news](skills/simianx/references/news.md) |
+| Piyasa Nabzı | `GET /v1/pulse/events` | [data](skills/simianx/references/data.md) |
+| Derin araştırma | `POST /v1/analysis/deep` → `/events` · `/ask` · `/pdf` | [deep](skills/simianx/references/deep.md) |
+| Sektör Takibi | `GET /v1/sectors/{sector}/calendar` · `/events` | [sectors](skills/simianx/references/sectors.md) |
+| Otopilotlar | `POST /v1/autopilots` → `GET /v1/autopilots/{id}/events?after=<cursor>&wait=30` | [autopilots](skills/simianx/references/autopilots.md) |
 
-[INSTALL.md](INSTALL.md) her istemci için tam dizini ve kabuk satırlarını listeler; `scripts/install.sh` (`install.py`, Windows'ta: `install.ps1`) kurulu ajanları algılar ve skill'i sizin için kopyalar ya da bağlar.
+Temel URL `https://service.simianx.ai/v1`, başlık `Authorization: Bearer $SIMIANX_API_KEY`. Aynı çağrılar kabuk betiği olarak [examples/curl](examples/curl) klasöründe.
 
-## Ajanınız neler yapabilir
+## Planlar
 
-| İhtiyaç | Çağrı | Referans |
-|---|---|---|
-| Bir hisse ya da coin üzerinde otopilot başlatıp takip etmek | `POST /v1/autopilots` → `GET /v1/autopilots/{id}/events?after=<cursor>&wait=30` | [autopilots](skills/simianx/references/autopilots.md) |
-| Otopilotun kağıt portföyünde elle işlem yapmak | `POST /v1/autopilots/{id}/actions` (`open`, `add`, `reduce`, `close`, `set_levels`, `place_order`, `replace_order`, `cancel_order`, `set_timeframe`) | [autopilots](skills/simianx/references/autopilots.md) |
-| Bir ajanı hemen çalıştırmak | `POST /v1/autopilots/{id}/run {"agent": "decision"}` | [autopilots](skills/simianx/references/autopilots.md) |
-| Karar ve planla birlikte 8 ajanlı derin araştırma | `POST /v1/analysis/deep` → `/events` · `/ask` · `/pdf` | [deep](skills/simianx/references/deep.md) |
-| Canlı ajanlar, tek seferlik | `POST /v1/analysis/live` → `GET /v1/analysis/live/{id}?wait=30` | [live](skills/simianx/references/live.md) |
-| Sınıflandırılmış haberler (semboller, değer, duygu), liste ya da akış olarak | `GET /v1/news` · `GET /v1/news/stream` | [news](skills/simianx/references/news.md) |
-| Sektör katalizörleri: takvim, olaylar, bileşenler, takipler | `GET /v1/sectors` · `/{sector}/calendar` · `/{sector}/events` | [sectors](skills/simianx/references/sectors.md) |
-| Kripto mumları, göstergeler, kotasyonlar, Market Pulse | `GET /v1/market/{symbol}/candles` · `/indicators` · `/v1/quotes` · `/v1/pulse/events` | [data](skills/simianx/references/data.md) |
-| Ajan başına ayarlayabileceğiniz modeller, fiyatlar, hesabınız | `GET /v1/models` · `GET /v1/pricing` · `GET /v1/me` · `POST /v1/analysis/quote` | [billing](skills/simianx/references/billing.md) |
-
-Otopilot günlüğündeki her olay bir imleç taşır; bir ajanın üzerine hareket edebileceği her şey (`signal.fired`, `position.changed`) ayrıca bir son kullanma damgası taşır, böylece bir runner asla bayat bilgiyle hareket etmez. Olayları okumak ücretsizdir; analizler için planınızın zaten içerdiği puanlarla ödersiniz.
-
-## İlk oturum
-
-1. `GET https://service.simianx.ai/v1/skill` — herkese açık; ajanınızın tuttuğu skill sürümünün hâlâ kabul edildiğini doğrular.
-2. `GET /v1/me`, `Authorization: Bearer $SIMIANX_API_KEY` ile — plan, kalan puan, limitler.
-3. `POST /v1/analysis/quote` — ödemeden önce bir çağrının ne kadara mal olacağı.
-4. `POST /v1/autopilots`, `{"asset": "crypto", "symbol": "BTC", "timeframe": "15m", "tier": "fast"}` ile — ardından yanıtın döndürdüğü imleçten itibaren olay günlüğünü long-poll edin.
-
-Tam döngü, `curl` olarak, [examples/curl](examples/curl) içinde; her pozisyon değişikliğinde komutunuzu ya da webhook'unuzu çalıştıran küçük, sürekli açık bir runner ise [examples/runner](examples/runner) içinde.
-
-## Puan, kredi değil
-
-- Her şey hesabın aboneliğinden **puan** olarak faturalandırılır. Bakiye yükleme ve çağrı başına ödeme yoktur.
-- Yapay zekâ uç noktaları gerçekten kullanılan modellere göre ölçülür; `GET /v1/pricing` kademe başına (`fast`, `standard`, `frontier`) olağan maliyeti, `GET /v1/models` ise bir ajanın seçebileceği her modelin fiyatını yayımlar.
-- Veri uç noktaları istek başına fiyatlandırılır (bir puanın kesri); olay günlüğü, `/v1/me`, `/v1/skill`, `/v1/pricing` ve `/v1/models` hiçbir şeye mal olmaz.
-- `402`, puanın ya da bir anahtar bütçesinin tükendiği anlamına gelir ve çıkış yolunu adlandırır (`renew_now`, `change_plan`, `subscribe`); `429` bir hız sınırıdır ve `Retry-After` taşır. Bunların dışında hiçbir şey asla bir ödeme sorunu değildir.
+Free, Starter, Plus ve Pro; ayrıntılar için [fiyatlandırma](https://www.simianx.ai/pricing) sayfasına bakın. Ajan çağrıları, planınızdaki puanları web sitesiyle aynı tarifelerle kullanır. Haber akışı Plus ve Pro'da canlıdır; Plus'ın altındaki planlarda haberler 30 dakika gecikmeli gelir. Yanıtlar 16 dilde alınabilir. SimianX hiçbir zaman gerçek bir hesapta işlem yapmaz: otopilot pozisyonları sanal pozisyonlardır.
 
 ## Güvenlik
 
-- Anahtar `SIMIANX_API_KEY` ortam değişkeninde yaşar. Skill, bir ajandan onu asla bir depoya, günlüğe ya da prompt'a yazmasını istemez.
-- Bir ajan asla web sitesi oturumu almaz. Bir ajandan giriş yapmak (tarayıcı bağlantısı ya da e-posta kodu) yalnızca o ajan için bir API anahtarı oluşturur; bu e-postayla bildirilir ve güvenlik etkinliklerinizde listelenir. Web sitesi, faturalama ve güvenlik ayarları sizde kalır.
-- Anahtarlar kapsamlar (`data:read`, `analysis:run`, `automation:manage`, `keys:manage`), günlük ve aylık puan bütçeleri, çağrı başına bir üst sınır ve isteğe bağlı bir IP izin listesi taşır. Bir ajana işini gören en küçük anahtarı verin.
-- Herhangi bir anahtarı **Hesabım → API anahtarları** bölümünden iptal edin; iptal edilen anahtar bir saniye içinde reddedilir. Her çağrı maliyetiyle birlikte hesabınız altında kaydedilir.
-- Skill yalnızca kendi hesabınızı okur: otopilotlarınız, çalıştırmalarınız, anahtarlarınız. Asla gerçek bir hesapta işlem yapmaz; otopilot pozisyonları kağıt pozisyonlardır.
+- Anahtar `SIMIANX_API_KEY` içinde kalır. Skill onu asla bir depoya, günlüğe ya da prompt'a yazmaz.
+- Ajan hiçbir zaman web sitesi oturumu almaz. Bir ajandan oturum açmak yalnızca o ajan için bir API anahtarı oluşturur ve bu olduğunda size e-posta göndeririz.
+- Anahtarların kapsamları, günlük ve aylık bütçeleri ve isteğe bağlı bir IP izin listesi vardır. Her ajana, işini görecek en dar yetkili anahtarı verin.
+- Bir anahtarı **Hesabım → API anahtarları** bölümünden iptal edin; bir saniye içinde çalışmaz hale gelir.
 
-## Sürümler ve güncellemeler
+## Sürümler
 
-Skill, sürümünü `X-SimianX-Skill` başlığında bildirir. API bir sürümü artık kabul etmediğinde, yeniden okunacak URL ile birlikte `426` yanıtı verir; `GET /v1/skill` ise her zaman güncel ve asgari sürümü, ayrıca [değişiklik günlüğünü](CHANGELOG.md) gösterir. Ajanınızın kendi komutuyla (`npx skills update`, `gh skill update --all`, `/plugin marketplace update simianx`, …) güncelleyin ya da yukarıdaki tek cümleyi yeniden çalıştırın.
+Skill, sürümünü `X-SimianX-Skill` başlığında gönderir. Bir sürüm kullanımdan kaldırıldığında API, yeniden okunacak URL ile birlikte `426` döndürür; `GET /v1/skill` ise güncel ve asgari sürümleri gösterir. Ajanınızın kendi komutuyla güncelleyin ya da yukarıdaki cümleyi yeniden yapıştırın. Nelerin değiştiğini [değişiklik günlüğünde](CHANGELOG.md) bulabilirsiniz.
 
 ## Depo düzeni
 
 ```
 skills/simianx/SKILL.md           the skill (Agent Skills format)
-skills/simianx/references/        autopilots · deep · live · news · sectors · data · billing
-INSTALL.md                        agent-readable install guide (also served at simianx.ai/INSTALL.md)
+skills/simianx/references/        live · news · data · deep · sectors · autopilots · billing
+INSTALL.md                        agent-readable install guide (also at simianx.ai/INSTALL.md)
 scripts/install.{sh,py,ps1}       installer for every agent; check_version.py · check_readmes.py
-examples/curl · examples/runner   a first session in curl; the always-on runner
+examples/curl · examples/runner   the first calls in curl; an always-on runner for autopilots
 .claude-plugin · .agents/plugins · .cursor-plugin · plugin.json · gemini-extension.json
                                   manifests so marketplaces and plugin commands find the skill
 README.<locale>.md                this page in the 16 languages SimianX speaks
 ```
 
-## Geri bildirim ve destek
+## Geri bildirim
 
-- Bir ajandan: `POST /v1/feedback` (ekip tarafından okunur; hakaret içeren metin reddedilir ve asla saklanmaz).
+- Bir ajandan: `POST /v1/feedback`.
 - Bir kişiden: skill için [GitHub issues](https://github.com/SimianX-AI/simianx-skills/issues), ürün için [simianx.ai/agents](https://www.simianx.ai/agents).
 
-Bir pull request açmadan önce [CONTRIBUTING.md](CONTRIBUTING.md) dosyasına, bir güvenlik açığı bildirmek için [SECURITY.md](SECURITY.md) dosyasına bakın.
+Pull request açmadan önce [CONTRIBUTING.md](CONTRIBUTING.md) dosyasını, bir güvenlik açığı bildirmek için de [SECURITY.md](SECURITY.md) dosyasını okuyun.
 
 ## Lisans
 
-Bu depodaki her şey için MIT. SimianX API'sinin kullanımı [Hizmet Şartları](https://www.simianx.ai/legal/terms) ile düzenlenir. SimianX analizleri bilgidir, yatırım tavsiyesi değildir; otopilot pozisyonları kağıt pozisyonlardır.
+Bu depodaki her şey MIT lisanslıdır. SimianX API'sinin kullanımı [Hizmet Şartları](https://www.simianx.ai/legal/terms) ile düzenlenir. SimianX analizleri bilgi amaçlıdır, yatırım tavsiyesi değildir.

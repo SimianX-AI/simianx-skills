@@ -6,6 +6,13 @@ publishes the same number at `GET /v1/skill` and answers `426` to skills older t
 
 ## 1.2.0 - 2026-10-15
 
+- Sign-in from the agent: `POST /v1/auth/link` (the user approves a link in the browser) or `POST /v1/auth/code` →
+  `POST /v1/auth/key` (a 6-digit code by email; a new address gets an account). Both end in an API key for that agent
+  only, never a website session. Two-step accounts relay a TOTP or backup code. `references/auth.md`.
+- Live multi-agent analysis and the scored news stream (the feed behind Market Pulse) now lead SKILL.md (description,
+  Coverage, call map, minimal loop) and every README; autopilots come later as the same agents on a schedule. Shorter
+  READMEs; the per-agent install table lives in `INSTALL.md`. `examples/curl` starts with a live run and news and has
+  no quote step; JSON is piped with `printf` so the scripts work in macOS `sh`.
 - Sector Watch: `GET /v1/sectors`, `/v1/sectors/{sector}` (summary, `stocks`, `stocks/{ticker}`, `calendar`, `events`,
   `events/{slug}`, `assets`, `assets/{slug}`) and follows (`GET`/`POST /v1/sectors/{sector}/follows`,
   `DELETE .../follows/{id}`, Starter and above; the first follow creates a subscription with an email channel).

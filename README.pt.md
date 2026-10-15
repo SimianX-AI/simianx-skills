@@ -10,8 +10,8 @@
 <h1 align="center">SimianX AI para agentes de IA</h1>
 
 <p align="center">
-  Uma skill que transforma o Claude Code, Codex, Cursor, Copilot, Gemini CLI e qualquer outro agente que lê skills em cliente da mesa de operações da SimianX:
-  autopilots com um log de eventos de nível de execução, pesquisa profunda com 8 agentes, análise ao vivo, notícias classificadas e catalisadores setoriais.
+  Quatro analistas de IA para qualquer ação dos EUA ou par cripto, e um fluxo de notícias já avaliadas,
+  direto no Claude Code, no Codex, no Cursor e em qualquer outro agente que leia skills.
 </p>
 
 <p align="center">
@@ -34,130 +34,90 @@
 
 ---
 
-## O que a SimianX cobre
+## O que o SimianX faz
 
-Tudo o que está abaixo é acessível pela skill e vive em [simianx.ai](https://www.simianx.ai); os links abrem a página do produto por trás de cada capacidade.
+Duas funções fazem quase todo o trabalho.
 
-**Mercados**
+- **Análise multiagente ao vivo.** Escolha uma ação ou um par cripto e um tempo gráfico, e quatro agentes começam a analisar ao mesmo tempo. O agente de Indicador lê o gráfico. O de Inteligência acompanha o noticiário. O Fundamental lê documentos regulatórios e negociações de insiders ou, se for uma moeda, dados on-chain e de derivativos. O de Decisão pesa os três e propõe uma operação com entrada, stop e alvo. → [Análise ao vivo](https://www.simianx.ai/l)
+- **Um fluxo de notícias avaliadas.** Cada artigo já chega marcado com os ativos que ele move, uma nota de importância e um viés altista, baixista ou neutro. É o feed por trás do Pulso do Mercado, onde aparece ao lado de movimentos bruscos de preço, novas máximas e mínimas e gaps. Seu agente pode percorrer as notícias página por página ou deixar um stream aberto nos ativos dele. → [Pulso do Mercado](https://www.simianx.ai/pulse)
 
-- **Ações e ETFs dos EUA** — 13,000+ instrumentos listados, com resultados, filings, séries financeiras e consciência do horário de pregão. Timeframes `1m 15m 1H 1D 1W 1mo`. → [Análise de Ações](https://www.simianx.ai/c)
-- **Cripto** — 1,500+ moedas e 4,000+ pares em OKX, Binance, Bybit e Coinbase: spot e swaps perpétuos USDT/USD (um símbolo simples como `BTC` resolve para o perpétuo). Timeframes `1m 5m 15m 1H 4H 1D`. → [Análise de Criptomoedas](https://www.simianx.ai/l)
+Também à mão quando você precisar:
 
-**O que os agentes fazem**
+- **Pesquisa profunda.** Oito agentes debatem uma ação ou uma moeda e voltam com um veredito, um plano de operação e um PDF. Seu agente pode fazer perguntas depois. → [Análise profunda](https://www.simianx.ai/c)
+- **Setores em Foco.** Calendários de catalisadores e eventos tirados de fontes primárias, começando pelo setor biofarmacêutico. → [Setores em Foco](https://www.simianx.ai/sectors)
+- **Pilotos automáticos.** Os mesmos quatro agentes ao vivo trabalham em horários definidos sobre um único ativo, cuidam de uma posição simulada e deixam um registro de eventos que seu agente pode acompanhar. → [Pilotos automáticos](https://www.simianx.ai/autopilots)
+- **Você escolhe o modelo.** Defina o modelo por trás de cada agente e veja antes como cada um já operou. → [Ranking de modelos](https://www.simianx.ai/crypto-leaderboard)
 
-- **Autopilots** — os quatro agentes ao vivo rodam em horários programados sobre um símbolo e, se você permitir, gerenciam uma posição simulada (entradas a mercado, limitadas e stop, escalonamento, stop-loss / take-profit, um gate de timing). Cada análise, sinal e mudança de posição cai em um log de eventos que você lê com um cursor; `signal.fired` e `position.changed` carregam uma expiração. Seu agente também pode operar essa carteira manualmente. → [Pilotos automáticos](https://www.simianx.ai/autopilots)
-- **Pesquisa profunda** — um comitê de 8 agentes por execução: quatro analistas (ações: fundamentals, market, news, timing · cripto: fundamentals, market, news, derivatives), um bull researcher e um bear researcher (as teses de alta e de baixa), um research manager que modera o debate e um risk manager que emite o veredito e o plano. Horizontes `short`, `swing`, `long`; perguntas de acompanhamento; um relatório em PDF. → [Análise profunda](https://www.simianx.ai/c)
-- **Análise ao vivo** — os quatro agentes ao vivo, uma única vez: **indicator** (tendência, momentum e estrutura no gráfico), **intelligence** (fluxo de notícias e narrativa), **fundamental** (demonstrações financeiras e eventos, ou on-chain e derivativos para uma moeda) e **decision** (a proposta de operação, com entrada, stop e alvo). → [Análise ao vivo](https://www.simianx.ai/l)
-- **Notícias classificadas** — cada artigo pontuado pelos símbolos que movimenta, pelo seu valor (`low` / `medium` / `high`) e pelo seu sentimento, em lista, por artigo, traduzido para 16 idiomas ou como stream ao vivo. → [Histórias](https://www.simianx.ai/stories)
-- **Market Pulse** — choques de preço em janelas de 1, 5 e 15 minutos, máximas e mínimas de 24 horas / 30 dias / 52 semanas, variações do dia e gaps, para cripto e ações, com severidade de 1 a 4. → [Pulso do Mercado](https://www.simianx.ai/pulse)
-- **Sector Watch** — catalisadores de fonte primária para um setor: um calendário (datas PDUFA, comitês consultivos, resultados de ensaios clínicos), eventos com severidade de 1 a 4 e direção (aprovações, complete response letters, resultados topline, designações, inspeções, atualizações de bula…), constituintes, ativos farmacêuticos e acompanhamentos. No ar hoje: **Biopharma · aprovações da FDA**, construído a partir de filings da SEC, comunicados da FDA e do Federal Register, ClinicalTrials.gov e openFDA. → [Setores em Foco](https://www.simianx.ai/sectors)
-- **Modelos à sua escolha** — três níveis (`fast`, `standard`, `frontier`) e 50+ modelos de 7 provedores que um plano pago pode definir por agente; um catálogo público com preços em pontos. → [Pontos e Tarifas](https://www.simianx.ai/points)
-- **Ranking** — como cada modelo realmente operou, para que um agente escolha um modelo de decisão com base em evidências. → [Ranking de Modelos AI de Criptomoedas](https://www.simianx.ai/crypto-leaderboard)
+Mercados: mais de 13.000 ações e ETFs dos EUA, com velas de `1m` a `1mo`, e mais de 4.000 pares cripto, à vista e perpétuos, de `1m` a `1D`. → [Análise de Ações](https://www.simianx.ai/c) · [Análise de Criptomoedas](https://www.simianx.ai/l)
 
-**Planos e idiomas** — planos Free, Starter, Plus e Pro com pontos mensais, limites de requisições por plano e um atraso de dados de 30 minutos abaixo do Plus ([preços](https://www.simianx.ai/pricing)). A API responde em 16 idiomas (`X-Language`). A SimianX não opera contas reais: as posições do autopilot são posições simuladas que você pode espelhar com o seu próprio runner.
+## Instale com uma frase
 
-## Instale em uma frase
-
-Cole isto no seu agente. Ele busca o guia de instalação, coloca a skill onde o seu agente lê skills e pede uma chave:
+Cole isto no seu agente:
 
 ```text
 Install the SimianX skill from https://www.simianx.ai/INSTALL.md and set it up for this project.
 ```
 
-Prefere um comando? Os dois funcionam em qualquer agente que lê skills:
+O agente coloca a skill onde costuma procurar skills e depois faz o seu login: você aprova um link no navegador ou digita o código de 6 dígitos que mandamos por e-mail. Se o e-mail for novo, a conta é criada na hora. No fim, o agente fica com uma chave de API só dele em `SIMIANX_API_KEY`, nunca com o seu login do site.
+
+Se preferir o terminal:
 
 ```bash
-npx skills add SimianX-AI/simianx-skills          # universal installer (pick your agents interactively)
-gh skill install SimianX-AI/simianx-skills simianx  # GitHub CLI, --agent <id> to target one agent
+npx skills add SimianX-AI/simianx-skills
+gh skill install SimianX-AI/simianx-skills simianx
 ```
 
-Depois diga **"Faça meu login na SimianX"**. O agente entrega a você um link para aprovar no navegador ou envia um código de 6 dígitos por e-mail; de um jeito ou de outro, ele recebe uma chave própria, com escopo e orçamento, e a guarda como `SIMIANX_API_KEY`. Ainda não tem conta? O código por e-mail cria uma. Você também pode criar uma chave manualmente em **My Account → API keys** no [simianx.ai](https://www.simianx.ai) e exportá-la:
+O comando e o diretório de cada agente (Claude Code, Codex, Cursor, Copilot, Gemini CLI, Windsurf, Amp, Cline e os demais) estão no [INSTALL.md](INSTALL.md).
 
-```bash
-export SIMIANX_API_KEY=simx_live_...
-```
+## Primeiras chamadas
 
-## Instale para o seu agente
-
-| Agente | Caminho nativo | Onde a skill fica |
+| O quê | Chamada | Referência |
 |---|---|---|
-| Claude Code | `/plugin marketplace add SimianX-AI/simianx-skills` e depois `/plugin install simianx@simianx` | plugin, ou `~/.claude/skills/simianx` |
-| OpenAI Codex | `codex plugin marketplace add SimianX-AI/simianx-skills` e depois `/plugins` → **simianx** | `.agents/skills/simianx` |
-| Cursor | Customize → *From GitHub Repository* → `SimianX-AI/simianx-skills` (ou `npx skills add SimianX-AI/simianx-skills -a cursor`) | `.agents/skills/simianx` · `~/.cursor/skills` |
-| GitHub Copilot | `gh skill install SimianX-AI/simianx-skills simianx --agent github-copilot` | `.github/skills/simianx` · `~/.copilot/skills` |
-| Gemini CLI | `gemini skills install https://github.com/SimianX-AI/simianx-skills.git --path skills/simianx --consent` | `~/.gemini/skills/simianx` |
-| Windsurf / Devin | `npx skills add SimianX-AI/simianx-skills -a windsurf` | `.devin/skills/simianx` |
-| Amp | `amp skill add SimianX-AI/simianx-skills` | `~/.config/agents/skills/simianx` |
-| Cline · Roo Code · Kilo Code | `npx skills add SimianX-AI/simianx-skills -a cline` (ou `-a roo`, `-a kilo`) | `.cline/skills` · `.roo/skills` · `.kilo/skills` |
-| OpenCode · Zed · Kiro · Factory Droid · OpenHands · Goose · Antigravity | `npx skills add SimianX-AI/simianx-skills -a <agent>` | `.agents/skills/simianx` |
-| Qualquer outro | copie `skills/simianx/` para o diretório que o seu agente varre, ou execute `scripts/install.sh --agent auto` | veja [INSTALL.md](INSTALL.md) |
+| Rodar uma análise ao vivo | `POST /v1/analysis/live` → `GET /v1/analysis/live/{id}?wait=30` | [live](skills/simianx/references/live.md) |
+| Notícias dos seus ativos | `GET /v1/news?symbols=NVDA&min_value=medium` | [news](skills/simianx/references/news.md) |
+| Notícias assim que saem | `GET /v1/news/stream` (server-sent events, retoma se a conexão cair) | [news](skills/simianx/references/news.md) |
+| Pulso do Mercado | `GET /v1/pulse/events` | [data](skills/simianx/references/data.md) |
+| Pesquisa profunda | `POST /v1/analysis/deep` → `/events` · `/ask` · `/pdf` | [deep](skills/simianx/references/deep.md) |
+| Setores em Foco | `GET /v1/sectors/{sector}/calendar` · `/events` | [sectors](skills/simianx/references/sectors.md) |
+| Pilotos automáticos | `POST /v1/autopilots` → `GET /v1/autopilots/{id}/events?after=<cursor>&wait=30` | [autopilots](skills/simianx/references/autopilots.md) |
 
-[INSTALL.md](INSTALL.md) lista o diretório exato e as linhas de shell de cada cliente; `scripts/install.sh` (`install.py` no Windows: `install.ps1`) detecta os agentes instalados e copia ou cria links da skill para você.
+URL base `https://service.simianx.ai/v1`, cabeçalho `Authorization: Bearer $SIMIANX_API_KEY`. As mesmas chamadas, em scripts de shell, estão em [examples/curl](examples/curl).
 
-## O que o seu agente pode fazer
+## Planos
 
-| Necessidade | Chamada | Referência |
-|---|---|---|
-| Iniciar e acompanhar um autopilot em uma ação ou uma moeda | `POST /v1/autopilots` → `GET /v1/autopilots/{id}/events?after=<cursor>&wait=30` | [autopilots](skills/simianx/references/autopilots.md) |
-| Operar manualmente a carteira simulada do autopilot | `POST /v1/autopilots/{id}/actions` (`open`, `add`, `reduce`, `close`, `set_levels`, `place_order`, `replace_order`, `cancel_order`, `set_timeframe`) | [autopilots](skills/simianx/references/autopilots.md) |
-| Executar um agente agora | `POST /v1/autopilots/{id}/run {"agent": "decision"}` | [autopilots](skills/simianx/references/autopilots.md) |
-| Pesquisa profunda com 8 agentes, com veredito e plano | `POST /v1/analysis/deep` → `/events` · `/ask` · `/pdf` | [deep](skills/simianx/references/deep.md) |
-| Os agentes ao vivo, uma única vez | `POST /v1/analysis/live` → `GET /v1/analysis/live/{id}?wait=30` | [live](skills/simianx/references/live.md) |
-| Notícias classificadas (símbolos, valor, sentimento), em lista ou em stream | `GET /v1/news` · `GET /v1/news/stream` | [news](skills/simianx/references/news.md) |
-| Catalisadores setoriais: calendário, eventos, constituintes, acompanhamentos | `GET /v1/sectors` · `/{sector}/calendar` · `/{sector}/events` | [sectors](skills/simianx/references/sectors.md) |
-| Candles de cripto, indicadores, cotações, Market Pulse | `GET /v1/market/{symbol}/candles` · `/indicators` · `/v1/quotes` · `/v1/pulse/events` | [data](skills/simianx/references/data.md) |
-| Modelos que você pode definir por agente, preços, sua conta | `GET /v1/models` · `GET /v1/pricing` · `GET /v1/me` · `POST /v1/analysis/quote` | [billing](skills/simianx/references/billing.md) |
-
-Cada evento do log do autopilot carrega um cursor e, para tudo em que um agente possa agir (`signal.fired`, `position.changed`), um carimbo de expiração, para que um runner nunca aja sobre informação desatualizada. Ler eventos é gratuito; você paga pelas análises, com os pontos que o seu plano já inclui.
-
-## Uma primeira sessão
-
-1. `GET https://service.simianx.ai/v1/skill` — público; confirma que a versão da skill que o seu agente tem ainda é aceita.
-2. `GET /v1/me` com `Authorization: Bearer $SIMIANX_API_KEY` — plano, pontos restantes, limites.
-3. `POST /v1/analysis/quote` — quanto uma chamada vai custar, antes de pagar.
-4. `POST /v1/autopilots` com `{"asset": "crypto", "symbol": "BTC", "timeframe": "15m", "tier": "fast"}` — depois faça long-poll do log de eventos a partir do cursor que a resposta devolve.
-
-O ciclo completo, em `curl`, está em [examples/curl](examples/curl); um pequeno runner sempre ativo que executa o seu comando ou webhook a cada mudança de posição está em [examples/runner](examples/runner).
-
-## Pontos, não créditos
-
-- Tudo é cobrado em **pontos** da assinatura da conta. Não há recargas nem pagamento por chamada.
-- Os endpoints de IA são medidos pelos modelos realmente usados; `GET /v1/pricing` publica o custo habitual por tier (`fast`, `standard`, `frontier`) e `GET /v1/models` o preço de cada modelo que um agente pode escolher.
-- Os endpoints de dados são cobrados por requisição (uma fração de ponto); o log de eventos, `/v1/me`, `/v1/skill`, `/v1/pricing` e `/v1/models` não custam nada.
-- `402` significa que os pontos ou o orçamento de uma chave acabaram e indica a saída (`renew_now`, `change_plan`, `subscribe`); `429` é limite de taxa e traz `Retry-After`. Nada mais é jamais um problema de pagamento.
+Free, Starter, Plus e Pro (veja os [preços](https://www.simianx.ai/pricing)). As chamadas do agente usam os pontos do seu plano, com as mesmas tarifas do site. O fluxo de notícias é em tempo real no Plus e no Pro; abaixo do Plus, as notícias chegam com 30 minutos de atraso. A API responde em 16 idiomas. O SimianX nunca opera uma conta real: as posições dos pilotos automáticos são simuladas.
 
 ## Segurança
 
-- A chave vive na variável de ambiente `SIMIANX_API_KEY`. A skill nunca pede a um agente que a escreva em um repositório, em um log ou em um prompt.
-- Um agente nunca recebe uma sessão do site. Fazer login a partir de um agente (link no navegador ou código por e-mail) só cria uma chave de API para esse agente, anunciada por e-mail e listada na sua atividade de segurança; o site, a cobrança e as configurações de segurança continuam com você.
-- As chaves carregam escopos (`data:read`, `analysis:run`, `automation:manage`, `keys:manage`), orçamentos diários e mensais de pontos, um teto por chamada e uma lista de IPs permitidos opcional. Dê ao agente a menor chave que dê conta do trabalho dele.
-- Revogue qualquer chave em **My Account → API keys**; uma chave revogada é recusada em menos de um segundo. Cada chamada é registrada na sua conta com o respectivo custo.
-- A skill lê apenas a sua própria conta: seus autopilots, suas execuções, suas chaves. Ela nunca opera uma conta real; as posições do autopilot são posições simuladas.
+- A chave fica em `SIMIANX_API_KEY`. A skill nunca a grava em repositório, log ou prompt.
+- Um agente nunca recebe uma sessão do site. Fazer login por um agente só cria uma chave de API para ele, e avisamos você por e-mail quando isso acontece.
+- As chaves têm escopos, orçamentos diários e mensais e uma lista opcional de IPs permitidos. Dê a cada agente a chave mais restrita que dê conta do trabalho.
+- Revogue uma chave em **Minha Conta → Chaves de API** e ela para de funcionar em menos de um segundo.
 
-## Versões e atualizações
+## Versões
 
-A skill informa a sua versão no cabeçalho `X-SimianX-Skill`. Quando a API deixa de aceitar uma versão, responde `426` com a URL a ser relida, e `GET /v1/skill` mostra sempre a versão atual e a mínima, além do [changelog](CHANGELOG.md). Atualize com o comando do próprio agente (`npx skills update`, `gh skill update --all`, `/plugin marketplace update simianx`, …) ou execute de novo a frase acima.
+A skill envia a própria versão no cabeçalho `X-SimianX-Skill`. Quando uma versão é desativada, a API responde `426` com a URL que deve ser lida de novo, e `GET /v1/skill` mostra a versão atual e a mínima. Atualize com o comando do seu agente ou cole de novo a frase acima. O que mudou está no [histórico de alterações](CHANGELOG.md).
 
 ## Estrutura do repositório
 
 ```
 skills/simianx/SKILL.md           the skill (Agent Skills format)
-skills/simianx/references/        autopilots · deep · live · news · sectors · data · billing
-INSTALL.md                        agent-readable install guide (also served at simianx.ai/INSTALL.md)
+skills/simianx/references/        live · news · data · deep · sectors · autopilots · billing
+INSTALL.md                        agent-readable install guide (also at simianx.ai/INSTALL.md)
 scripts/install.{sh,py,ps1}       installer for every agent; check_version.py · check_readmes.py
-examples/curl · examples/runner   a first session in curl; the always-on runner
+examples/curl · examples/runner   the first calls in curl; an always-on runner for autopilots
 .claude-plugin · .agents/plugins · .cursor-plugin · plugin.json · gemini-extension.json
                                   manifests so marketplaces and plugin commands find the skill
 README.<locale>.md                this page in the 16 languages SimianX speaks
 ```
 
-## Feedback e suporte
+## Feedback
 
-- De um agente: `POST /v1/feedback` (lido pela equipe; texto abusivo é recusado e nunca armazenado).
+- De um agente: `POST /v1/feedback`.
 - De uma pessoa: [GitHub issues](https://github.com/SimianX-AI/simianx-skills/issues) para a skill, [simianx.ai/agents](https://www.simianx.ai/agents) para o produto.
 
-Leia [CONTRIBUTING.md](CONTRIBUTING.md) antes de abrir um pull request e [SECURITY.md](SECURITY.md) para reportar uma vulnerabilidade.
+Leia o [CONTRIBUTING.md](CONTRIBUTING.md) antes de abrir um pull request e o [SECURITY.md](SECURITY.md) para reportar uma vulnerabilidade.
 
 ## Licença
 
-MIT para tudo neste repositório. O uso da API da SimianX é regido pelos [Termos de Serviço](https://www.simianx.ai/legal/terms). As análises da SimianX são informação, não recomendação de investimento; as posições do autopilot são posições simuladas.
+Tudo neste repositório está sob a licença MIT. O uso da API do SimianX segue os [Termos de Serviço](https://www.simianx.ai/legal/terms). As análises do SimianX são informação, não recomendação de investimento.

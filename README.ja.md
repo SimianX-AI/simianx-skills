@@ -10,8 +10,8 @@
 <h1 align="center">AI エージェントのための SimianX AI</h1>
 
 <p align="center">
-  Claude Code、Codex、Cursor、Copilot、Gemini CLI、そしてスキルを読み込めるあらゆるエージェントを、ひとつのスキルで SimianX トレーディングデスクのクライアントに変えます:
-  実行グレードのイベントログを備えたオートパイロット、8 エージェントによるディープリサーチ、ライブ分析、分類済みニュース、セクターカタリスト。
+  どの米国株や暗号資産ペアにも 4 人の AI アナリストが付き、スコア付きのニュースもストリームで届きます。
+  Claude Code、Codex、Cursor をはじめ、スキルを読めるすべてのエージェントで使えます。
 </p>
 
 <p align="center">
@@ -34,130 +34,90 @@
 
 ---
 
-## SimianX がカバーする範囲
+## SimianX でできること
 
-以下はすべてスキル経由で利用でき、[simianx.ai](https://www.simianx.ai) 上で提供されています。各リンクは、その機能の背後にあるプロダクトページを開きます。
+中心になるのは次の 2 つです。
 
-**市場**
+- **マルチエージェントのライブ分析。** 銘柄か暗号資産ペアと時間足を指定すると、4 つのエージェントが同時に分析を始めます。チャートはインジケーター、ニュースの流れはインテリジェンス、開示資料とインサイダー取引（コインならオンチェーンとデリバティブのデータ）はファンダメンタルが担当。最後に意思決定エージェントが 3 つの見立てを比べ、エントリー・損切り・目標価格付きのトレード案を出します。→ [ライブ分析](https://www.simianx.ai/l)
+- **スコア付きのニュースストリーム。** 記事はどれも、影響する銘柄、重要度のスコア、強気・弱気・中立の判定が付いた状態で届きます。マーケットパルスで急な値動き、高値・安値の更新、ギャップと並んで流れているのも、このフィードです。お使いのエージェントは、ページ送りで順に読むことも、担当銘柄のストリームを開いたままにしておくこともできます。→ [マーケットパルス](https://www.simianx.ai/pulse)
 
-- **米国株と ETF** — 13,000 以上の上場銘柄。決算、開示書類、財務時系列データ、取引時間の認識を備えています。時間足は `1m 15m 1H 1D 1W 1mo`。 → [株式分析](https://www.simianx.ai/c)
-- **暗号資産** — OKX、Binance、Bybit、Coinbase にまたがる 1,500 以上のコインと 4,000 以上のペア。現物と USDT/USD 無期限スワップ(`BTC` のようにシンボルだけを指定すると無期限スワップとして解決されます)。時間足は `1m 5m 15m 1H 4H 1D`。 → [暗号通貨分析](https://www.simianx.ai/l)
+このほか、必要に応じて次の機能も使えます。
 
-**エージェントが行うこと**
+- **ディープリサーチ。** 8 つのエージェントが 1 つの銘柄やコインについて議論し、結論、トレードプラン、PDF を返します。お使いのエージェントから追加で質問することもできます。→ [ディープ分析](https://www.simianx.ai/c)
+- **セクターウォッチ。** 一次情報から集めたカタリストのカレンダーとイベント。まずはバイオ医薬品から始めています。→ [セクターウォッチ](https://www.simianx.ai/sectors)
+- **オートパイロット。** 同じ 4 つのライブエージェントが 1 つの銘柄をスケジュールどおりに分析し、仮想ポジションを管理します。動きはすべてイベントログに残り、お使いのエージェントがそれを追えます。→ [自動操縦装置](https://www.simianx.ai/autopilots)
+- **モデルの選択。** 各エージェントの裏で動くモデルを自分で選べます。選ぶ前に、それぞれのモデルがこれまでどう取引してきたかも確かめられます。→ [モデルリーダーボード](https://www.simianx.ai/crypto-leaderboard)
 
-- **オートパイロット** — 4 つのライブエージェントが 1 つのシンボルに対してスケジュール実行され、許可すればペーパーポジションを管理します(成行・指値・逆指値のエントリー、分割売買、ストップロス / テイクプロフィット、タイミングゲート)。すべての分析、シグナル、ポジション変更はカーソルで読み取るイベントログに記録され、`signal.fired` と `position.changed` には有効期限が付きます。あなたのエージェントがそのブックを手動で売買することもできます。 → [自動操縦装置](https://www.simianx.ai/autopilots)
-- **ディープリサーチ** — 1 回の実行につき 8 エージェントの委員会: 4 人のアナリスト(株式: fundamentals, market, news, timing · 暗号資産: fundamentals, market, news, derivatives)、bull researcher と bear researcher(強気派・弱気派のリサーチャー)、議論を仕切る research manager(リサーチマネージャー)、そして判定とプランを出す risk manager(リスクマネージャー)。期間は `short`、`swing`、`long`。追加質問と PDF レポートに対応。 → [ディープ分析](https://www.simianx.ai/c)
-- **ライブ分析** — 4 つのライブエージェントを 1 回だけ実行: **indicator**(インジケーター: チャート上のトレンド、モメンタム、構造)、**intelligence**(インテリジェンス: ニュースフローとナラティブ)、**fundamental**(ファンダメンタル: 財務とイベント、コインの場合はオンチェーンとデリバティブ)、**decision**(ディシジョン: エントリー、ストップ、ターゲットを含む取引提案)。 → [ライブ分析](https://www.simianx.ai/l)
-- **分類済みニュース** — すべての記事を、影響する銘柄、バリュー(`low` / `medium` / `high`)、センチメントでスコアリング。リスト形式、記事単位、16 言語への翻訳、ライブストリームのいずれでも取得できます。 → [ストーリー](https://www.simianx.ai/stories)
-- **Market Pulse** — 1 分・5 分・15 分ウィンドウでの価格急変、24 時間 / 30 日 / 52 週の高値・安値、日中の値動きとギャップを、暗号資産と株式の両方で重大度 1–4 付きで検出します。 → [マーケットパルス](https://www.simianx.ai/pulse)
-- **Sector Watch** — セクターの一次情報に基づくカタリスト: カレンダー(PDUFA 期日、諮問委員会、治験結果の公表)、重大度 1–4 と方向性を持つイベント(承認、審査完了報告書、トップライン結果、指定、査察、添付文書の更新など)、構成銘柄、医薬品アセット、フォロー。現在提供中: **Biopharma · FDA approvals**。SEC の開示書類、FDA と Federal Register の公表、ClinicalTrials.gov、openFDA から構築しています。 → [セクターウォッチ](https://www.simianx.ai/sectors)
-- **選べるモデル** — 3 つのティア(`fast`、`standard`、`frontier`)と 7 プロバイダー 50 以上のモデル。有料プランではエージェントごとに設定できます。ポイント建て価格の公開カタログあり。 → [ポイントとレート](https://www.simianx.ai/points)
-- **リーダーボード** — 各モデルが実際にどう取引してきたかを示すので、エージェントは根拠に基づいて判定モデルを選べます。 → [暗号通貨AIモデルリーダーボード](https://www.simianx.ai/crypto-leaderboard)
-
-**プランと言語** — Free、Starter、Plus、Pro の各プランには月間ポイントとプランごとのレート制限が付き、Plus 未満では 30 分のデータ遅延があります([料金](https://www.simianx.ai/pricing))。API は 16 言語で応答します(`X-Language`)。SimianX は実口座で取引しません。オートパイロットのポジションはペーパーポジションであり、あなた自身のランナーでミラーできます。
+対象市場：米国株と ETF が 13,000 銘柄以上（ローソク足は `1m`〜`1mo`）、暗号資産が現物と無期限先物あわせて 4,000 ペア以上（`1m`〜`1D`）。→ [株式分析](https://www.simianx.ai/c) · [暗号通貨分析](https://www.simianx.ai/l)
 
 ## 一文でインストール
 
-これをエージェントに貼り付けてください。インストールガイドを取得し、エージェントがスキルを読む場所にスキルを配置し、キーの入力を求めます:
+エージェントにこの一文を貼ってください。
 
 ```text
 Install the SimianX skill from https://www.simianx.ai/INSTALL.md and set it up for this project.
 ```
 
-コマンドの方がよければ、どちらもスキルを読み込めるすべてのエージェントで動作します:
+エージェントがスキルを所定の場所に入れ、そのままサインインまで進めます。ブラウザでリンクを承認するか、メールで届く 6 桁のコードを入力してください。初めてのメールアドレスなら、その場でアカウントが作られます。エージェントが受け取るのは専用の API キーで、`SIMIANX_API_KEY` に保存されます。ウェブサイトのログインがエージェントに渡ることはありません。
+
+ターミナルから入れることもできます。
 
 ```bash
-npx skills add SimianX-AI/simianx-skills          # universal installer (pick your agents interactively)
-gh skill install SimianX-AI/simianx-skills simianx  # GitHub CLI, --agent <id> to target one agent
+npx skills add SimianX-AI/simianx-skills
+gh skill install SimianX-AI/simianx-skills simianx
 ```
 
-次に **"SimianX にサインインして"** と伝えます。エージェントはブラウザで承認するリンクを渡すか、6 桁のコードをメールで送ります。どちらの場合も、エージェントはスコープと予算の付いた自分専用のキーを受け取り、`SIMIANX_API_KEY` として保存します。アカウントがまだない場合は、メールのコードで作成されます。[simianx.ai](https://www.simianx.ai) の **私のアカウント → API キー** で手動でキーを作成し、エクスポートすることもできます:
+エージェントごと（Claude Code、Codex、Cursor、Copilot、Gemini CLI、Windsurf、Amp、Cline など）のコマンドとディレクトリは [INSTALL.md](INSTALL.md) にまとめています。
 
-```bash
-export SIMIANX_API_KEY=simx_live_...
-```
+## まず試す呼び出し
 
-## エージェント別のインストール
-
-| エージェント | ネイティブな手順 | スキルの配置先 |
+| やりたいこと | 呼び出し | リファレンス |
 |---|---|---|
-| Claude Code | `/plugin marketplace add SimianX-AI/simianx-skills` の後に `/plugin install simianx@simianx` | プラグイン、または `~/.claude/skills/simianx` |
-| OpenAI Codex | `codex plugin marketplace add SimianX-AI/simianx-skills` の後に `/plugins` → **simianx** | `.agents/skills/simianx` |
-| Cursor | Customize → *From GitHub Repository* → `SimianX-AI/simianx-skills`(または `npx skills add SimianX-AI/simianx-skills -a cursor`) | `.agents/skills/simianx` · `~/.cursor/skills` |
-| GitHub Copilot | `gh skill install SimianX-AI/simianx-skills simianx --agent github-copilot` | `.github/skills/simianx` · `~/.copilot/skills` |
-| Gemini CLI | `gemini skills install https://github.com/SimianX-AI/simianx-skills.git --path skills/simianx --consent` | `~/.gemini/skills/simianx` |
-| Windsurf / Devin | `npx skills add SimianX-AI/simianx-skills -a windsurf` | `.devin/skills/simianx` |
-| Amp | `amp skill add SimianX-AI/simianx-skills` | `~/.config/agents/skills/simianx` |
-| Cline · Roo Code · Kilo Code | `npx skills add SimianX-AI/simianx-skills -a cline`(または `-a roo`、`-a kilo`) | `.cline/skills` · `.roo/skills` · `.kilo/skills` |
-| OpenCode · Zed · Kiro · Factory Droid · OpenHands · Goose · Antigravity | `npx skills add SimianX-AI/simianx-skills -a <agent>` | `.agents/skills/simianx` |
-| その他 | `skills/simianx/` をエージェントがスキャンするディレクトリにコピーするか、`scripts/install.sh --agent auto` を実行 | [INSTALL.md](INSTALL.md) を参照 |
+| ライブ分析を 1 回実行 | `POST /v1/analysis/live` → `GET /v1/analysis/live/{id}?wait=30` | [live](skills/simianx/references/live.md) |
+| 銘柄のニュースを取得 | `GET /v1/news?symbols=NVDA&min_value=medium` | [news](skills/simianx/references/news.md) |
+| ニュースを届いた瞬間に受け取る | `GET /v1/news/stream`（SSE、切れても続きから再開） | [news](skills/simianx/references/news.md) |
+| マーケットパルス | `GET /v1/pulse/events` | [data](skills/simianx/references/data.md) |
+| ディープリサーチ | `POST /v1/analysis/deep` → `/events` · `/ask` · `/pdf` | [deep](skills/simianx/references/deep.md) |
+| セクターウォッチ | `GET /v1/sectors/{sector}/calendar` · `/events` | [sectors](skills/simianx/references/sectors.md) |
+| オートパイロット | `POST /v1/autopilots` → `GET /v1/autopilots/{id}/events?after=<cursor>&wait=30` | [autopilots](skills/simianx/references/autopilots.md) |
 
-[INSTALL.md](INSTALL.md) には各クライアントの正確なディレクトリとシェルコマンドが載っています。`scripts/install.sh`(Windows では `install.py`: `install.ps1`)はインストール済みのエージェントを検出し、スキルをコピーまたはリンクしてくれます。
+ベース URL は `https://service.simianx.ai/v1`、ヘッダーは `Authorization: Bearer $SIMIANX_API_KEY` です。同じ呼び出しをシェルスクリプトにしたものを [examples/curl](examples/curl) に置いています。
 
-## エージェントにできること
+## プラン
 
-| 用途 | 呼び出し | リファレンス |
-|---|---|---|
-| 株式や暗号資産のオートパイロットを起動して追跡する | `POST /v1/autopilots` → `GET /v1/autopilots/{id}/events?after=<cursor>&wait=30` | [autopilots](skills/simianx/references/autopilots.md) |
-| オートパイロットのペーパーブックを手動で売買する | `POST /v1/autopilots/{id}/actions` (`open`, `add`, `reduce`, `close`, `set_levels`, `place_order`, `replace_order`, `cancel_order`, `set_timeframe`) | [autopilots](skills/simianx/references/autopilots.md) |
-| エージェントを 1 つ今すぐ実行する | `POST /v1/autopilots/{id}/run {"agent": "decision"}` | [autopilots](skills/simianx/references/autopilots.md) |
-| 判定とプランを伴う 8 エージェントのディープリサーチ | `POST /v1/analysis/deep` → `/events` · `/ask` · `/pdf` | [deep](skills/simianx/references/deep.md) |
-| ライブエージェントを 1 回だけ実行する | `POST /v1/analysis/live` → `GET /v1/analysis/live/{id}?wait=30` | [live](skills/simianx/references/live.md) |
-| 分類済みニュース(銘柄、バリュー、センチメント)をリストまたはストリームで | `GET /v1/news` · `GET /v1/news/stream` | [news](skills/simianx/references/news.md) |
-| セクターカタリスト: カレンダー、イベント、構成銘柄、フォロー | `GET /v1/sectors` · `/{sector}/calendar` · `/{sector}/events` | [sectors](skills/simianx/references/sectors.md) |
-| 暗号資産のローソク足、指標、気配値、Market Pulse | `GET /v1/market/{symbol}/candles` · `/indicators` · `/v1/quotes` · `/v1/pulse/events` | [data](skills/simianx/references/data.md) |
-| エージェントごとに設定できるモデル、価格、アカウント情報 | `GET /v1/models` · `GET /v1/pricing` · `GET /v1/me` · `POST /v1/analysis/quote` | [billing](skills/simianx/references/billing.md) |
-
-オートパイロットログのすべてのイベントにはカーソルが付き、エージェントが行動を起こしうるもの(`signal.fired`、`position.changed`)には有効期限スタンプが付くため、ランナーが古い情報で動くことはありません。イベントの読み取りは無料です。料金が発生するのは分析だけで、プランにすでに含まれているポイントで支払います。
-
-## 最初のセッション
-
-1. `GET https://service.simianx.ai/v1/skill` ― 公開エンドポイント。エージェントが持つスキルのバージョンがまだ受け付けられるかを確認します。
-2. `GET /v1/me`(`Authorization: Bearer $SIMIANX_API_KEY` 付き)― プラン、残りポイント、制限。
-3. `POST /v1/analysis/quote` ― 支払う前に、その呼び出しのコストを確認。
-4. `POST /v1/autopilots` に `{"asset": "crypto", "symbol": "BTC", "timeframe": "15m", "tier": "fast"}` を渡す ― その後、レスポンスで返るカーソルからイベントログをロングポーリング。
-
-`curl` によるループ全体は [examples/curl](examples/curl) に、ポジションが変わるたびにコマンドや Webhook を実行する小さな常時稼働ランナーは [examples/runner](examples/runner) にあります。
-
-## 課金はポイントのみ
-
-- すべての課金は、アカウントのサブスクリプションに含まれる **ポイント** で行われます。チャージも従量課金もありません。
-- AI エンドポイントは実際に使用したモデルに基づいて計量されます。`GET /v1/pricing` はティア(`fast`、`standard`、`frontier`)ごとの標準的なコストを、`GET /v1/models` はエージェントが選択できる各モデルの価格を公開しています。
-- データエンドポイントはリクエスト単位(1 ポイントの何分の一か)で課金されます。イベントログ、`/v1/me`、`/v1/skill`、`/v1/pricing`、`/v1/models` は無料です。
-- `402` はポイントまたはキーの予算が尽きたことを意味し、解決方法(`renew_now`、`change_plan`、`subscribe`)を示します。`429` はレート制限で、`Retry-After` を伴います。それ以外が支払いの問題になることはありません。
+Free、Starter、Plus、Pro があります。詳しくは[料金](https://www.simianx.ai/pricing)をご覧ください。エージェントからの呼び出しにはプランのポイントを使い、レートはウェブサイトと同じです。ニュースストリームは Plus と Pro ならリアルタイム、Plus 未満では 30 分遅れです。回答は 16 言語に対応しています。SimianX が実際の口座で取引することはなく、オートパイロットのポジションはすべて仮想ポジションです。
 
 ## セキュリティ
 
-- キーは環境変数 `SIMIANX_API_KEY` に置きます。このスキルがエージェントにキーをリポジトリ、ログ、プロンプトへ書き込ませることは決してありません。
-- エージェントがウェブサイトのセッションを得ることは決してありません。エージェントからのサインイン(ブラウザのリンクまたはメールのコード)は、そのエージェント用の API キーを作成するだけです。作成はメールで通知され、セキュリティアクティビティにも記録されます。ウェブサイト、請求、セキュリティ設定はあなたの手元に残ります。
-- キーにはスコープ(`data:read`、`analysis:run`、`automation:manage`、`keys:manage`)、日次・月次のポイント予算、1 回の呼び出しあたりの上限、任意の IP 許可リストが設定できます。エージェントには、その仕事に必要な最小限のキーを渡してください。
-- キーの失効は **私のアカウント → API キー** からいつでも行えます。失効したキーは 1 秒以内に拒否されます。すべての呼び出しはコストとともにあなたのアカウントに記録されます。
-- このスキルが読むのはあなた自身のアカウントだけです: あなたのオートパイロット、あなたの実行、あなたのキー。実際の口座で取引することは決してなく、オートパイロットのポジションはペーパーポジションです。
+- キーは `SIMIANX_API_KEY` に置きます。スキルがキーをリポジトリ、ログ、プロンプトに書き込むことはありません。
+- エージェントがウェブサイトのセッションを得ることはありません。エージェントからサインインしても、作られるのはそのエージェント用の API キーだけで、作成時にはメールでお知らせします。
+- キーにはスコープ、1 日と 1 か月の予算、任意の IP 許可リストを設定できます。エージェントには、それぞれの仕事に足りる最小限のキーを渡してください。
+- **マイアカウント → API キー** でキーを失効させると、1 秒以内に使えなくなります。
 
-## バージョンと更新
+## バージョン
 
-スキルは自身のバージョンを `X-SimianX-Skill` ヘッダーで報告します。API がそのバージョンを受け付けなくなると、再読み込みすべき URL を添えて `426` を返します。また `GET /v1/skill` は常に現在のバージョンと最低バージョン、そして[変更履歴](CHANGELOG.md)を示します。更新はエージェント自身のコマンド(`npx skills update`、`gh skill update --all`、`/plugin marketplace update simianx` など)で行うか、上の一文をもう一度実行してください。
+スキルは自分のバージョンを `X-SimianX-Skill` ヘッダーで送ります。サポートが終わったバージョンには、API が読み直す URL を添えて `426` を返します。現在のバージョンと最低バージョンは `GET /v1/skill` で確認できます。更新はエージェント自身のコマンドで行うか、上の一文をもう一度貼ってください。変更点は[変更履歴](CHANGELOG.md)にあります。
 
 ## リポジトリ構成
 
 ```
 skills/simianx/SKILL.md           the skill (Agent Skills format)
-skills/simianx/references/        autopilots · deep · live · news · sectors · data · billing
-INSTALL.md                        agent-readable install guide (also served at simianx.ai/INSTALL.md)
+skills/simianx/references/        live · news · data · deep · sectors · autopilots · billing
+INSTALL.md                        agent-readable install guide (also at simianx.ai/INSTALL.md)
 scripts/install.{sh,py,ps1}       installer for every agent; check_version.py · check_readmes.py
-examples/curl · examples/runner   a first session in curl; the always-on runner
+examples/curl · examples/runner   the first calls in curl; an always-on runner for autopilots
 .claude-plugin · .agents/plugins · .cursor-plugin · plugin.json · gemini-extension.json
                                   manifests so marketplaces and plugin commands find the skill
 README.<locale>.md                this page in the 16 languages SimianX speaks
 ```
 
-## フィードバックとサポート
+## フィードバック
 
-- エージェントから: `POST /v1/feedback`(チームが読みます。暴言は拒否され、保存されることもありません)。
-- 人から: スキルについては [GitHub issues](https://github.com/SimianX-AI/simianx-skills/issues)、製品については [simianx.ai/agents](https://www.simianx.ai/agents)。
+- エージェントから：`POST /v1/feedback`。
+- 人から：スキルについては [GitHub issues](https://github.com/SimianX-AI/simianx-skills/issues)、製品については [simianx.ai/agents](https://www.simianx.ai/agents) へ。
 
-プルリクエストを開く前に [CONTRIBUTING.md](CONTRIBUTING.md) を、脆弱性の報告には [SECURITY.md](SECURITY.md) をご覧ください。
+プルリクエストを送る前に [CONTRIBUTING.md](CONTRIBUTING.md) を、脆弱性の報告は [SECURITY.md](SECURITY.md) をお読みください。
 
 ## ライセンス
 
-このリポジトリ内のすべては MIT ライセンスです。SimianX API の利用は[利用規約](https://www.simianx.ai/legal/terms)に従います。SimianX の分析は情報であり、投資助言ではありません。オートパイロットのポジションはペーパーポジションです。
+このリポジトリの内容はすべて MIT ライセンスです。SimianX API の利用には[利用規約](https://www.simianx.ai/legal/terms)が適用されます。SimianX の分析は情報であり、投資助言ではありません。
