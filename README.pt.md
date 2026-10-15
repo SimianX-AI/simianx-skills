@@ -71,7 +71,7 @@ npx skills add SimianX-AI/simianx-skills          # universal installer (pick yo
 gh skill install SimianX-AI/simianx-skills simianx  # GitHub CLI, --agent <id> to target one agent
 ```
 
-Depois crie uma chave em **My Account → API keys** no [simianx.ai](https://www.simianx.ai) e exporte-a:
+Depois diga **"Faça meu login na SimianX"**. O agente entrega a você um link para aprovar no navegador ou envia um código de 6 dígitos por e-mail; de um jeito ou de outro, ele recebe uma chave própria, com escopo e orçamento, e a guarda como `SIMIANX_API_KEY`. Ainda não tem conta? O código por e-mail cria uma. Você também pode criar uma chave manualmente em **My Account → API keys** no [simianx.ai](https://www.simianx.ai) e exportá-la:
 
 ```bash
 export SIMIANX_API_KEY=simx_live_...
@@ -129,6 +129,7 @@ O ciclo completo, em `curl`, está em [examples/curl](examples/curl); um pequeno
 ## Segurança
 
 - A chave vive na variável de ambiente `SIMIANX_API_KEY`. A skill nunca pede a um agente que a escreva em um repositório, em um log ou em um prompt.
+- Um agente nunca recebe uma sessão do site. Fazer login a partir de um agente (link no navegador ou código por e-mail) só cria uma chave de API para esse agente, anunciada por e-mail e listada na sua atividade de segurança; o site, a cobrança e as configurações de segurança continuam com você.
 - As chaves carregam escopos (`data:read`, `analysis:run`, `automation:manage`, `keys:manage`), orçamentos diários e mensais de pontos, um teto por chamada e uma lista de IPs permitidos opcional. Dê ao agente a menor chave que dê conta do trabalho dele.
 - Revogue qualquer chave em **My Account → API keys**; uma chave revogada é recusada em menos de um segundo. Cada chamada é registrada na sua conta com o respectivo custo.
 - A skill lê apenas a sua própria conta: seus autopilots, suas execuções, suas chaves. Ela nunca opera uma conta real; as posições do autopilot são posições simuladas.

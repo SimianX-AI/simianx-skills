@@ -71,7 +71,7 @@ npx skills add SimianX-AI/simianx-skills          # universal installer (pick yo
 gh skill install SimianX-AI/simianx-skills simianx  # GitHub CLI, --agent <id> to target one agent
 ```
 
-फिर [simianx.ai](https://www.simianx.ai) पर **My Account → API keys** में एक key बनाएँ और उसे export करें:
+फिर कहें **"मुझे SimianX में साइन इन करो"**। एजेंट आपको ब्राउज़र में मंज़ूरी देने के लिए एक लिंक देता है, या ईमेल से 6 अंकों का कोड भेजता है; दोनों ही तरीकों से उसे अपनी एक key मिलती है, जिसका scope और बजट तय होता है, और वह उसे `SIMIANX_API_KEY` के रूप में सहेज लेता है। अभी खाता नहीं है? ईमेल कोड से खाता बन जाता है। आप [simianx.ai](https://www.simianx.ai) पर **My Account → API keys** में हाथ से भी key बना सकते हैं और उसे export कर सकते हैं:
 
 ```bash
 export SIMIANX_API_KEY=simx_live_...
@@ -129,6 +129,7 @@ autopilot लॉग का हर इवेंट एक cursor लेकर च
 ## सुरक्षा
 
 - key `SIMIANX_API_KEY` environment variable में रहती है। skill कभी किसी एजेंट से उसे रिपॉज़िटरी, लॉग या प्रॉम्प्ट में लिखने को नहीं कहती।
+- एजेंट को कभी वेबसाइट सेशन नहीं मिलता। एजेंट से साइन इन करने पर (ब्राउज़र लिंक या ईमेल कोड से) हमेशा सिर्फ उसी एजेंट के लिए एक API key बनती है, जिसकी सूचना ईमेल से दी जाती है और जो आपकी सुरक्षा गतिविधि में दर्ज होती है; वेबसाइट, बिलिंग और सुरक्षा सेटिंग्स आपके पास ही रहती हैं।
 - keys में scopes (`data:read`, `analysis:run`, `automation:manage`, `keys:manage`), दैनिक और मासिक पॉइंट बजट, प्रति-कॉल सीमा और एक वैकल्पिक IP allowlist होती है। एजेंट को सबसे छोटी key दें जिससे उसका काम चल जाए।
 - कोई भी key **My Account → API keys** में रद्द करें; रद्द की गई key एक सेकंड के भीतर अस्वीकार हो जाती है। हर कॉल आपके खाते के तहत उसकी लागत के साथ लॉग होती है।
 - skill केवल आपका अपना खाता पढ़ती है: आपके autopilots, आपके runs, आपकी keys। यह कभी किसी असली खाते में ट्रेड नहीं करती; autopilot की पोज़िशनें पेपर पोज़िशनें हैं।

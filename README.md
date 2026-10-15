@@ -71,7 +71,7 @@ npx skills add SimianX-AI/simianx-skills          # universal installer (pick yo
 gh skill install SimianX-AI/simianx-skills simianx  # GitHub CLI, --agent <id> to target one agent
 ```
 
-Then create a key at **My Account → API keys** on [simianx.ai](https://www.simianx.ai) and export it:
+Then say **"Sign me in to SimianX"**. The agent hands you a link to approve in your browser, or mails you a 6-digit code; either way it receives a key of its own, scoped and budgeted, and stores it as `SIMIANX_API_KEY`. No account yet? The email code creates one. You can also create a key by hand at **My Account → API keys** on [simianx.ai](https://www.simianx.ai) and export it:
 
 ```bash
 export SIMIANX_API_KEY=simx_live_...
@@ -129,6 +129,7 @@ The full loop, as `curl`, is in [examples/curl](examples/curl); a small always-o
 ## Security
 
 - The key lives in the `SIMIANX_API_KEY` environment variable. The skill never asks an agent to write it into a repository, a log or a prompt.
+- An agent never gets a website session. Signing in from an agent (browser link or email code) only ever creates an API key for that agent, announced by email and listed in your security activity; the website, billing and security settings stay with you.
 - Keys carry scopes (`data:read`, `analysis:run`, `automation:manage`, `keys:manage`), daily and monthly point budgets, a per-call cap and an optional IP allowlist. Give an agent the smallest key that does its job.
 - Revoke any key at **My Account → API keys**; a revoked key is refused within a second. Every call is logged under your account with its cost.
 - The skill reads only your own account: your autopilots, your runs, your keys. It never trades a real account; autopilot positions are paper positions.

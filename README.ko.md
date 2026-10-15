@@ -71,7 +71,7 @@ npx skills add SimianX-AI/simianx-skills          # universal installer (pick yo
 gh skill install SimianX-AI/simianx-skills simianx  # GitHub CLI, --agent <id> to target one agent
 ```
 
-그다음 [simianx.ai](https://www.simianx.ai)의 **내 계좌 → API 키**에서 키를 만들고 내보내세요:
+그다음 **"SimianX에 로그인해 줘"** 라고 말하세요. 에이전트는 브라우저에서 승인할 링크를 건네거나 6자리 코드를 이메일로 보냅니다. 어느 쪽이든 에이전트는 스코프와 예산이 정해진 자기만의 키를 받아 `SIMIANX_API_KEY`로 저장합니다. 아직 계정이 없나요? 이메일 코드가 계정을 만들어 줍니다. [simianx.ai](https://www.simianx.ai)의 **내 계좌 → API 키**에서 직접 키를 만들고 내보낼 수도 있습니다:
 
 ```bash
 export SIMIANX_API_KEY=simx_live_...
@@ -129,6 +129,7 @@ export SIMIANX_API_KEY=simx_live_...
 ## 보안
 
 - 키는 `SIMIANX_API_KEY` 환경 변수에 둡니다. 이 스킬은 에이전트에게 키를 저장소, 로그, 프롬프트에 쓰라고 절대 요청하지 않습니다.
+- 에이전트는 절대 웹사이트 세션을 얻지 못합니다. 에이전트에서의 로그인(브라우저 링크 또는 이메일 코드)은 그 에이전트용 API 키만 만들며, 이는 이메일로 알려 드리고 보안 활동에도 기록됩니다. 웹사이트, 결제, 보안 설정은 그대로 내 손에 남습니다.
 - 키에는 스코프(`data:read`, `analysis:run`, `automation:manage`, `keys:manage`), 일별·월별 포인트 예산, 호출당 상한, 선택적 IP 허용 목록이 있습니다. 에이전트에는 맡은 일을 처리할 수 있는 최소한의 키만 주세요.
 - 키는 **내 계좌 → API 키**에서 언제든 폐기할 수 있으며, 폐기된 키는 1초 안에 거부됩니다. 모든 호출은 비용과 함께 내 계정에 기록됩니다.
 - 이 스킬은 본인 계정만 읽습니다: 내 오토파일럿, 내 실행, 내 키. 실제 계좌로 거래하는 일은 없으며, 오토파일럿 포지션은 페이퍼 포지션입니다.

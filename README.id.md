@@ -71,7 +71,7 @@ npx skills add SimianX-AI/simianx-skills          # universal installer (pick yo
 gh skill install SimianX-AI/simianx-skills simianx  # GitHub CLI, --agent <id> to target one agent
 ```
 
-Lalu buat key di **My Account → API keys** pada [simianx.ai](https://www.simianx.ai) dan ekspor:
+Lalu katakan **"Masukkan saya ke SimianX"**. Agen memberi Anda tautan untuk disetujui di browser, atau mengirim kode 6 digit lewat email; dengan cara mana pun ia menerima key miliknya sendiri, dengan scope dan anggaran, lalu menyimpannya sebagai `SIMIANX_API_KEY`. Belum punya akun? Kode email akan membuatkannya. Anda juga bisa membuat key secara manual di **My Account → API keys** pada [simianx.ai](https://www.simianx.ai) dan mengekspornya:
 
 ```bash
 export SIMIANX_API_KEY=simx_live_...
@@ -129,6 +129,7 @@ Loop lengkapnya, dalam `curl`, ada di [examples/curl](examples/curl); runner kec
 ## Keamanan
 
 - Key berada di variabel lingkungan `SIMIANX_API_KEY`. Skill tidak pernah meminta agen menuliskannya ke repositori, log, atau prompt.
+- Agen tidak pernah mendapat sesi situs web. Masuk dari agen (tautan browser atau kode email) hanya pernah membuat API key untuk agen itu, diumumkan lewat email dan tercantum di aktivitas keamanan Anda; situs web, penagihan, dan pengaturan keamanan tetap di tangan Anda.
 - Key membawa scope (`data:read`, `analysis:run`, `automation:manage`, `keys:manage`), anggaran poin harian dan bulanan, batas per panggilan, dan allowlist IP opsional. Beri agen key terkecil yang cukup untuk tugasnya.
 - Cabut key mana pun di **My Account → API keys**; key yang dicabut ditolak dalam hitungan detik. Setiap panggilan dicatat di akun Anda beserta biayanya.
 - Skill hanya membaca akun Anda sendiri: autopilot Anda, run Anda, key Anda. Ia tidak pernah bertransaksi di akun sungguhan; posisi autopilot adalah posisi paper.

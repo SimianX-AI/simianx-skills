@@ -71,7 +71,7 @@ npx skills add SimianX-AI/simianx-skills          # universal installer (pick yo
 gh skill install SimianX-AI/simianx-skills simianx  # GitHub CLI, --agent <id> to target one agent
 ```
 
-Sau đó tạo một khóa tại **Tài khoản của tôi → Khóa API** trên [simianx.ai](https://www.simianx.ai) rồi export nó:
+Sau đó nói **"Đăng nhập vào SimianX cho tôi"**. Agent đưa bạn một liên kết để phê duyệt trong trình duyệt, hoặc gửi mã 6 chữ số qua email; dù theo cách nào, nó cũng nhận được một khóa của riêng mình, có scope và ngân sách, rồi lưu dưới dạng `SIMIANX_API_KEY`. Chưa có tài khoản? Mã email sẽ tạo một tài khoản. Bạn cũng có thể tự tạo khóa tại **Tài khoản của tôi → Khóa API** trên [simianx.ai](https://www.simianx.ai) rồi export nó:
 
 ```bash
 export SIMIANX_API_KEY=simx_live_...
@@ -129,6 +129,7 @@ Vòng lặp đầy đủ, dưới dạng `curl`, nằm ở [examples/curl](examp
 ## Bảo mật
 
 - Khóa nằm trong biến môi trường `SIMIANX_API_KEY`. Skill không bao giờ yêu cầu agent ghi nó vào repository, log hay prompt.
+- Agent không bao giờ có phiên đăng nhập trên trang web. Đăng nhập từ agent (liên kết trình duyệt hoặc mã email) chỉ tạo ra một khóa API cho riêng agent đó, được thông báo qua email và liệt kê trong hoạt động bảo mật của bạn; trang web, thanh toán và cài đặt bảo mật vẫn nằm trong tay bạn.
 - Khóa có scope (`data:read`, `analysis:run`, `automation:manage`, `keys:manage`), ngân sách điểm theo ngày và theo tháng, mức trần mỗi lệnh gọi và danh sách IP cho phép (tùy chọn). Hãy cấp cho agent khóa nhỏ nhất đủ để làm việc.
 - Thu hồi bất kỳ khóa nào tại **Tài khoản của tôi → Khóa API**; khóa đã thu hồi bị từ chối trong vòng một giây. Mọi lệnh gọi đều được ghi lại dưới tài khoản của bạn kèm chi phí.
 - Skill chỉ đọc tài khoản của chính bạn: autopilot của bạn, các lần chạy của bạn, khóa của bạn. Nó không bao giờ giao dịch trên tài khoản thật; vị thế của autopilot là vị thế giả lập.

@@ -71,7 +71,7 @@ npx skills add SimianX-AI/simianx-skills          # universal installer (pick yo
 gh skill install SimianX-AI/simianx-skills simianx  # GitHub CLI, --agent <id> to target one agent
 ```
 
-Ardından [simianx.ai](https://www.simianx.ai) üzerinde **Hesabım → API anahtarları** bölümünden bir anahtar oluşturup dışa aktarın:
+Ardından **"Beni SimianX'e giriş yaptır"** deyin. Ajan size tarayıcıda onaylayacağınız bir bağlantı verir ya da e-postayla 6 haneli bir kod gönderir; iki durumda da kapsamı ve bütçesi belirlenmiş kendi anahtarını alır ve onu `SIMIANX_API_KEY` olarak saklar. Henüz hesabınız yok mu? E-posta kodu bir hesap oluşturur. Dilerseniz [simianx.ai](https://www.simianx.ai) üzerinde **Hesabım → API anahtarları** bölümünden elle de bir anahtar oluşturup dışa aktarabilirsiniz:
 
 ```bash
 export SIMIANX_API_KEY=simx_live_...
@@ -129,6 +129,7 @@ Tam döngü, `curl` olarak, [examples/curl](examples/curl) içinde; her pozisyon
 ## Güvenlik
 
 - Anahtar `SIMIANX_API_KEY` ortam değişkeninde yaşar. Skill, bir ajandan onu asla bir depoya, günlüğe ya da prompt'a yazmasını istemez.
+- Bir ajan asla web sitesi oturumu almaz. Bir ajandan giriş yapmak (tarayıcı bağlantısı ya da e-posta kodu) yalnızca o ajan için bir API anahtarı oluşturur; bu e-postayla bildirilir ve güvenlik etkinliklerinizde listelenir. Web sitesi, faturalama ve güvenlik ayarları sizde kalır.
 - Anahtarlar kapsamlar (`data:read`, `analysis:run`, `automation:manage`, `keys:manage`), günlük ve aylık puan bütçeleri, çağrı başına bir üst sınır ve isteğe bağlı bir IP izin listesi taşır. Bir ajana işini gören en küçük anahtarı verin.
 - Herhangi bir anahtarı **Hesabım → API anahtarları** bölümünden iptal edin; iptal edilen anahtar bir saniye içinde reddedilir. Her çağrı maliyetiyle birlikte hesabınız altında kaydedilir.
 - Skill yalnızca kendi hesabınızı okur: otopilotlarınız, çalıştırmalarınız, anahtarlarınız. Asla gerçek bir hesapta işlem yapmaz; otopilot pozisyonları kağıt pozisyonlardır.

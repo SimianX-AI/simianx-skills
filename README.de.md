@@ -71,7 +71,7 @@ npx skills add SimianX-AI/simianx-skills          # universal installer (pick yo
 gh skill install SimianX-AI/simianx-skills simianx  # GitHub CLI, --agent <id> to target one agent
 ```
 
-Erstellen Sie dann einen Schlüssel unter **Mein Konto → API-Schlüssel** auf [simianx.ai](https://www.simianx.ai) und exportieren Sie ihn:
+Sagen Sie dann **"Melde mich bei SimianX an"**. Der Agent gibt Ihnen einen Link, den Sie im Browser freigeben, oder schickt Ihnen einen 6-stelligen Code per E-Mail; in beiden Fällen erhält er einen eigenen Schlüssel mit Scopes und Budget und speichert ihn als `SIMIANX_API_KEY`. Noch kein Konto? Der E-Mail-Code legt eines an. Sie können einen Schlüssel auch von Hand unter **Mein Konto → API-Schlüssel** auf [simianx.ai](https://www.simianx.ai) erstellen und exportieren:
 
 ```bash
 export SIMIANX_API_KEY=simx_live_...
@@ -129,6 +129,7 @@ Die vollständige Schleife als `curl` steht in [examples/curl](examples/curl); e
 ## Sicherheit
 
 - Der Schlüssel lebt in der Umgebungsvariable `SIMIANX_API_KEY`. Der Skill fordert einen Agenten nie auf, ihn in ein Repository, ein Log oder einen Prompt zu schreiben.
+- Ein Agent erhält nie eine Website-Sitzung. Die Anmeldung über einen Agenten (Browser-Link oder E-Mail-Code) erstellt immer nur einen API-Schlüssel für diesen Agenten, der per E-Mail angekündigt und in Ihren Sicherheitsaktivitäten aufgeführt wird; Website, Abrechnung und Sicherheitseinstellungen bleiben bei Ihnen.
 - Schlüssel tragen Scopes (`data:read`, `analysis:run`, `automation:manage`, `keys:manage`), tägliche und monatliche Punktebudgets, eine Obergrenze pro Aufruf und eine optionale IP-Allowlist. Geben Sie einem Agenten den kleinsten Schlüssel, der seine Aufgabe erfüllt.
 - Widerrufen Sie jeden Schlüssel unter **Mein Konto → API-Schlüssel**; ein widerrufener Schlüssel wird innerhalb einer Sekunde abgelehnt. Jeder Aufruf wird unter Ihrem Konto mit seinen Kosten protokolliert.
 - Der Skill liest nur Ihr eigenes Konto: Ihre Autopiloten, Ihre Läufe, Ihre Schlüssel. Er handelt nie mit einem echten Konto; Autopilot-Positionen sind Paper-Positionen.

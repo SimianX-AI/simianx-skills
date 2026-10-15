@@ -71,7 +71,7 @@ npx skills add SimianX-AI/simianx-skills          # universal installer (pick yo
 gh skill install SimianX-AI/simianx-skills simianx  # GitHub CLI, --agent <id> to target one agent
 ```
 
-然后在 [simianx.ai](https://www.simianx.ai) 的 **我的账户 → API 密钥** 创建一个密钥并导出：
+然后对智能体说 **"帮我登录 SimianX"**。它会给你一个在浏览器里批准的链接，或者给你的邮箱发一个 6 位验证码；无论哪种方式，它都会拿到一把专属于它、带作用域和预算的密钥，并把它存为 `SIMIANX_API_KEY`。还没有账号？邮箱验证码会自动创建一个。你也可以在 [simianx.ai](https://www.simianx.ai) 的 **我的账户 → API 密钥** 手动创建一个密钥并导出：
 
 ```bash
 export SIMIANX_API_KEY=simx_live_...
@@ -129,6 +129,7 @@ autopilot 日志中的每个事件都带有游标；对于智能体可能据此�
 ## 安全
 
 - 密钥存放在 `SIMIANX_API_KEY` 环境变量中。技能绝不会要求智能体把它写进仓库、日志或提示词。
+- 智能体绝不会获得网站会话。从智能体登录（浏览器链接或邮箱验证码）只会为该智能体创建一把 API 密钥，并通过邮件通知你、记录在你的安全活动里；网站、账单和安全设置始终由你掌控。
 - 密钥带有作用域（`data:read`、`analysis:run`、`automation:manage`、`keys:manage`）、每日与每月点数预算、单次调用上限，以及可选的 IP 白名单。给智能体一把刚好够用的最小密钥。
 - 在 **我的账户 → API 密钥** 可随时吊销任何密钥；被吊销的密钥会在一秒内被拒绝。每次调用都会连同费用记录在你的账户下。
 - 技能只读取你自己的账户：你的 autopilot、你的运行、你的密钥。它绝不会操作真实账户；autopilot 持仓都是模拟持仓。

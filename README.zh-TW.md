@@ -71,7 +71,7 @@ npx skills add SimianX-AI/simianx-skills          # universal installer (pick yo
 gh skill install SimianX-AI/simianx-skills simianx  # GitHub CLI, --agent <id> to target one agent
 ```
 
-接著在 [simianx.ai](https://www.simianx.ai) 的 **我的帳戶 → API 金鑰** 建立一把金鑰並匯出：
+接著對代理說 **"幫我登入 SimianX"**。代理會給你一個在瀏覽器裡批准的連結，或寄給你一組 6 位數驗證碼；無論哪種方式，它都會拿到一把專屬於它、帶有範圍與預算的金鑰，並存成 `SIMIANX_API_KEY`。還沒有帳戶？電子郵件驗證碼會順帶建立一個。你也可以在 [simianx.ai](https://www.simianx.ai) 的 **我的帳戶 → API 金鑰** 手動建立一把金鑰並匯出：
 
 ```bash
 export SIMIANX_API_KEY=simx_live_...
@@ -129,6 +129,7 @@ autopilot 日誌中的每個事件都帶有游標；對於代理可能據此行�
 ## 安全性
 
 - 金鑰存放在 `SIMIANX_API_KEY` 環境變數中。技能絕不會要求代理把它寫進儲存庫、日誌或提示詞。
+- 代理永遠不會取得網站的登入工作階段。從代理登入（瀏覽器連結或電子郵件驗證碼）只會為該代理建立一把 API 金鑰，並以電子郵件通知你、列在你的安全活動中；網站、帳單與安全設定仍由你掌控。
 - 金鑰帶有範圍（`data:read`、`analysis:run`、`automation:manage`、`keys:manage`）、每日與每月點數預算、單次呼叫上限，以及可選的 IP 允許清單。給代理一把剛好夠用的最小金鑰。
 - 在 **我的帳戶 → API 金鑰** 可隨時撤銷任何金鑰；被撤銷的金鑰會在一秒內被拒絕。每次呼叫都會連同費用記錄在你的帳戶下。
 - 技能只讀取你自己的帳戶：你的 autopilot、你的執行、你的金鑰。它絕不會操作真實帳戶；autopilot 持倉都是模擬持倉。

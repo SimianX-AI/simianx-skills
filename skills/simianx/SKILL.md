@@ -52,8 +52,19 @@ paid responses carry `X-Points-Charged` and `X-Points-Remaining`.
    the new file. Any response with HTTP 426 (`reason: skill_outdated`) means the same: re-read, then retry.
    `data.deprecations` lists endpoints with a sunset date; stop using them before that date. The authoritative
    contract is always https://service.simianx.ai/v1/openapi.json; this file may lag it.
-1. Read `SIMIANX_API_KEY` from the environment. If it is missing, tell the user to create one at
-   https://www.simianx.ai/#api (My Account → API keys) and paste it as `SIMIANX_API_KEY`. Never ask for a card number.
+1. Read `SIMIANX_API_KEY` from the environment. If it is missing, sign the user in from here; both ways end in a key
+   for this agent, never in a website session, and never grant `billing:manage` (see `references/auth.md`):
+   - **Browser link** (the user is at a computer): `POST /v1/auth/link {"framework": "<this agent>"}` → show
+     `data.url`. The user opens it, signs in or signs up on the site and approves with one click; poll
+     `GET /v1/auth/link/{link_id}?wait=30` until `status` is `approved` (the token comes once) or `denied` / `expired`.
+   - **Email code** (no browser needed): ask for the user's email, `POST /v1/auth/code {"email", "framework"}`, ask
+     the user for the 6-digit code from the email, then `POST /v1/auth/key {"email", "code", "framework", "key":
+     {"name", "daily_points_budget"}}` → `data.token`. An address without an account becomes one. `mfa_required` →
+     ask for the authenticator or backup code and resend with `{"ticket", "mfa": {"method", "code"}}`; a 403
+     `too_many_keys` lists the plan's keys: offer to replace one (`key.replace_key_id`) with the same `ticket`.
+   Offer both and follow the one the user picks. Store the token where this agent reads its environment (shell
+   profile, a git-ignored `.env`, the agent's secret store); never print it in full, never write it into a repository
+   or a log. The user can also create a key by hand at https://www.simianx.ai/#api. Never ask for a card number.
 2. `GET /v1/me` → plan, points left, this key's budgets and the plan's limits. Keep `data.limits` in mind for pacing.
 3. `GET /v1/pricing` → prices in points (public, no key needed). Data endpoints are flat per request; AI endpoints are
    metered on the models used, `data.typical` gives the usual cost per tier (`fast`, `standard`, `frontier`).
@@ -76,11 +87,12 @@ paid responses carry `X-Points-Charged` and `X-Points-Remaining`.
 
 ## Calls
 
-See `references/autopilots.md`, `references/deep.md`, `references/live.md`, `references/news.md`, `references/data.md`,
-`references/sectors.md` and `references/billing.md` in this skill. Short map:
+See `references/auth.md`, `references/autopilots.md`, `references/deep.md`, `references/live.md`, `references/news.md`,
+`references/data.md`, `references/sectors.md` and `references/billing.md` in this skill. Short map:
 
 | Need | Call |
 |---|---|
+| Sign the user in (no key yet) | `POST /v1/auth/link` → `GET /v1/auth/link/{id}?wait=30` (browser approval) · `POST /v1/auth/code` → `POST /v1/auth/key` (email code) |
 | Account, points, limits | `GET /v1/me` · `GET /v1/usage?days=7` |
 | Price before paying | `POST /v1/analysis/quote` |
 | Models you may set per agent | `GET /v1/models` (public): ids, points per million tokens, where each applies, typical points per live call |

@@ -71,7 +71,7 @@ npx skills add SimianX-AI/simianx-skills          # universal installer (pick yo
 gh skill install SimianX-AI/simianx-skills simianx  # GitHub CLI, --agent <id> to target one agent
 ```
 
-Créez ensuite une clé dans **Mon compte → Clés API** sur [simianx.ai](https://www.simianx.ai) et exportez-la :
+Dites ensuite **"Connecte-moi à SimianX"**. L'agent vous remet un lien à approuver dans votre navigateur, ou vous envoie un code à 6 chiffres par e-mail ; dans les deux cas, il reçoit une clé qui lui est propre, avec ses portées et son budget, et la stocke dans `SIMIANX_API_KEY`. Pas encore de compte ? Le code par e-mail en crée un. Vous pouvez aussi créer une clé à la main dans **Mon compte → Clés API** sur [simianx.ai](https://www.simianx.ai) et l'exporter :
 
 ```bash
 export SIMIANX_API_KEY=simx_live_...
@@ -129,6 +129,7 @@ La boucle complète, en `curl`, se trouve dans [examples/curl](examples/curl) ; 
 ## Sécurité
 
 - La clé vit dans la variable d'environnement `SIMIANX_API_KEY`. Le skill ne demande jamais à un agent de l'écrire dans un dépôt, un journal ou un prompt.
+- Un agent n'obtient jamais de session sur le site web. Se connecter depuis un agent (lien dans le navigateur ou code par e-mail) ne fait jamais que créer une clé API pour cet agent, annoncée par e-mail et listée dans votre activité de sécurité ; le site web, la facturation et les paramètres de sécurité restent entre vos mains.
 - Les clés portent des scopes (`data:read`, `analysis:run`, `automation:manage`, `keys:manage`), des budgets de points quotidiens et mensuels, un plafond par appel et une liste d'adresses IP autorisées facultative. Donnez à un agent la plus petite clé qui suffit à sa tâche.
 - Révoquez n'importe quelle clé dans **Mon compte → Clés API** ; une clé révoquée est refusée en moins d'une seconde. Chaque appel est journalisé sous votre compte avec son coût.
 - Le skill ne lit que votre propre compte : vos autopilotes, vos exécutions, vos clés. Il ne trade jamais un compte réel ; les positions des autopilotes sont des positions papier.

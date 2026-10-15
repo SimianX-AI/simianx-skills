@@ -71,7 +71,7 @@ npx skills add SimianX-AI/simianx-skills          # universal installer (pick yo
 gh skill install SimianX-AI/simianx-skills simianx  # GitHub CLI, --agent <id> to target one agent
 ```
 
-Pagkatapos, gumawa ng key sa **Aking Account → Mga API key** sa [simianx.ai](https://www.simianx.ai) at i-export ito:
+Pagkatapos, sabihin ang **"I-sign in mo ako sa SimianX"**. Bibigyan ka ng agent ng link na aaprubahan sa iyong browser, o ipapadala nito sa email ang 6-digit na code; sa alinmang paraan, makakatanggap ito ng sarili nitong key, may scope at budget, at itatabi ito bilang `SIMIANX_API_KEY`. Wala pang account? Gagawa ng isa ang email code. Puwede ka ring gumawa ng key nang mano-mano sa **Aking Account → Mga API key** sa [simianx.ai](https://www.simianx.ai) at i-export ito:
 
 ```bash
 export SIMIANX_API_KEY=simx_live_...
@@ -129,6 +129,7 @@ Ang buong loop, bilang `curl`, ay nasa [examples/curl](examples/curl); ang malii
 ## Seguridad
 
 - Nakatira ang key sa environment variable na `SIMIANX_API_KEY`. Hindi kailanman hihilingin ng skill sa isang agent na isulat ito sa repository, log o prompt.
+- Hindi kailanman nakakakuha ng website session ang isang agent. Ang pag-sign in mula sa agent (browser link o email code) ay gumagawa lang ng API key para sa agent na iyon, inaabiso sa email at nakalista sa iyong aktibidad sa seguridad; nananatili sa iyo ang website, billing at mga setting ng seguridad.
 - May mga scope ang mga key (`data:read`, `analysis:run`, `automation:manage`, `keys:manage`), araw-araw at buwanang budget ng puntos, cap bawat tawag at opsyonal na IP allowlist. Bigyan ang agent ng pinakamaliit na key na sapat sa trabaho nito.
 - I-revoke ang anumang key sa **Aking Account → Mga API key**; tinatanggihan ang na-revoke na key sa loob ng isang segundo. Bawat tawag ay nilo-log sa ilalim ng iyong account kasama ang halaga nito.
 - Binabasa lang ng skill ang sarili mong account: ang iyong mga autopilot, ang iyong mga run, ang iyong mga key. Hindi ito kailanman nagte-trade sa totoong account; ang mga posisyon ng autopilot ay paper position.

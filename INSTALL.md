@@ -1,9 +1,10 @@
 # Install the SimianX skill
 
 **If you are an agent reading this:** pick your client below, run its lines, then make sure `SIMIANX_API_KEY` is set
-in the environment (ask the human to create a key at https://www.simianx.ai/#api, My Account → API keys, if it is
-not) and read https://www.simianx.ai/SKILL.md to learn the API. Do not paste the key into any file. Humans: the
-one sentence to paste to any agent is
+in the environment. If it is not, sign the user in from the agent as SKILL.md "Setup" step 1 describes (a link the
+user approves in the browser, or a 6-digit code mailed to them; both end in a key for this agent only) and read
+https://www.simianx.ai/SKILL.md to learn the API. Never commit the key. Humans: the one sentence to paste to any
+agent is
 
 ```
 Install the SimianX skill from https://www.simianx.ai/INSTALL.md and set it up for this project.
