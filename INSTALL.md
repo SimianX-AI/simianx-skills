@@ -37,8 +37,8 @@ curl -fsSL https://raw.githubusercontent.com/SimianX-AI/simianx-skills/main/scri
 DIR=~/.agents/skills/simianx   # <- pick from the table
 RAW=https://raw.githubusercontent.com/SimianX-AI/simianx-skills/main/skills/simianx
 mkdir -p "$DIR/references" "$DIR/agents"
-for f in SKILL.md agents/openai.yaml references/autopilots.md references/billing.md references/data.md \
-         references/deep.md references/live.md references/news.md references/sectors.md; do
+for f in SKILL.md agents/openai.yaml references/auth.md references/autopilots.md references/billing.md \
+         references/data.md references/deep.md references/live.md references/news.md references/sectors.md; do
   curl -fsSL "$RAW/$f" -o "$DIR/$f"
 done
 ```

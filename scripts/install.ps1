@@ -46,7 +46,7 @@ $ProjDir = @{ claude=".claude\skills"; codex=".agents\skills"; cursor=".agents\s
 $Probe = @{ claude=".claude"; codex=".codex"; cursor=".cursor"; copilot=".copilot"; gemini=".gemini"; windsurf=".codeium\windsurf"; cline=".cline";
   roo=".roo"; kilo=".kilo"; opencode=".config\opencode"; amp=".config\amp"; zed="AppData\Roaming\Zed"; kiro=".kiro"; factory=".factory"; openhands=".openhands"; goose=".config\goose" }
 $All = @("claude","codex","cursor","copilot","gemini","windsurf","cline","roo","kilo","opencode","amp","zed","kiro","factory","openhands","goose")
-$Files = @("SKILL.md","agents/openai.yaml","references/autopilots.md","references/billing.md","references/data.md","references/deep.md","references/live.md","references/news.md","references/sectors.md")
+$Files = @("SKILL.md","agents/openai.yaml","references/auth.md","references/autopilots.md","references/billing.md","references/data.md","references/deep.md","references/live.md","references/news.md","references/sectors.md")
 
 $agents = switch ($Agent) {
   "all"  { $All }

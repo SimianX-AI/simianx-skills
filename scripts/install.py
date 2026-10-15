@@ -29,7 +29,7 @@ SKILL = "simianx"
 RAW = "https://raw.githubusercontent.com/SimianX-AI/simianx-skills/main/skills/simianx/"
 SITE_SKILL = "https://www.simianx.ai/SKILL.md"
 FILES = ["SKILL.md", "agents/openai.yaml"] + [
-    f"references/{n}.md" for n in ("autopilots", "billing", "data", "deep", "live", "news", "sectors")]
+    f"references/{n}.md" for n in ("auth", "autopilots", "billing", "data", "deep", "live", "news", "sectors")]
 KEY_URL = "https://www.simianx.ai/#api"
 WINDOWS = os.name == "nt"
 

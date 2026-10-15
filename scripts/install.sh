@@ -63,7 +63,7 @@ if [ -n "$SOURCE" ]; then
 elif [ -f "$HERE/../skills/$SKILL/SKILL.md" ]; then SRC=$HERE/../skills/$SKILL
 elif [ -z "$UNINSTALL" ]; then
   SRC=$(mktemp -d 2>/dev/null || mktemp -d -t simianx)/$SKILL; mkdir -p "$SRC/references" "$SRC/agents"
-  for f in SKILL.md agents/openai.yaml references/autopilots.md references/billing.md references/data.md references/deep.md references/live.md references/news.md references/sectors.md; do
+  for f in SKILL.md agents/openai.yaml references/auth.md references/autopilots.md references/billing.md references/data.md references/deep.md references/live.md references/news.md references/sectors.md; do
     curl -fsSL "$RAW/skills/$SKILL/$f" -o "$SRC/$f" || echo "  skip $f" >&2
   done
   [ -f "$SRC/SKILL.md" ] || curl -fsSL https://www.simianx.ai/SKILL.md -o "$SRC/SKILL.md" || { echo "cannot download the skill" >&2; exit 1; }
