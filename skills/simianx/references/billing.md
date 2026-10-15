@@ -34,6 +34,13 @@ Hand the relevant link to the human. There is no top-up and no pay-per-call; nev
 | Plus | 300 | 100,000 | 60 | 80 | 3 | 5 | 1 | 10 | live |
 | Pro | 600 | 500,000 | 120 | 300 | 10 | 10 | 3 | 50 | live |
 
+## 426
+
+`{"code": 426, "data": {"reason": "skill_outdated", "minimum_version": "1.1.0", "current_version": "1.1.0", "skill_url": "https://www.simianx.ai/SKILL.md"}}`
+
+Your cached skill is older than the API allows. Re-read `skill_url`, then retry the request with the new version in
+`X-SimianX-Skill`. `GET /v1/skill` always answers (it is the update path) and lists the changelog and deprecations.
+
 ## Keys
 
 - Scopes: `data:read`, `analysis:run`, `automation:manage`, `keys:manage`, `billing:manage`. A key may create keys

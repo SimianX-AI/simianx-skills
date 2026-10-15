@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs network access to the SimianX API. Optional: python3 for the runner.
 metadata:
   author: simianx
-  version: "1.0"
+  version: "1.1.0"
   api_base: https://service.simianx.ai
   docs: https://www.simianx.ai/agents
   openapi: https://service.simianx.ai/v1/openapi.json
@@ -13,12 +13,20 @@ metadata:
 
 # SimianX for agents
 
-Base URL: `https://service.simianx.ai` (every path below starts with `/v1`). Auth: `Authorization: Bearer $SIMIANX_API_KEY`.
+Base URL: `https://service.simianx.ai` (every path below starts with `/v1`). Auth: `Authorization: Bearer $SIMIANX_API_KEY`,
+plus `X-SimianX-Skill: 1.1.0` (this file's version) on every request.
 Responses use `{"code": <http status>, "notify": "<human text>", "data": {...}}`. Every response carries `X-Request-Id`,
-`X-RateLimit-Limit`, `X-RateLimit-Remaining`, `X-RateLimit-Reset`; paid responses carry `X-Points-Charged` and `X-Points-Remaining`.
+`X-SimianX-Skill-Version`, `X-SimianX-Api-Version`, `X-RateLimit-Limit`, `X-RateLimit-Remaining`, `X-RateLimit-Reset`;
+paid responses carry `X-Points-Charged` and `X-Points-Remaining`.
 
 ## Setup
 
+0. **Version check, once per session.** This file is version `1.1.0` (frontmatter `metadata.version`). Send
+   `X-SimianX-Skill: 1.1.0` on every request. Before the first real call, `GET /v1/skill` (public): if `data.version`
+   is newer than yours, or `data.minimum_version` is above yours, re-read https://www.simianx.ai/SKILL.md and follow
+   the new file. Any response with HTTP 426 (`reason: skill_outdated`) means the same: re-read, then retry.
+   `data.deprecations` lists endpoints with a sunset date; stop using them before that date. The authoritative
+   contract is always https://service.simianx.ai/v1/openapi.json; this file may lag it.
 1. Read `SIMIANX_API_KEY` from the environment. If it is missing, tell the user to create one at
    https://www.simianx.ai/#api (My Account → API keys) and paste it as `SIMIANX_API_KEY`. Never ask for a card number.
 2. `GET /v1/me` → plan, points left, this key's budgets and the plan's limits. Keep `data.limits` in mind for pacing.
@@ -52,12 +60,22 @@ and `references/billing.md` in this skill. Short map:
 | Follow an autopilot | `GET /v1/autopilots/{id}/events?after=<cursor>&wait=30` (long-poll, free) or `&stream=1` (SSE) |
 | Autopilot history | `GET /v1/autopilots/{id}/analyses` · `/positions` · `/logs` |
 | Stop / restart / archive | `POST /v1/autopilots/{id}/stop` · `/start` · `DELETE /v1/autopilots/{id}` |
+| Trade the paper book by hand | `POST /v1/autopilots/{id}/actions` `{"action": "open|add|reduce|close|set_levels|place_order|replace_order|cancel_order|set_timeframe", …}` (server prices) |
+| Run one agent now | `POST /v1/autopilots/{id}/run {"agent": "decision"}` → result as `analysis.completed` in the log |
 | Deep research | `POST /v1/analysis/deep` → `GET /v1/analysis/deep/{id}` · `/events?wait=30` · `POST .../ask` · `.../pdf` |
 | Live agents once | `POST /v1/analysis/live` → `GET /v1/analysis/live/{id}?wait=30` |
 | News | `GET /v1/news?symbols=BTC,NVDA&since=<iso>` · `GET /v1/news/{id}` · `GET /v1/news/stream` (SSE, Plus+) |
 | Crypto data | `GET /v1/quotes?symbols=` · `GET /v1/market/{symbol}/candles` · `/indicators` |
 | Market Pulse | `GET /v1/pulse/events` · `GET /v1/pulse/summary` |
 | Search | `GET /v1/instruments/search?q=` · `GET /v1/market/status` |
+| Tell us something | `POST /v1/feedback` (read, not answered) |
+
+## Feedback
+
+`POST /v1/feedback {"message": "...", "category": "bug|feature|pricing|docs|data|other", "endpoint": "<key>", "request_id": "<X-Request-Id>"}`
+when something is wrong, missing or confusing. We read every message; we do not reply individually for now, so do not
+wait for an answer. Keep it civil and factual (abusive text is refused and not stored); never include keys, personal
+data or secrets. 20 messages a day per key; `GET /v1/feedback` lists what you already sent.
 
 ## Minimal loop (follow an autopilot)
 

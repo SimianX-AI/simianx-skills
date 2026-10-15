@@ -9,7 +9,8 @@ per-trade and a daily loss cap, and stops when the autopilot pauses for budget o
     python3 runner.py --autopilot <id> --exec './trade.sh {operation} {side} {symbol} {quantity} {price}'
     python3 runner.py --autopilot <id> --webhook https://example.com/hook --max-trade-usd 500 --daily-loss-usd 200
 
-Standard library only. Exit codes: 0 stopped cleanly, 2 autopilot stopped or paused for budget, 3 auth/plan error.
+Standard library only. Exit codes: 0 stopped cleanly, 2 autopilot stopped or paused for budget, 3 auth/plan error,
+4 this runner's skill version is below what the API accepts (re-read SKILL.md and update SKILL_VERSION).
 """
 import argparse
 import json
@@ -23,12 +24,15 @@ import urllib.request
 from datetime import date, datetime, timezone
 
 API = os.environ.get("SIMIANX_API", "https://service.simianx.ai")
+SKILL_VERSION = "1.1.0"  # keep equal to skills/simianx/SKILL.md metadata.version
+SKILL_URL = "https://www.simianx.ai/SKILL.md"
 STOP_TYPES = {"autopilot.stopped", "autopilot.paused_budget"}
 
 
 def call(path, key, method="GET", body=None, timeout=45):
     req = urllib.request.Request(API + path, method=method, headers={
-        "Authorization": f"Bearer {key}", "Content-Type": "application/json", "User-Agent": "simianx-runner/1.0"})
+        "Authorization": f"Bearer {key}", "Content-Type": "application/json", "User-Agent": f"simianx-runner/{SKILL_VERSION}",
+        "X-SimianX-Skill": SKILL_VERSION})
     data = json.dumps(body).encode() if body is not None else None
     try:
         with urllib.request.urlopen(req, data=data, timeout=timeout) as res:
@@ -39,6 +43,14 @@ def call(path, key, method="GET", body=None, timeout=45):
         except Exception:  # noqa: BLE001
             payload = {}
         return exc.code, payload, dict(exc.headers or {})
+
+
+def _vt(raw):
+    try:
+        parts = [int(p) for p in str(raw or "0").split(".")[:3]]
+    except ValueError:
+        return (0, 0, 0)
+    return tuple(parts + [0] * (3 - len(parts)))
 
 
 def parse_ts(value):
@@ -105,6 +117,15 @@ def main():
         return 3
     state = State(args.state or f".simianx-runner-{args.autopilot}.json")
     types = [t.strip() for t in args.types.split(",") if t.strip()]
+
+    status, skill, _ = call("/v1/skill", key)
+    if status == 200:
+        data = skill.get("data", {})
+        if _vt(data.get("minimum_version")) > _vt(SKILL_VERSION):
+            print(f"[runner] skill {SKILL_VERSION} is below the minimum {data.get('minimum_version')}: re-read {SKILL_URL}", file=sys.stderr)
+            return 4
+        if _vt(data.get("version")) > _vt(SKILL_VERSION):
+            print(f"[runner] a newer skill ({data.get('version')}) is published: {SKILL_URL}", flush=True)
     wanted = ",".join(sorted(set(types) | STOP_TYPES))
 
     status, me, _ = call("/v1/me", key)
@@ -136,6 +157,9 @@ def main():
         if status in (401, 403):
             print(f"[runner] {status}: {body.get('notify')}", file=sys.stderr)
             return 3
+        if status == 426:
+            print(f"[runner] skill outdated: {body.get('notify')}", file=sys.stderr)
+            return 4
         if status != 200:
             print(f"[runner] {status}: {body.get('notify')}; retry in {backoff}s", flush=True)
             time.sleep(backoff)
