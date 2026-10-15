@@ -40,7 +40,7 @@ Aşağıdakilerin tümüne skill üzerinden ulaşılır ve hepsi [simianx.ai](ht
 
 **Piyasalar**
 
-- **ABD hisseleri ve ETF'ler** — 13.000'den fazla kote enstrüman; kazanç raporları, dosyalamalar, finansal seriler ve piyasa saatleri farkındalığıyla. Zaman dilimleri `1m 15m 1H 1D 1W 1mo`. → [Hisse Analizi](https://www.simianx.ai/stocks)
+- **ABD hisseleri ve ETF'ler** — 13.000'den fazla kote enstrüman; kazanç raporları, dosyalamalar, finansal seriler ve piyasa saatleri farkındalığıyla. Zaman dilimleri `1m 15m 1H 1D 1W 1mo`. → [Hisse Analizi](https://www.simianx.ai/c)
 - **Kripto** — OKX, Binance, Bybit ve Coinbase üzerinde 1.500'den fazla coin ve 4.000'den fazla parite: spot ve USDT/USD perpetual swap'ler (`BTC` gibi yalın bir sembol perpetual'a çözümlenir). Zaman dilimleri `1m 5m 15m 1H 4H 1D`. → [Kripto Analizi](https://www.simianx.ai/l)
 
 **Ajanlar ne yapar**

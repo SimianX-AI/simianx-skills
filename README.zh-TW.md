@@ -40,7 +40,7 @@
 
 **市場**
 
-- **美股與 ETF** — 13,000+ 檔上市標的，附財報、申報文件、財務數據序列與交易時段感知。週期 `1m 15m 1H 1D 1W 1mo`。→ [股票分析](https://www.simianx.ai/stocks)
+- **美股與 ETF** — 13,000+ 檔上市標的，附財報、申報文件、財務數據序列與交易時段感知。週期 `1m 15m 1H 1D 1W 1mo`。→ [股票分析](https://www.simianx.ai/c)
 - **加密貨幣** — 涵蓋 OKX、Binance、Bybit 與 Coinbase 的 1,500+ 種幣和 4,000+ 個交易對：現貨與 USDT/USD 永續合約（裸代號如 `BTC` 會解析為永續合約）。週期 `1m 5m 15m 1H 4H 1D`。→ [加密貨幣分析](https://www.simianx.ai/l)
 
 **代理能做什麼**

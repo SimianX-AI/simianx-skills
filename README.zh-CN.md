@@ -40,7 +40,7 @@
 
 **市场**
 
-- **美股与 ETF** — 13,000+ 只上市标的，附带财报、申报文件、财务数据序列与交易时段感知。周期 `1m 15m 1H 1D 1W 1mo`。→ [股票分析](https://www.simianx.ai/stocks)
+- **美股与 ETF** — 13,000+ 只上市标的，附带财报、申报文件、财务数据序列与交易时段感知。周期 `1m 15m 1H 1D 1W 1mo`。→ [股票分析](https://www.simianx.ai/c)
 - **加密货币** — 覆盖 OKX、Binance、Bybit 与 Coinbase 的 1,500+ 种币和 4,000+ 个交易对：现货与 USDT/USD 永续合约（裸符号如 `BTC` 会解析为永续合约）。周期 `1m 5m 15m 1H 4H 1D`。→ [加密货币分析](https://www.simianx.ai/l)
 
 **智能体能做什么**

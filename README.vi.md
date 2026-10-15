@@ -40,7 +40,7 @@ Mọi thứ dưới đây đều truy cập được qua skill và nằm trên [
 
 **Thị trường**
 
-- **Cổ phiếu và ETF Mỹ** — 13.000+ mã niêm yết, kèm báo cáo lợi nhuận, hồ sơ nộp, chuỗi số liệu tài chính và nhận biết giờ giao dịch. Khung thời gian `1m 15m 1H 1D 1W 1mo`. → [Phân tích cổ phiếu](https://www.simianx.ai/stocks)
+- **Cổ phiếu và ETF Mỹ** — 13.000+ mã niêm yết, kèm báo cáo lợi nhuận, hồ sơ nộp, chuỗi số liệu tài chính và nhận biết giờ giao dịch. Khung thời gian `1m 15m 1H 1D 1W 1mo`. → [Phân tích cổ phiếu](https://www.simianx.ai/c)
 - **Crypto** — 1.500+ đồng coin và 4.000+ cặp giao dịch trên OKX, Binance, Bybit và Coinbase: giao dịch spot và hợp đồng hoán đổi vĩnh cửu USDT/USD (một ký hiệu trần như `BTC` sẽ được hiểu là hợp đồng vĩnh cửu). Khung thời gian `1m 5m 15m 1H 4H 1D`. → [Phân tích tiền điện tử](https://www.simianx.ai/l)
 
 **Các agent làm gì**

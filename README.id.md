@@ -40,7 +40,7 @@ Semua yang ada di bawah ini bisa dijangkau lewat skill dan berada di [simianx.ai
 
 **Pasar**
 
-- **Saham dan ETF AS** — 13,000+ instrumen tercatat, dengan laporan laba, filing, deret data keuangan, dan kesadaran akan jam perdagangan. Timeframe `1m 15m 1H 1D 1W 1mo`. → [Analisis Saham](https://www.simianx.ai/stocks)
+- **Saham dan ETF AS** — 13,000+ instrumen tercatat, dengan laporan laba, filing, deret data keuangan, dan kesadaran akan jam perdagangan. Timeframe `1m 15m 1H 1D 1W 1mo`. → [Analisis Saham](https://www.simianx.ai/c)
 - **Kripto** — 1,500+ koin dan 4,000+ pasangan di OKX, Binance, Bybit, dan Coinbase: spot dan swap perpetual USDT/USD (simbol polos seperti `BTC` diarahkan ke perpetual). Timeframe `1m 5m 15m 1H 4H 1D`. → [Analisis Kripto](https://www.simianx.ai/l)
 
 **Apa yang dilakukan para agen**

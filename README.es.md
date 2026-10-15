@@ -40,7 +40,7 @@ Todo lo que sigue es accesible a través de la skill y vive en [simianx.ai](http
 
 **Mercados**
 
-- **Acciones y ETFs de EE. UU.** — 13,000+ instrumentos cotizados, con resultados, filings, series financieras y conciencia del horario de mercado. Marcos temporales `1m 15m 1H 1D 1W 1mo`. → [Análisis de acciones](https://www.simianx.ai/stocks)
+- **Acciones y ETFs de EE. UU.** — 13,000+ instrumentos cotizados, con resultados, filings, series financieras y conciencia del horario de mercado. Marcos temporales `1m 15m 1H 1D 1W 1mo`. → [Análisis de acciones](https://www.simianx.ai/c)
 - **Cripto** — 1,500+ monedas y 4,000+ pares en OKX, Binance, Bybit y Coinbase: spot y swaps perpetuos USDT/USD (un símbolo escueto como `BTC` se resuelve al perpetuo). Marcos temporales `1m 5m 15m 1H 4H 1D`. → [Análisis de criptomonedas](https://www.simianx.ai/l)
 
 **Qué hacen los agentes**

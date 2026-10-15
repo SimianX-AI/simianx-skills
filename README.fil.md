@@ -40,7 +40,7 @@ Lahat ng nasa ibaba ay maaabot sa pamamagitan ng skill at nasa [simianx.ai](http
 
 **Mga merkado**
 
-- **Mga stock at ETF ng US** — 13,000+ nakalistang instrumento, may earnings, mga filing, mga serye ng pinansyal na datos at kamalayan sa oras ng merkado. Mga timeframe `1m 15m 1H 1D 1W 1mo`. → [Pagsusuri ng Stock](https://www.simianx.ai/stocks)
+- **Mga stock at ETF ng US** — 13,000+ nakalistang instrumento, may earnings, mga filing, mga serye ng pinansyal na datos at kamalayan sa oras ng merkado. Mga timeframe `1m 15m 1H 1D 1W 1mo`. → [Pagsusuri ng Stock](https://www.simianx.ai/c)
 - **Crypto** — 1,500+ coin at 4,000+ pair sa OKX, Binance, Bybit at Coinbase: spot at USDT/USD perpetual swap (ang simbolong walang kasunod gaya ng `BTC` ay tumutukoy sa perpetual). Mga timeframe `1m 5m 15m 1H 4H 1D`. → [Pagsusuri ng Crypto](https://www.simianx.ai/l)
 
 **Ano ang ginagawa ng mga agent**
