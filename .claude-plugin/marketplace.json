@@ -1,0 +1,12 @@
+{
+  "name": "simianx",
+  "owner": { "name": "SimianX" },
+  "plugins": [
+    {
+      "name": "simianx",
+      "source": "./",
+      "description": "SimianX AI analysis for agents: autopilots with an event log, deep research, live agents, classified news, crypto data. Billed in points from your plan.",
+      "version": "1.0.0"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "name": "simianx",
+  "version": "1.0.0",
+  "description": "SimianX AI analysis for agents: autopilots with an execution-grade event log, 8-agent deep research, live agents, classified news, crypto data and Market Pulse.",
+  "author": { "name": "SimianX", "url": "https://www.simianx.ai/agents" },
+  "homepage": "https://www.simianx.ai/agents",
+  "license": "MIT",
+  "skills": ["./skills/simianx"]
+}
