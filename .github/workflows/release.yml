@@ -1,8 +1,9 @@
 name: release
 
-# A tag `vX.Y.Z` publishes the skill: the tag must equal the version in SKILL.md, the runner and the changelog head
-# (scripts/check_version.py), then the skill folder is zipped and attached to a GitHub release whose notes are the
-# changelog section of that version. Pushes to main only run the check.
+# A tag `vX.Y.Z` publishes the skill: the tag must equal the version in every carrier (scripts/check_version.py),
+# the 16 READMEs must agree (scripts/check_readmes.py), every manifest must parse, then the skill folder is zipped
+# and attached to a GitHub release whose notes are the changelog section of that version. Pushes to main and pull
+# requests only run the checks.
 on:
   push:
     branches: [main]
@@ -22,8 +23,22 @@ jobs:
           python-version: "3.12"
       - name: versions agree
         run: python3 scripts/check_version.py ${{ startsWith(github.ref, 'refs/tags/v') && github.ref_name || '' }}
-      - name: runner compiles
-        run: python3 -m py_compile examples/runner/runner.py
+      - name: readmes agree
+        run: python3 scripts/check_readmes.py
+      - name: manifests parse
+        run: |
+          for f in plugin.json gemini-extension.json .claude-plugin/plugin.json .claude-plugin/marketplace.json \
+                   .cursor-plugin/plugin.json .cursor-plugin/marketplace.json .agents/plugins/marketplace.json; do
+            python3 -m json.tool "$f" > /dev/null && echo "ok $f"
+          done
+      - name: scripts compile
+        run: |
+          python3 -m py_compile examples/runner/runner.py scripts/install.py scripts/check_version.py scripts/check_readmes.py
+          sh -n scripts/install.sh
+      - name: install script dry run
+        run: |
+          HOME=$(mktemp -d) python3 scripts/install.py --agent all --dry-run
+          python3 scripts/install.py --agent codex --scope project --project-dir "$(mktemp -d)" --yes
       - name: skill frontmatter parses
         run: |
           python3 - <<'PY'
@@ -33,6 +48,11 @@ jobs:
           for key in ("name:", "description:", "version:"):
               if key not in head:
                   sys.exit(f"SKILL.md frontmatter lacks {key}")
+          m = re.search(r"^description:\s*(.+)$", head, re.M)
+          if len(m.group(1)) > 1024:
+              sys.exit("SKILL.md description over 1024 characters")
+          if text.count("\n") > 500:
+              sys.exit("SKILL.md over 500 lines")
           print("frontmatter ok")
           PY
 
@@ -46,7 +66,7 @@ jobs:
         run: |
           VERSION="${GITHUB_REF_NAME#v}"
           mkdir -p dist
-          (cd skills && zip -qr "../dist/simianx-skill-${VERSION}.zip" simianx)
+          (cd skills && zip -qr "../dist/simianx-skill-${VERSION}.zip" simianx -x '*/__pycache__/*' '*/.installed.json')
           cp skills/simianx/SKILL.md "dist/SKILL-${VERSION}.md"
           ls -l dist
       - name: release notes from the changelog

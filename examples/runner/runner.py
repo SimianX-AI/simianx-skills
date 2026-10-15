@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """SimianX autopilot runner: long-polls an autopilot's event log and runs a command on every position change.
 
-Coding agents are not daemons; this is the small always-on loop between the SimianX event log and your broker,
+AI agents are not daemons; this is the small always-on loop between the SimianX event log and your broker,
 exchange, notifier or a `claude -p` call. It keeps its cursor on disk, never acts on an expired event, enforces a
 per-trade and a daily loss cap, and stops when the autopilot pauses for budget or is stopped.
 
@@ -24,7 +24,7 @@ import urllib.request
 from datetime import date, datetime, timezone
 
 API = os.environ.get("SIMIANX_API", "https://service.simianx.ai")
-SKILL_VERSION = "1.1.0"  # keep equal to skills/simianx/SKILL.md metadata.version
+SKILL_VERSION = "1.2.0"  # keep equal to skills/simianx/SKILL.md metadata.version
 SKILL_URL = "https://www.simianx.ai/SKILL.md"
 STOP_TYPES = {"autopilot.stopped", "autopilot.paused_budget"}
 

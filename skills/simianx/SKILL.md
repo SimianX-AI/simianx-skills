@@ -1,11 +1,11 @@
 ---
 name: simianx
-description: Use SimianX AI from an agent. Start and follow autopilots on stocks and coins (execution-grade event log with cursors and expiry), run 8-agent deep research with a verdict and plan, run the live agents once, read classified real-time news (symbols, value score, sentiment), crypto candles and indicators, Market Pulse events. Billed in points from the account's subscription; handles API keys, quotes, 402 and 429. Use when the user asks for a trading analysis, market research, a view on a ticker or coin, news on a symbol, or wants to automate monitoring or follow positions.
+description: Use SimianX AI from an agent. Start and follow autopilots on stocks and coins (execution-grade event log with cursors and expiry), run 8-agent deep research with a verdict and plan, run the live agents once, read classified real-time news (symbols, value score, sentiment), crypto candles and indicators, Market Pulse events, Sector Watch catalyst calendars and first-hand sector events (biopharma: PDUFA dates, approvals, CRLs, advisory committees, trial readouts). Billed in points from the account's subscription; handles API keys, quotes, 402 and 429. Use when the user asks for a trading analysis, market research, a view on a ticker or coin, news on a symbol, upcoming catalysts in a sector, or wants to automate monitoring or follow positions.
 license: MIT
 compatibility: Needs network access to the SimianX API. Optional: python3 for the runner.
 metadata:
   author: simianx
-  version: "1.1.0"
+  version: "1.2.0"
   api_base: https://service.simianx.ai
   docs: https://www.simianx.ai/agents
   openapi: https://service.simianx.ai/v1/openapi.json
@@ -14,15 +14,40 @@ metadata:
 # SimianX for agents
 
 Base URL: `https://service.simianx.ai` (every path below starts with `/v1`). Auth: `Authorization: Bearer $SIMIANX_API_KEY`,
-plus `X-SimianX-Skill: 1.1.0` (this file's version) on every request.
+plus `X-SimianX-Skill: 1.2.0` (this file's version) on every request.
 Responses use `{"code": <http status>, "notify": "<human text>", "data": {...}}`. Every response carries `X-Request-Id`,
 `X-SimianX-Skill-Version`, `X-SimianX-Api-Version`, `X-RateLimit-Limit`, `X-RateLimit-Remaining`, `X-RateLimit-Reset`;
 paid responses carry `X-Points-Charged` and `X-Points-Remaining`.
 
+## Coverage
+
+- **Markets**: US stocks and ETFs (13,000+ instruments, timeframes `1m 15m 1H 1D 1W 1mo`) and crypto (1,500+ coins,
+  4,000+ pairs on OKX, Binance, Bybit and Coinbase; spot and USDT/USD perpetuals, a bare `BTC` means the perpetual;
+  timeframes `1m 5m 15m 1H 4H 1D`).
+- **Autopilots**: the four live agents on a schedule for one symbol, optionally managing a paper position (market,
+  limit and stop entries, scaling, stop-loss / take-profit, timing gate). Every analysis, signal and position change
+  is an event behind a cursor; `signal.fired` and `position.changed` carry an expiry. The same book takes manual actions.
+- **Deep research**: 8 agents per run. Four analysts (stocks: fundamentals, market, news, timing; crypto: fundamentals,
+  market, news, derivatives), a bull and a bear researcher, a research manager, a risk manager who issues the verdict
+  and the plan. Horizons `short` / `swing` / `long`, follow-up questions, PDF report.
+- **Live analysis**: the four live agents once: indicator (chart), intelligence (news flow), fundamental (financials
+  and events, or on-chain and derivatives for a coin), decision (entry, stop, target).
+- **News**: every article classified by symbols, value (`low` / `medium` / `high`) and sentiment; list, by id,
+  translated into 16 languages, SSE stream.
+- **Market Pulse**: price shocks on 1-, 5- and 15-minute windows, 24-hour / 30-day / 52-week highs and lows, day moves
+  and gaps, crypto and stocks, severity 1–4.
+- **Sector Watch**: primary-source catalysts per sector: calendar (PDUFA dates, advisory committees, trial readouts),
+  events with severity 1–4 and direction, constituents, drug assets, follows. Live sector: biopharma (SEC filings,
+  FDA and Federal Register releases, ClinicalTrials.gov, openFDA); 30-minute delay below Plus.
+- **Models**: tiers `fast` / `standard` / `frontier`; paid plans set any of 50+ models from 7 providers per agent
+  (`GET /v1/models`); the crypto leaderboard shows how each model has traded.
+- **Plans and languages**: Free, Starter, Plus, Pro (monthly points, per-plan limits). Answers in 16 languages
+  (`X-Language`). Paper positions only: SimianX never trades a real account.
+
 ## Setup
 
-0. **Version check, once per session.** This file is version `1.1.0` (frontmatter `metadata.version`). Send
-   `X-SimianX-Skill: 1.1.0` on every request. Before the first real call, `GET /v1/skill` (public): if `data.version`
+0. **Version check, once per session.** This file is version `1.2.0` (frontmatter `metadata.version`). Send
+   `X-SimianX-Skill: 1.2.0` on every request. Before the first real call, `GET /v1/skill` (public): if `data.version`
    is newer than yours, or `data.minimum_version` is above yours, re-read https://www.simianx.ai/SKILL.md and follow
    the new file. Any response with HTTP 426 (`reason: skill_outdated`) means the same: re-read, then retry.
    `data.deprecations` lists endpoints with a sunset date; stop using them before that date. The authoritative
@@ -51,8 +76,8 @@ paid responses carry `X-Points-Charged` and `X-Points-Remaining`.
 
 ## Calls
 
-See `references/autopilots.md`, `references/deep.md`, `references/live.md`, `references/news.md`, `references/data.md`
-and `references/billing.md` in this skill. Short map:
+See `references/autopilots.md`, `references/deep.md`, `references/live.md`, `references/news.md`, `references/data.md`,
+`references/sectors.md` and `references/billing.md` in this skill. Short map:
 
 | Need | Call |
 |---|---|
@@ -70,6 +95,7 @@ and `references/billing.md` in this skill. Short map:
 | News | `GET /v1/news?symbols=BTC,NVDA&since=<iso>` · `GET /v1/news/{id}` · `GET /v1/news/stream` (SSE, Plus+) |
 | Crypto data | `GET /v1/quotes?symbols=` · `GET /v1/market/{symbol}/candles` · `/indicators` |
 | Market Pulse | `GET /v1/pulse/events` · `GET /v1/pulse/summary` |
+| Sector Watch | `GET /v1/sectors` · `GET /v1/sectors/{sector}/calendar` · `/events?min_severity=3` · `/events/{slug}` · `/stocks` · `/assets` · `POST /v1/sectors/{sector}/follows` (see `references/sectors.md`) |
 | Search before starting | `GET /v1/instruments/search?q=` (best match first; use `symbol`) · `GET /v1/market/status` |
 | Tell us something | `POST /v1/feedback` (read, not answered) |
 

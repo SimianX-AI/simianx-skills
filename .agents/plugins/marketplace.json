@@ -1,0 +1,12 @@
+{
+  "name": "simianx",
+  "interface": { "displayName": "SimianX AI" },
+  "plugins": [
+    {
+      "name": "simianx",
+      "source": { "source": "local", "path": "./" },
+      "policy": { "installation": "AVAILABLE" },
+      "category": "productivity"
+    }
+  ]
+}

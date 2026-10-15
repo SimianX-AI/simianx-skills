@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="160" viewBox="0 0 640 160" fill="none" role="img" aria-label="SimianX AI">
+  <title>SimianX AI</title>
+  <g transform="translate(0,0) scale(0.4)">
+  <g>
+    <path d="M149.082 35H50.9184C42.1269 35 35 42.1269 35 50.9184V149.082C35 157.873 42.1269 165 50.9184 165H149.082C157.873 165 165 157.873 165 149.082V50.9184C165 42.1269 157.873 35 149.082 35Z" fill="#F5F7FB"/>
+    <path d="M100 365C135.899 365 165 335.899 165 300C165 264.101 135.899 235 100 235C64.1015 235 35 264.101 35 300C35 335.899 64.1015 365 100 365Z" fill="#F5F7FB"/>
+    <path d="M307.948 240.864C306.402 238.234 302.598 238.234 301.052 240.864L234.544 353.973C232.976 356.639 234.899 360 237.992 360H371.008C374.101 360 376.024 356.639 374.456 353.973L307.948 240.864Z" fill="#F5F7FB"/>
+  </g>
+  </g>
+  <text x="184" y="78" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="56" font-weight="700" fill="#F5F7FB" letter-spacing="-1">SimianX AI</text>
+  <text x="186" y="118" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="22" font-weight="400" fill="#9CA3AF">AI trading desk for AI agents</text>
+</svg>
