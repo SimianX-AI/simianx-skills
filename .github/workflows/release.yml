@@ -1,0 +1,67 @@
+name: release
+
+# A tag `vX.Y.Z` publishes the skill: the tag must equal the version in SKILL.md, the runner and the changelog head
+# (scripts/check_version.py), then the skill folder is zipped and attached to a GitHub release whose notes are the
+# changelog section of that version. Pushes to main only run the check.
+on:
+  push:
+    branches: [main]
+    tags: ["v*"]
+  pull_request:
+
+permissions:
+  contents: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: versions agree
+        run: python3 scripts/check_version.py ${{ startsWith(github.ref, 'refs/tags/v') && github.ref_name || '' }}
+      - name: runner compiles
+        run: python3 -m py_compile examples/runner/runner.py
+      - name: skill frontmatter parses
+        run: |
+          python3 - <<'PY'
+          import re, sys
+          text = open("skills/simianx/SKILL.md", encoding="utf-8").read()
+          head = text.split("---", 2)[1]
+          for key in ("name:", "description:", "version:"):
+              if key not in head:
+                  sys.exit(f"SKILL.md frontmatter lacks {key}")
+          print("frontmatter ok")
+          PY
+
+  release:
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: package the skill
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          mkdir -p dist
+          (cd skills && zip -qr "../dist/simianx-skill-${VERSION}.zip" simianx)
+          cp skills/simianx/SKILL.md "dist/SKILL-${VERSION}.md"
+          ls -l dist
+      - name: release notes from the changelog
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          awk -v v="$VERSION" '
+            /^## / { if (found) exit; if ($0 ~ "## \\[?v?" v) { found = 1; next } }
+            found { print }
+          ' CHANGELOG.md > dist/notes.md
+          [ -s dist/notes.md ] || echo "Release $VERSION" > dist/notes.md
+          cat dist/notes.md
+      - uses: softprops/action-gh-release@v2
+        with:
+          name: simianx skill ${{ github.ref_name }}
+          body_path: dist/notes.md
+          files: |
+            dist/*.zip
+            dist/SKILL-*.md

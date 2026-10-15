@@ -20,7 +20,7 @@ Or with the skills CLI / Claude Code plugin marketplace:
 
 ```
 npx skills add https://www.simianx.ai
-/plugin marketplace add astro-ge/simianx-skills
+/plugin marketplace add SimianX-AI/simianx-skills
 ```
 
 Then create an API key in **My Account → API keys** on https://www.simianx.ai and export it as `SIMIANX_API_KEY`.
