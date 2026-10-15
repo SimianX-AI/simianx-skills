@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "simianx",
-  "version": "1.2.0",
+  "version": "1.0.0",
   "description": "SimianX AI for agents: autopilots with an execution-grade event log, 8-agent deep research, live agents, classified news, crypto data, Market Pulse and Sector Watch catalysts. Billed in points from your plan.",
   "skills": ["./skills/simianx"]
 }

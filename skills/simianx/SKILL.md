@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs network access to the SimianX API. Optional: python3 for the runner.
 metadata:
   author: simianx
-  version: "1.2.0"
+  version: "1.0.0"
   api_base: https://service.simianx.ai
   docs: https://www.simianx.ai/agents
   openapi: https://service.simianx.ai/v1/openapi.json
@@ -14,7 +14,7 @@ metadata:
 # SimianX for agents
 
 Base URL: `https://service.simianx.ai` (every path below starts with `/v1`). Auth: `Authorization: Bearer $SIMIANX_API_KEY`,
-plus `X-SimianX-Skill: 1.2.0` (this file's version) on every request.
+plus `X-SimianX-Skill: 1.0.0` (this file's version) on every request.
 Responses use `{"code": <http status>, "notify": "<human text>", "data": {...}}`. Every response carries `X-Request-Id`,
 `X-SimianX-Skill-Version`, `X-SimianX-Api-Version`, `X-RateLimit-Limit`, `X-RateLimit-Remaining`, `X-RateLimit-Reset`;
 paid responses carry `X-Points-Charged` and `X-Points-Remaining`.
@@ -47,8 +47,8 @@ paid responses carry `X-Points-Charged` and `X-Points-Remaining`.
 
 ## Setup
 
-0. **Version check, once per session.** This file is version `1.2.0` (frontmatter `metadata.version`). Send
-   `X-SimianX-Skill: 1.2.0` on every request. Before the first real call, `GET /v1/skill` (public): if `data.version`
+0. **Version check, once per session.** This file is version `1.0.0` (frontmatter `metadata.version`). Send
+   `X-SimianX-Skill: 1.0.0` on every request. Before the first real call, `GET /v1/skill` (public): if `data.version`
    is newer than yours, or `data.minimum_version` is above yours, re-read https://www.simianx.ai/SKILL.md and follow
    the new file. Any response with HTTP 426 (`reason: skill_outdated`) means the same: re-read, then retry.
    `data.deprecations` lists endpoints with a sunset date; stop using them before that date. The authoritative

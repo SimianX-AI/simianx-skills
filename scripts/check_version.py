@@ -2,7 +2,7 @@
 """One version everywhere.
 
     python3 scripts/check_version.py                      # consistency across the repo
-    python3 scripts/check_version.py v1.2.0               # also require this tag
+    python3 scripts/check_version.py v1.0.0               # also require this tag
     python3 scripts/check_version.py --web ../simianx-web-app/public/SKILL.md \
                                      --backend ../simianx-backend/simianx_api/v1/policy/version.py
 
@@ -96,7 +96,7 @@ def json_versions() -> dict:
 
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("tag", nargs="?", help="git tag, e.g. v1.2.0")
+    ap.add_argument("tag", nargs="?", help="git tag, e.g. v1.0.0")
     ap.add_argument("--web", help="path to the web app's public/SKILL.md (must equal skills/simianx/SKILL.md)")
     ap.add_argument("--backend", help="path to the backend's simianx_api/v1/policy/version.py (SKILL_VERSION must match)")
     args = ap.parse_args()
