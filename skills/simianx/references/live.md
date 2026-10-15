@@ -18,3 +18,10 @@ points). `?include=text` adds the full write-ups. `GET /v1/analysis/live?limit=2
 
 Stock runs use the market data plane and are not available while the US market is closed in some environments; the API
 answers 503 `stock_live_unavailable` in that case.
+
+## Models
+
+`tier` (`fast | standard | frontier`) picks one model for every agent; `models` `{"indicator": "<id>", "decision": "<id>"}`
+overrides per agent on paid plans. Ids and prices come from `GET /v1/models` (`live.crypto`, `live.stock`,
+`models[].typical_points_per_call` per agent); an id outside the catalogue for that market is refused with 400 and
+`data.allowed`. Free accounts run every agent on `free_model`, whatever they send.

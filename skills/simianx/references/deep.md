@@ -34,3 +34,9 @@ manager who runs a debate, and a risk manager who writes the verdict and the pla
   `chat_*` events; `GET /v1/analysis/deep/{id}/thread` lists questions and answers.
 - `POST /v1/analysis/deep/{id}/pdf` → `url` (watermarked on free accounts).
 - `GET /v1/analysis/deep?limit=20` lists recent runs with their rating.
+
+## Models
+
+`tier` or `models` `{"<committee agent>": "<id>"}` (paid plans) choose the committee's models; the agent names are in
+`GET /v1/models` (`deep.agents.stock` / `deep.agents.crypto`) and the ids in `deep.models`. An unknown id is 400
+`invalid_parameter` (`parameter: models`). The run is metered on the models that actually answered.

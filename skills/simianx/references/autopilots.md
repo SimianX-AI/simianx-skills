@@ -18,7 +18,9 @@ optionally managing a paper position. Everything it does lands in an event log y
 
 - `asset`: `crypto` or `stock`; `symbol`: `BTC`, `BTC-USDT-SWAP`, `NVDA`.
 - `timeframe`: crypto `1m 5m 15m 1H 4H 1D`; stock `1m 15m 1H 1D 1W 1mo`.
-- `tier` picks a model per agent (`fast | standard | frontier`); `models` `{agent: model_id}` overrides per agent (paid plans).
+- `tier` picks a model per agent (`fast | standard | frontier`); `models` `{agent: model_id}` overrides per agent (paid
+  plans; ids from `GET /v1/models`, `live.crypto` / `live.stock` lists; an unknown id is 400 `invalid_parameter` with
+  `data.allowed`). `PATCH /v1/autopilots/{id}` with `models` or `tier` changes them for the next cycles.
 - `intervals` are seconds per agent (≥ 60). Without them the account's saved defaults apply.
 - `ai_position_control` (default true): the decision agent opens, moves and closes a paper position; `position.changed`
   events follow. `webhook` is optional (HMAC-signed `X-SimianX-Signature: sha256=…` over `"<ts>.<body>"` when `secret` is set).

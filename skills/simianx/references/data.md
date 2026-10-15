@@ -4,7 +4,7 @@ Crypto exchange data is sold; US stock quotes and candles are not exposed (they 
 
 | Call | Points | Notes |
 |---|---|---|
-| `GET /v1/instruments/search?q=sol&asset=all&limit=20` | 0 (heavy limit) | stocks and coins, each item has `asset` |
+| `GET /v1/instruments/search?q=sol&asset=all&limit=20` | 0 (heavy limit) | stocks and coins, best match first; each item has `asset`, `symbol` (pass it to start an autopilot or a live run on the default instrument: the USDT perpetual for a coin, the ticker for a stock) and `start_with` (this exact pair / ticker) |
 | `GET /v1/market/status` | 0 | US equity session window |
 | `GET /v1/quotes?symbols=BTC,ETH,SOL` | 0.1 (≤ 20 symbols), 0.5 (≤ 120) | crypto only; `missing[]` lists symbols without a quote |
 | `GET /v1/market/{symbol}/candles?timeframe=1H&limit=200&before=<ms>` | 0.2 | `columns` names the array positions; `before` pages back |

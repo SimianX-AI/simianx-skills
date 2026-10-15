@@ -37,7 +37,9 @@ paid responses carry `X-Points-Charged` and `X-Points-Remaining`.
 
 - Before any AI call: `POST /v1/analysis/quote {"endpoint": "<key>", "tier": "fast", ...}` and compare with the key's
   `budget_left` and the account's points. Never exceed the budget the owner set on the key.
-- Prefer `tier: "fast"` unless the user asks for stronger models. Free accounts always run the fast tier.
+- Prefer `tier: "fast"` unless the user asks for stronger models. Free accounts always run the fast tier. To pick a
+  model per agent, send `models: {"<agent>": "<id>"}` with an id from `GET /v1/models` (paid plans); an id that is not
+  in the catalogue for that market is refused with 400 and the allowed list.
 - A `402` means points or budget are short. `data.reason` is `insufficient_points`, `budget_exceeded` or `call_over_cap`;
   `data.actions` lists the ways out (`renew_now`, `change_plan`, `subscribe`, all web links). Show them to the user; never try
   to pay yourself, there is no top-up and no pay-per-call.
@@ -56,6 +58,7 @@ and `references/billing.md` in this skill. Short map:
 |---|---|
 | Account, points, limits | `GET /v1/me` · `GET /v1/usage?days=7` |
 | Price before paying | `POST /v1/analysis/quote` |
+| Models you may set per agent | `GET /v1/models` (public): ids, points per million tokens, where each applies, typical points per live call |
 | Start / list autopilots | `POST /v1/autopilots` · `GET /v1/autopilots` |
 | Follow an autopilot | `GET /v1/autopilots/{id}/events?after=<cursor>&wait=30` (long-poll, free) or `&stream=1` (SSE) |
 | Autopilot history | `GET /v1/autopilots/{id}/analyses` · `/positions` · `/logs` |
@@ -67,7 +70,7 @@ and `references/billing.md` in this skill. Short map:
 | News | `GET /v1/news?symbols=BTC,NVDA&since=<iso>` · `GET /v1/news/{id}` · `GET /v1/news/stream` (SSE, Plus+) |
 | Crypto data | `GET /v1/quotes?symbols=` · `GET /v1/market/{symbol}/candles` · `/indicators` |
 | Market Pulse | `GET /v1/pulse/events` · `GET /v1/pulse/summary` |
-| Search | `GET /v1/instruments/search?q=` · `GET /v1/market/status` |
+| Search before starting | `GET /v1/instruments/search?q=` (best match first; use `symbol`) · `GET /v1/market/status` |
 | Tell us something | `POST /v1/feedback` (read, not answered) |
 
 ## Feedback
