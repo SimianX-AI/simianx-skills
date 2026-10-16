@@ -4,6 +4,10 @@ The version here, in `skills/simianx/SKILL.md` (`metadata.version`), in `example
 in every plugin manifest (see `RELEASING.md`) and in the git tag is always the same number; `scripts/check_version.py` refuses a release when they differ. The API
 publishes the same number at `GET /v1/skill` and answers `426` to skills older than its minimum.
 
+## 1.0.1 - 2026-10-16
+
+- Fixed: the SKILL.md frontmatter is valid YAML again (the `description` and `compatibility` values are quoted), so `npx skills add SimianX-AI/simianx-skills` and skill directories can read the skill.
+
 ## 1.0.0 - 2026-10-15
 
 First release.
