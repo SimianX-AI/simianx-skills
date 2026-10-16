@@ -3,14 +3,14 @@
   "owner": { "name": "SimianX", "url": "https://www.simianx.ai" },
   "metadata": {
     "description": "SimianX AI skills for AI agents.",
-    "version": "1.0.1"
+    "version": "1.0.2"
   },
   "plugins": [
     {
       "name": "simianx",
       "source": "./",
       "description": "SimianX AI for agents: autopilots with an execution-grade event log, 8-agent deep research, live agents, classified news, crypto data, Market Pulse and Sector Watch catalysts. Billed in points from your plan.",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "category": "productivity",
       "keywords": ["simianx", "trading", "stocks", "crypto", "market-analysis", "autopilot", "news", "biopharma", "catalysts"],
       "homepage": "https://www.simianx.ai/agents",

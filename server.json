@@ -3,7 +3,7 @@
   "name": "io.github.SimianX-AI/simianx",
   "title": "SimianX AI",
   "description": "Live multi-agent analysis and scored market news for US stocks and crypto, from SimianX AI.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "websiteUrl": "https://www.simianx.ai/agents",
   "repository": {
     "url": "https://github.com/SimianX-AI/simianx-skills",
