@@ -69,6 +69,16 @@ gh skill install SimianX-AI/simianx-skills simianx
 
 Her ajanın (Claude Code, Codex, Cursor, Copilot, Gemini CLI, Windsurf, Amp, Cline ve diğerleri) komutu ve dizini [INSTALL.md](INSTALL.md) dosyasında.
 
+### Ya da MCP ile bağlanın
+
+MCP destekleyen yapay zekâ ajanları, skill kurmadan SimianX'i araç olarak kullanabilir. Uzak sunucuyu anahtarınızla bir kez ekleyin:
+
+```bash
+claude mcp add --transport http simianx https://service.simianx.ai/v1/mcp --header "Authorization: Bearer $SIMIANX_API_KEY"
+```
+
+Claude Desktop, Cursor, Codex, VS Code, Windsurf ve Gemini CLI için aynısı [INSTALL.md](INSTALL.md#connect-over-mcp) dosyasında. Kayıt adı: `io.github.SimianX-AI/simianx`.
+
 ## İlk çağrılar
 
 | Ne | Çağrı | Referans |
@@ -108,6 +118,7 @@ scripts/install.{sh,py,ps1}       installer for every agent; check_version.py ·
 examples/curl · examples/runner   the first calls in curl; an always-on runner for autopilots
 .claude-plugin · .agents/plugins · .cursor-plugin · plugin.json · gemini-extension.json
                                   manifests so marketplaces and plugin commands find the skill
+server.json                       MCP Registry entry for the remote MCP server (service.simianx.ai/v1/mcp)
 README.<locale>.md                this page in the 16 languages SimianX speaks
 ```
 

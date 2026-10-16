@@ -1,0 +1,43 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.SimianX-AI/simianx",
+  "title": "SimianX AI",
+  "description": "Live multi-agent analysis and scored market news for US stocks and crypto, from SimianX AI.",
+  "version": "1.0.1",
+  "websiteUrl": "https://www.simianx.ai/agents",
+  "repository": {
+    "url": "https://github.com/SimianX-AI/simianx-skills",
+    "source": "github"
+  },
+  "icons": [
+    {
+      "src": "https://www.simianx.ai/apple-icon-180x180.png",
+      "mimeType": "image/png",
+      "sizes": [
+        "180x180"
+      ]
+    }
+  ],
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://service.simianx.ai/v1/mcp",
+      "headers": [
+        {
+          "name": "Authorization",
+          "description": "Your SimianX API key as a bearer token (My Account → API keys on simianx.ai)",
+          "isRequired": true,
+          "isSecret": true,
+          "value": "Bearer {api_key}",
+          "variables": {
+            "api_key": {
+              "description": "SimianX API key (simx_live_…)",
+              "isRequired": true,
+              "isSecret": true
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

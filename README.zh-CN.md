@@ -69,6 +69,16 @@ gh skill install SimianX-AI/simianx-skills simianx
 
 每个智能体（Claude Code、Codex、Cursor、Copilot、Gemini CLI、Windsurf、Amp、Cline 等）各自的命令和目录，都在 [INSTALL.md](INSTALL.md) 里。
 
+### 或者通过 MCP 连接
+
+支持 MCP 的 AI 智能体不用装 skill，就能把 SimianX 当工具用。用你的 key 添加一次远程服务器：
+
+```bash
+claude mcp add --transport http simianx https://service.simianx.ai/v1/mcp --header "Authorization: Bearer $SIMIANX_API_KEY"
+```
+
+Claude Desktop、Cursor、Codex、VS Code、Windsurf 和 Gemini CLI 的写法见 [INSTALL.md](INSTALL.md#connect-over-mcp)。注册表名称：`io.github.SimianX-AI/simianx`。
+
 ## 先从这几个调用开始
 
 | 做什么 | 调用 | 文档 |
@@ -108,6 +118,7 @@ scripts/install.{sh,py,ps1}       installer for every agent; check_version.py ·
 examples/curl · examples/runner   the first calls in curl; an always-on runner for autopilots
 .claude-plugin · .agents/plugins · .cursor-plugin · plugin.json · gemini-extension.json
                                   manifests so marketplaces and plugin commands find the skill
+server.json                       MCP Registry entry for the remote MCP server (service.simianx.ai/v1/mcp)
 README.<locale>.md                this page in the 16 languages SimianX speaks
 ```
 

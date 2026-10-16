@@ -28,7 +28,8 @@ jobs:
       - name: manifests parse
         run: |
           for f in plugin.json gemini-extension.json .claude-plugin/plugin.json .claude-plugin/marketplace.json \
-                   .cursor-plugin/plugin.json .cursor-plugin/marketplace.json .agents/plugins/marketplace.json; do
+                   .cursor-plugin/plugin.json .cursor-plugin/marketplace.json .agents/plugins/marketplace.json \
+                   server.json smithery.config-schema.json; do
             python3 -m json.tool "$f" > /dev/null && echo "ok $f"
           done
       - name: scripts compile

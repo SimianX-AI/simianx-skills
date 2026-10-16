@@ -1,0 +1,18 @@
+{
+  "type": "object",
+  "required": [
+    "apiKey"
+  ],
+  "properties": {
+    "apiKey": {
+      "type": "string",
+      "description": "SimianX API key (simx_live_…), from My Account → API keys on simianx.ai",
+      "x-from": {
+        "header": "simianx-api-key"
+      },
+      "x-to": {
+        "header": "X-API-Key"
+      }
+    }
+  }
+}

@@ -1,0 +1,63 @@
+name: publish-mcp
+
+# A tag `vX.Y.Z` also publishes the remote MCP server to the official MCP Registry
+# (registry.modelcontextprotocol.io) as `io.github.SimianX-AI/simianx`, authenticated with this workflow's GitHub
+# OIDC token (the registry grants io.github.<repository owner>/*; no secret is stored).
+#
+# Order of checks, each one a hard stop:
+#   1. every version carrier, server.json included, equals the tag (scripts/check_version.py)
+#   2. server.json validates against the registry schema it names
+#   3. the running server (service.simianx.ai) already reports this version and name in its server card — the
+#      backend builds the card from SKILL_VERSION, so this waits (up to 20 minutes) for the backend deploy and never
+#      lists a version the server does not run
+#   4. mcp-publisher login github-oidc && mcp-publisher publish
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: versions agree (server.json included)
+        run: python3 scripts/check_version.py "${GITHUB_REF_NAME}"
+      - name: server.json matches the registry schema
+        run: |
+          pip install --quiet jsonschema
+          python3 - <<'PY'
+          import json, urllib.request, jsonschema
+          doc = json.load(open("server.json"))
+          schema = json.load(urllib.request.urlopen(doc["$schema"], timeout=30))
+          jsonschema.validate(doc, schema)
+          assert len(doc["description"]) <= 100, "description over 100 characters"
+          print("server.json ok:", doc["name"], doc["version"])
+          PY
+      - name: the live server already runs this version
+        run: python3 scripts/check_version.py "${GITHUB_REF_NAME}" --live https://service.simianx.ai/v1/mcp/server-card --wait 1200
+      - name: install mcp-publisher
+        run: |
+          curl -fsSL "https://github.com/modelcontextprotocol/registry/releases/latest/download/mcp-publisher_$(uname -s | tr '[:upper:]' '[:lower:]')_$(uname -m | sed 's/x86_64/amd64/;s/aarch64/arm64/').tar.gz" | tar xz mcp-publisher
+          ./mcp-publisher --help > /dev/null
+      - name: log in (GitHub OIDC)
+        run: ./mcp-publisher login github-oidc
+      - name: publish
+        run: ./mcp-publisher publish
+      - name: confirm the listing
+        run: |
+          sleep 10
+          curl -fsS "https://registry.modelcontextprotocol.io/v0/servers?search=io.github.SimianX-AI/simianx" | python3 -c "
+          import json, sys, os
+          want = os.environ['GITHUB_REF_NAME'].lstrip('v')
+          items = json.load(sys.stdin).get('servers', [])
+          versions = [s.get('server', s).get('version') for s in items]
+          print('registry versions:', versions)
+          sys.exit(0 if want in versions else 'version not listed yet')"

@@ -69,6 +69,16 @@ gh skill install SimianX-AI/simianx-skills simianx
 
 에이전트별(Claude Code, Codex, Cursor, Copilot, Gemini CLI, Windsurf, Amp, Cline 등) 명령과 설치 디렉터리는 [INSTALL.md](INSTALL.md)에 있습니다.
 
+### 또는 MCP로 연결
+
+MCP를 지원하는 AI 에이전트는 스킬을 설치하지 않아도 SimianX를 도구로 쓸 수 있습니다. 키와 함께 원격 서버를 한 번만 추가하세요.
+
+```bash
+claude mcp add --transport http simianx https://service.simianx.ai/v1/mcp --header "Authorization: Bearer $SIMIANX_API_KEY"
+```
+
+Claude Desktop, Cursor, Codex, VS Code, Windsurf, Gemini CLI 설정은 [INSTALL.md](INSTALL.md#connect-over-mcp)에 있습니다. 레지스트리 이름: `io.github.SimianX-AI/simianx`.
+
 ## 처음 해 볼 호출
 
 | 용도 | 호출 | 문서 |
@@ -108,6 +118,7 @@ scripts/install.{sh,py,ps1}       installer for every agent; check_version.py ·
 examples/curl · examples/runner   the first calls in curl; an always-on runner for autopilots
 .claude-plugin · .agents/plugins · .cursor-plugin · plugin.json · gemini-extension.json
                                   manifests so marketplaces and plugin commands find the skill
+server.json                       MCP Registry entry for the remote MCP server (service.simianx.ai/v1/mcp)
 README.<locale>.md                this page in the 16 languages SimianX speaks
 ```
 

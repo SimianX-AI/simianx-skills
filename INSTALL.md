@@ -29,6 +29,26 @@ curl -fsSL https://raw.githubusercontent.com/SimianX-AI/simianx-skills/main/scri
 # Windows: irm https://raw.githubusercontent.com/SimianX-AI/simianx-skills/main/scripts/install.ps1 -OutFile install.ps1; .\install.ps1 -Agent auto
 ```
 
+## Connect over MCP
+
+No skill needed: an MCP client can use SimianX as tools (live analysis, scored news, deep research, Market Pulse,
+Sector Watch, autopilots, account). Remote server `https://service.simianx.ai/v1/mcp` (Streamable HTTP), auth `Authorization: Bearer <key>` (or
+`X-API-Key: <key>`), the same key, scopes, limits and points as the REST API. Set `SIMIANX_API_KEY` first.
+
+| Client | Where | Snippet |
+|---|---|---|
+| Claude Code | terminal | `claude mcp add --transport http simianx https://service.simianx.ai/v1/mcp --header "Authorization: Bearer $SIMIANX_API_KEY"` |
+| Claude Desktop | `claude_desktop_config.json` | `{"mcpServers": {"simianx": {"command": "npx", "args": ["-y", "mcp-remote", "https://service.simianx.ai/v1/mcp", "--header", "Authorization: Bearer ${SIMIANX_API_KEY}"], "env": {"SIMIANX_API_KEY": "simx_live_..."}}}}` |
+| Cursor | `~/.cursor/mcp.json` | `{"mcpServers": {"simianx": {"url": "https://service.simianx.ai/v1/mcp", "headers": {"Authorization": "Bearer ${env:SIMIANX_API_KEY}"}}}}` |
+| Codex | terminal | `codex mcp add simianx --url https://service.simianx.ai/v1/mcp --bearer-token-env-var SIMIANX_API_KEY` |
+| VS Code / Copilot | `.vscode/mcp.json` | `{"inputs": [{"type": "promptString", "id": "simianx-key", "description": "SimianX API key", "password": true}], "servers": {"simianx": {"type": "http", "url": "https://service.simianx.ai/v1/mcp", "headers": {"Authorization": "Bearer ${input:simianx-key}"}}}}` |
+| Windsurf | `~/.codeium/windsurf/mcp_config.json` | `{"mcpServers": {"simianx": {"serverUrl": "https://service.simianx.ai/v1/mcp", "headers": {"Authorization": "Bearer ${env:SIMIANX_API_KEY}"}}}}` |
+| Gemini CLI | terminal | `gemini mcp add --transport http --header "Authorization: Bearer $SIMIANX_API_KEY" simianx https://service.simianx.ai/v1/mcp` |
+
+The tool list follows the API (one tool per endpoint), so new endpoints appear after a release without a client
+update; list tools again if a call answers "unknown tool". Discovery: server card `https://service.simianx.ai/v1/mcp/server-card`, agent card
+`https://www.simianx.ai/.well-known/agent-card.json`, MCP Registry name `io.github.SimianX-AI/simianx`.
+
 ## By hand, per client
 
 `FILES` below is the same for every client. Replace `DIR` with the directory from the table and run:
