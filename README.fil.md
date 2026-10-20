@@ -10,8 +10,7 @@
 <h1 align="center">SimianX AI para sa mga AI agent</h1>
 
 <p align="center">
-  Apat na AI analyst na sabay na sumusuri sa kahit anong US stock o crypto pair, kasama ang news stream na may score,
-  para sa Claude Code, Codex, Cursor at lahat ng iba pang agent na nagbabasa ng skills.
+  Real-time AI para sa live trading. Apat na agent ang live na sumusuri sa kahit anong US stock o crypto pair at nagbibigay ng entry, stop at target, kasama ang real-time na news stream na may score, Market Pulse alerts, deep research, Sector Watch at autopilots. Isang skill at remote MCP server para sa Claude Code, Codex, Cursor at iba pang AI agent.
 </p>
 
 <p align="center">

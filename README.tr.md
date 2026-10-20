@@ -10,8 +10,7 @@
 <h1 align="center">Yapay zekâ ajanları için SimianX AI</h1>
 
 <p align="center">
-  Her ABD hissesi ve kripto paritesi için dört yapay zekâ analisti, bir de puanlı haber akışı.
-  Claude Code, Codex, Cursor ve skill okuyabilen tüm ajanlarda çalışır.
+  Canlı işlem (live trading) için gerçek zamanlı yapay zekâ. Dört ajan her ABD hissesini ve kripto paritesini canlı analiz edip giriş, stop ve hedef verir; yanında gerçek zamanlı puanlı haber akışı, Market Pulse uyarıları, derin araştırma, Sector Watch ve otopilotlar. Claude Code, Codex, Cursor ve diğer tüm yapay zekâ ajanları için bir skill ve uzak MCP sunucusu.
 </p>
 
 <p align="center">

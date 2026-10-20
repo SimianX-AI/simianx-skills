@@ -10,8 +10,7 @@
 <h1 align="center">SimianX AI untuk agen AI</h1>
 
 <p align="center">
-  Empat analis AI yang membedah saham AS atau pasangan kripto apa pun, plus stream berita yang sudah dinilai,
-  langsung di Claude Code, Codex, Cursor, dan agen lain mana pun yang bisa membaca skill.
+  AI real-time untuk live trading. Empat agen menganalisis saham AS atau pasangan kripto apa pun secara live dan memberi entry, stop, dan target, ditambah stream berita bernilai secara real-time, alert Market Pulse, riset mendalam, Sector Watch, dan autopilot. Satu skill dan server MCP jarak jauh untuk Claude Code, Codex, Cursor, dan agen AI lainnya.
 </p>
 
 <p align="center">

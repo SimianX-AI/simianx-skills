@@ -10,8 +10,7 @@
 <h1 align="center">AI 에이전트를 위한 SimianX AI</h1>
 
 <p align="center">
-  미국 주식이든 암호화폐 페어든 AI 분석가 네 명이 동시에 분석하고, 뉴스는 점수를 매겨 스트림으로 보냅니다.
-  Claude Code, Codex, Cursor를 비롯해 스킬을 읽는 모든 에이전트에서 쓸 수 있습니다.
+  라이브 트레이딩을 위한 실시간 AI. 네 개의 에이전트가 미국 주식이나 암호화폐 페어를 실시간으로 분석해 진입가, 손절가, 목표가를 내놓고, 실시간 점수형 뉴스 스트림, Market Pulse 알림, 심층 리서치, Sector Watch, 오토파일럿까지 제공합니다. Claude Code, Codex, Cursor 등 모든 AI 에이전트를 위한 skill과 원격 MCP 서버입니다.
 </p>
 
 <p align="center">

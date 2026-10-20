@@ -10,8 +10,7 @@
 <h1 align="center">為 AI 代理打造的 SimianX AI</h1>
 
 <p align="center">
-  四位 AI 分析師同時盯著任一檔美股或加密貨幣交易對，再加上一條附評分的新聞串流，
-  給 Claude Code、Codex、Cursor 和所有能讀 skill 的 AI 代理直接使用。
+  為即時交易打造的即時 AI。四個智能體即時分析任一檔美股或加密貨幣交易對，直接給出進場、停損和目標價；另有即時評分的新聞串流、市場脈搏異動提醒、深度研究、板塊觀察與自動駕駛儀。一個 skill 加一個遠端 MCP 伺服器，適用於 Claude Code、Codex、Cursor 及其他所有 AI agent。
 </p>
 
 <p align="center">

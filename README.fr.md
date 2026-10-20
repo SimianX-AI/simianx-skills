@@ -10,8 +10,7 @@
 <h1 align="center">SimianX AI pour les agents IA</h1>
 
 <p align="center">
-  Quatre analystes IA sur n'importe quelle action américaine ou paire crypto, et un flux d'actualités déjà notées,
-  dans Claude Code, Codex, Cursor et tout autre agent qui lit les skills.
+  De l'IA en temps réel pour le live trading. Quatre agents analysent en direct n'importe quelle action américaine ou paire crypto et donnent entrée, stop et objectif, avec un flux d'actualités notées en temps réel, les alertes Market Pulse, la recherche approfondie, Sector Watch et les autopilots. Un skill et un serveur MCP distant pour Claude Code, Codex, Cursor et tout autre agent IA.
 </p>
 
 <p align="center">

@@ -10,8 +10,7 @@
 <h1 align="center">面向 AI 智能体的 SimianX AI</h1>
 
 <p align="center">
-  四个 AI 分析师同时看任何一只美股或加密交易对，再加一条打好分的新闻流，
-  给 Claude Code、Codex、Cursor 和所有能读 skill 的智能体直接用。
+  为实盘交易打造的实时 AI。四个智能体实时分析任意美股或加密交易对，直接给出入场、止损和目标价；另有实时打分的新闻流、市场脉搏异动提醒、深度研究、板块观察和自动驾驶仪。一个 skill 加一个远程 MCP 服务器，适用于 Claude Code、Codex、Cursor 以及其他所有 AI agent。
 </p>
 
 <p align="center">

@@ -10,8 +10,7 @@
 <h1 align="center">AI エージェントのための SimianX AI</h1>
 
 <p align="center">
-  どの米国株や暗号資産ペアにも 4 人の AI アナリストが付き、スコア付きのニュースもストリームで届きます。
-  Claude Code、Codex、Cursor をはじめ、スキルを読めるすべてのエージェントで使えます。
+  ライブトレードのためのリアルタイム AI。4 つのエージェントが米国株・暗号資産ペアをライブで分析し、エントリー・ストップ・ターゲットを返します。リアルタイムのスコア付きニュース、Market Pulse アラート、ディープリサーチ、Sector Watch、オートパイロットも。Claude Code・Codex・Cursor などあらゆる AI エージェント向けの skill とリモート MCP サーバーです。
 </p>
 
 <p align="center">

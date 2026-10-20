@@ -10,8 +10,7 @@
 <h1 align="center">SimianX AI für KI-Agenten</h1>
 
 <p align="center">
-  Vier KI-Analysten für jede US-Aktie und jedes Krypto-Paar, dazu ein Stream bewerteter News,
-  für Claude Code, Codex, Cursor und jeden anderen Agenten, der Skills liest.
+  Echtzeit-KI für Live-Trading. Vier Agenten analysieren jede US-Aktie und jedes Krypto-Paar live und liefern Einstieg, Stop und Ziel, dazu ein Echtzeit-Stream bewerteter News, Market-Pulse-Signale, Deep Research, Sector Watch und Autopilots. Ein Skill und ein Remote-MCP-Server für Claude Code, Codex, Cursor und jeden anderen KI-Agenten.
 </p>
 
 <p align="center">

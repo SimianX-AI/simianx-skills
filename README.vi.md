@@ -10,8 +10,7 @@
 <h1 align="center">SimianX AI dành cho các AI agent</h1>
 
 <p align="center">
-  Bốn nhà phân tích AI cho mọi cổ phiếu Mỹ hay cặp crypto, kèm một luồng tin tức đã chấm điểm,
-  dùng ngay trong Claude Code, Codex, Cursor và mọi agent khác biết đọc skill.
+  AI thời gian thực cho live trading. Bốn tác tử phân tích trực tiếp mọi cổ phiếu Mỹ hay cặp crypto và đưa ra điểm vào lệnh, cắt lỗ và mục tiêu, kèm luồng tin tức chấm điểm theo thời gian thực, cảnh báo Market Pulse, nghiên cứu chuyên sâu, Sector Watch và autopilot. Một skill và máy chủ MCP từ xa cho Claude Code, Codex, Cursor và mọi AI agent khác.
 </p>
 
 <p align="center">
