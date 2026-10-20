@@ -126,7 +126,9 @@ Base URL `https://service.simianx.ai/v1`, header `Authorization: Bearer $SIMIANX
 
 ## Paket
 
-Free, Starter, Plus, dan Pro; lihat [harga](https://www.simianx.ai/pricing). Panggilan dari agen memakai poin paket Anda dengan tarif yang sama seperti di situs web. Stream berita berjalan real-time di Plus dan Pro; di bawah Plus, berita tertunda 30 menit. Jawaban tersedia dalam 16 bahasa. SimianX tidak pernah bertransaksi di akun sungguhan: posisi pilot otomatis adalah posisi simulasi.
+Free, Starter, Plus, dan Pro; lihat [harga](https://www.simianx.ai/pricing). Panggilan dari agen memakai poin paket Anda dengan tarif yang sama seperti di situs web. Stream berita berjalan real-time di Plus dan Pro; di bawah Plus, berita tertunda 30 menit. Jawaban tersedia dalam 16 bahasa.
+
+Anda dapat menghubungkan analisis dan sinyal dari API SimianX ke sistem trading sendiri untuk mengirim order sungguhan melalui broker atau bursa yang Anda izinkan. Posisi yang dicatat di dalam SimianX adalah simulasi; integrasi Anda mengirim dan mengelola order sungguhan di akun Anda sendiri.
 
 ## Keamanan
 

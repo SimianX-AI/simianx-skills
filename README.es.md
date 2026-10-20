@@ -126,7 +126,9 @@ URL base `https://service.simianx.ai/v1`, cabecera `Authorization: Bearer $SIMIA
 
 ## Planes
 
-Free, Starter, Plus y Pro (consulta los [precios](https://www.simianx.ai/pricing)). Las llamadas del agente usan los puntos de tu plan, con las mismas tarifas que la web. El flujo de noticias es en tiempo real en Plus y Pro; por debajo de Plus, las noticias llegan con 30 minutos de retraso. La API responde en 16 idiomas. SimianX nunca opera con una cuenta real: las posiciones de los pilotos automáticos son simuladas.
+Free, Starter, Plus y Pro (consulta los [precios](https://www.simianx.ai/pricing)). Las llamadas del agente usan los puntos de tu plan, con las mismas tarifas que la web. El flujo de noticias es en tiempo real en Plus y Pro; por debajo de Plus, las noticias llegan con 30 minutos de retraso. La API responde en 16 idiomas.
+
+Puedes conectar los análisis y las señales de la API de SimianX a tu propio sistema de trading y enviar órdenes reales mediante un bróker o exchange que autorices. Las posiciones registradas dentro de SimianX son simuladas; tu integración envía y gestiona las órdenes reales en tu propia cuenta.
 
 ## Seguridad
 

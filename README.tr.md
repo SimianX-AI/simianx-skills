@@ -126,7 +126,9 @@ Temel URL `https://service.simianx.ai/v1`, başlık `Authorization: Bearer $SIMI
 
 ## Planlar
 
-Free, Starter, Plus ve Pro; ayrıntılar için [fiyatlandırma](https://www.simianx.ai/pricing) sayfasına bakın. Ajan çağrıları, planınızdaki puanları web sitesiyle aynı tarifelerle kullanır. Haber akışı Plus ve Pro'da canlıdır; Plus'ın altındaki planlarda haberler 30 dakika gecikmeli gelir. Yanıtlar 16 dilde alınabilir. SimianX hiçbir zaman gerçek bir hesapta işlem yapmaz: otopilot pozisyonları sanal pozisyonlardır.
+Free, Starter, Plus ve Pro; ayrıntılar için [fiyatlandırma](https://www.simianx.ai/pricing) sayfasına bakın. Ajan çağrıları, planınızdaki puanları web sitesiyle aynı tarifelerle kullanır. Haber akışı Plus ve Pro'da canlıdır; Plus'ın altındaki planlarda haberler 30 dakika gecikmeli gelir. Yanıtlar 16 dilde alınabilir.
+
+SimianX API’sindeki analiz ve sinyalleri kendi işlem sisteminize bağlayıp yetki verdiğiniz aracı kurum veya borsa üzerinden gerçek emirler gönderebilirsiniz. SimianX içinde kaydedilen pozisyonlar sanaldır; gerçek emirleri kendi hesabınızda gönderen ve yöneten, kurduğunuz entegrasyondur.
 
 ## Güvenlik
 

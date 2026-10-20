@@ -126,7 +126,9 @@ Base URL은 `https://service.simianx.ai/v1`, 헤더는 `Authorization: Bearer $S
 
 ## 플랜
 
-Free, Starter, Plus, Pro가 있고, 자세한 내용은 [가격](https://www.simianx.ai/pricing) 페이지에 있습니다. 에이전트 호출에는 플랜의 포인트가 웹사이트와 같은 요율로 쓰입니다. 뉴스 스트림은 Plus와 Pro에서 실시간이고, Plus 미만에서는 뉴스가 30분 늦게 들어옵니다. 답변은 16개 언어로 받을 수 있습니다. SimianX는 실제 계좌로 거래하지 않으며, 오토파일럿 포지션은 모두 모의 포지션입니다.
+Free, Starter, Plus, Pro가 있고, 자세한 내용은 [가격](https://www.simianx.ai/pricing) 페이지에 있습니다. 에이전트 호출에는 플랜의 포인트가 웹사이트와 같은 요율로 쓰입니다. 뉴스 스트림은 Plus와 Pro에서 실시간이고, Plus 미만에서는 뉴스가 30분 늦게 들어옵니다. 답변은 16개 언어로 받을 수 있습니다.
+
+SimianX API의 분석과 신호를 자체 거래 시스템에 연결하여 사용자가 승인한 증권사나 거래소에서 실제 주문을 낼 수 있습니다. SimianX 내부에 기록되는 포지션은 모의 포지션이며, 실제 주문은 연결한 시스템이 사용자 본인의 계좌에서 제출하고 관리합니다.
 
 ## 보안
 
