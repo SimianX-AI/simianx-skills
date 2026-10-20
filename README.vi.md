@@ -10,7 +10,7 @@
 <h1 align="center">SimianX AI dành cho các AI agent</h1>
 
 <p align="center">
-  AI thời gian thực cho live trading. Bốn tác tử phân tích trực tiếp mọi cổ phiếu Mỹ hay cặp crypto và đưa ra điểm vào lệnh, cắt lỗ và mục tiêu, kèm luồng tin tức chấm điểm theo thời gian thực, cảnh báo Market Pulse, nghiên cứu chuyên sâu, Sector Watch và autopilot. Một skill và máy chủ MCP từ xa cho Claude Code, Codex, Cursor và mọi AI agent khác.
+  Cho mọi AI agent cả một đội nghiên cứu. Với SimianX AI, agent của bạn có thể triệu tập hội đồng nghiên cứu 8 agent cho bất kỳ cổ phiếu Mỹ hay cặp crypto nào rồi chất vấn tiếp, nhận đánh giá trực tiếp từ bốn agent kèm điểm vào lệnh, cắt lỗ và mục tiêu, và giữ một luồng tin đã chấm điểm cho các mã của bạn. Một skill và máy chủ MCP từ xa cho Claude Code, Codex, Cursor, Muse, Grok Bot, dots và mọi agent khác.
 </p>
 
 <p align="center">
@@ -33,6 +33,34 @@
 
 ---
 
+## Vì sao nên cho agent của bạn dùng SimianX
+
+Hỏi một agent đơn thuần *"Có nên mua NVDA để lướt sóng không?"*, nó sẽ tìm trên web, tóm tắt những tiêu đề có thể đã cũ vài ngày và đưa ra ý kiến của một mô hình. Nó không có biểu đồ trực tiếp, không ai phản biện, và dừng lại khi cuộc trò chuyện kết thúc.
+
+Có SimianX, cũng agent đó:
+
+| | Tự xoay xở | Có SimianX AI |
+|---|---|---|
+| Ai làm việc | Một mô hình | Hội đồng 8 agent: bốn nhà phân tích, một nhà nghiên cứu phe tăng và một nhà nghiên cứu phe giảm, một quản lý nghiên cứu, một quản lý rủi ro |
+| Đọc gì | Kết quả tìm kiếm web | Nến trực tiếp, hồ sơ công bố, giao dịch nội bộ, dòng tin tức; dữ liệu on-chain và phái sinh với coin |
+| Bạn nhận được gì | Một ý kiến | Kết luận kèm điểm vào, cắt lỗ và mục tiêu, cùng một báo cáo PDF |
+| Sau đó | Bắt đầu lại từ đầu | Chuyển câu hỏi tiếp theo đến đúng hội đồng đó, hoặc bật lái tự động để tiếp tục theo dõi |
+
+## Những gì bạn có thể hỏi
+
+Khi đã cài skill, cứ hỏi theo cách của bạn:
+
+- *"Triệu tập hội đồng SimianX phân tích NVDA để lướt sóng."* Bốn nhà phân tích báo cáo, phe tăng và phe giảm tranh luận đến cùng, rồi quản lý rủi ro trả về kết luận, kế hoạch và một file PDF.
+- *"Hỏi nhà nghiên cứu phe giảm xem điều gì sẽ chứng minh phe tăng sai."* Câu hỏi tiếp theo đi vào đúng lượt phân tích đó, nên câu trả lời dựa trên mọi thứ hội đồng đã đọc.
+- *"Cho hội đồng phân tích SOL theo khung ngắn hạn."* Với coin, các nhà phân tích đọc thêm dòng tiền on-chain và thị trường phái sinh.
+- *"BTC trên biểu đồ 15 phút lúc này thế nào?"* Bốn agent trực tiếp trả lời, và agent Quyết định nói nên mua, bán hay đứng ngoài, kèm điểm vào, cắt lỗ và mục tiêu.
+- *"Báo tôi khi có tin quan trọng về TSLA hoặc ETH."* Luồng tin đã chấm điểm cho các mã của bạn, đến ngay khi từng tin được chấm điểm.
+- *"Theo dõi AAPL trên biểu đồ 1 giờ và quản lý một vị thế giả lập."* Chế độ lái tự động chạy lại các agent mỗi khi nến đóng và ghi lại mọi tín hiệu.
+- *"30 ngày tới có những ngày PDUFA nào của nhóm dược sinh học?"* Sector Watch, lấy từ nguồn gốc.
+- *"Một giờ qua crypto có mã nào biến động mạnh?"* Market Pulse: biến động đột ngột, đỉnh và đáy mới, khối lượng tăng vọt và khoảng trống giá.
+
+Tài khoản miễn phí có thể dùng thử hội đồng với các mã phổ biến như NVDA, AAPL, TSLA, BTC và ETH.
+
 ## SimianX làm được gì
 
 Phần việc chính nằm ở hai tính năng này.
@@ -54,7 +82,7 @@ Thị trường: 13.000+ cổ phiếu và ETF Mỹ với nến từ `1m` đến 
 Dán câu này vào agent của bạn:
 
 ```text
-Install the SimianX skill from https://www.simianx.ai/INSTALL.md and set it up for this project.
+Install the SimianX skill from https://www.simianx.ai/INSTALL.md and sign me in.
 ```
 
 Agent sẽ đặt skill vào đúng nơi nó tìm skill, rồi giúp bạn đăng nhập: bạn phê duyệt một liên kết trong trình duyệt, hoặc nhập mã 6 chữ số chúng tôi gửi qua email. Email mới sẽ được tạo tài khoản ngay. Cuối cùng agent có một khóa API của riêng nó trong `SIMIANX_API_KEY`, và không bao giờ có thông tin đăng nhập website của bạn.
@@ -68,6 +96,10 @@ gh skill install SimianX-AI/simianx-skills simianx
 
 Lệnh và thư mục cho từng agent (Claude Code, Codex, Cursor, Copilot, Gemini CLI, Windsurf, Amp, Cline và các agent khác) có trong [INSTALL.md](INSTALL.md).
 
+### Muse, Grok Bot, dots và các agent có máy tính riêng
+
+Các agent chạy trên máy tính đám mây của riêng chúng cũng đọc đúng câu đó. Chúng kết nối qua MCP hoặc dựng một bộ kết nối từ [tài liệu OpenAPI](https://service.simianx.ai/v1/openapi.json), giúp bạn đăng nhập, cất khóa trong kho thông tin xác thực của riêng chúng và lưu SimianX thành một skill. Lời dặn cụ thể cho Muse, Grok Bot và dots có trong [INSTALL.md](INSTALL.md#agents-with-their-own-computer-muse-grok-bot-dots).
+
 ### Hoặc kết nối qua MCP
 
 Các AI agent hỗ trợ MCP có thể dùng SimianX như một bộ công cụ mà không cần cài skill. Thêm máy chủ từ xa một lần cùng khóa của bạn:
@@ -76,7 +108,7 @@ Các AI agent hỗ trợ MCP có thể dùng SimianX như một bộ công cụ 
 claude mcp add --transport http simianx https://service.simianx.ai/v1/mcp --header "Authorization: Bearer $SIMIANX_API_KEY"
 ```
 
-Cách làm tương tự cho Claude Desktop, Cursor, Codex, VS Code, Windsurf và Gemini CLI có trong [INSTALL.md](INSTALL.md#connect-over-mcp). Tên trong registry: `io.github.SimianX-AI/simianx`.
+Cách làm tương tự cho Claude Desktop, Cursor, Codex, VS Code, Windsurf, Gemini CLI, Grok Bot và Muse có trong [INSTALL.md](INSTALL.md#connect-over-mcp). Tên trong registry: `io.github.SimianX-AI/simianx`.
 
 ## Các lệnh gọi đầu tiên
 

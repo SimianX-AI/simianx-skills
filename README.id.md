@@ -10,7 +10,7 @@
 <h1 align="center">SimianX AI untuk agen AI</h1>
 
 <p align="center">
-  AI real-time untuk live trading. Empat agen menganalisis saham AS atau pasangan kripto apa pun secara live dan memberi entry, stop, dan target, ditambah stream berita bernilai secara real-time, alert Market Pulse, riset mendalam, Sector Watch, dan autopilot. Satu skill dan server MCP jarak jauh untuk Claude Code, Codex, Cursor, dan agen AI lainnya.
+  Beri agen AI mana pun satu tim riset lengkap. Dengan SimianX AI, agen Anda bisa memanggil komite riset 8 agen untuk saham AS atau pasangan kripto apa pun lalu bertanya lanjut, mendapat bacaan live dari empat agen lengkap dengan entry, stop, dan target, serta membiarkan stream berita bernilai tetap terbuka untuk simbol-simbol Anda. Satu skill dan server MCP jarak jauh untuk Claude Code, Codex, Cursor, Muse, Grok Bot, dots, dan agen lainnya.
 </p>
 
 <p align="center">
@@ -33,6 +33,34 @@
 
 ---
 
+## Mengapa memberi agen Anda SimianX
+
+Tanya agen biasa *"Sebaiknya saya beli NVDA untuk swing trading?"* dan ia akan mencari di web, merangkum judul berita yang mungkin sudah basi berhari-hari, lalu memberi pendapat satu model. Ia tidak punya grafik live, tidak ada yang membela sisi sebaliknya, dan berhenti begitu obrolan selesai.
+
+Dengan SimianX, agen yang sama:
+
+| | Tanpa bantuan | Dengan SimianX AI |
+|---|---|---|
+| Siapa yang bekerja | Satu model | Komite 8 agen: empat analis, peneliti bullish dan peneliti bearish, manajer riset, manajer risiko |
+| Apa yang dibaca | Hasil pencarian web | Candle live, laporan resmi, transaksi orang dalam, arus berita; data on-chain dan derivatif untuk koin |
+| Apa yang Anda dapat | Sebuah pendapat | Kesimpulan dengan entry, stop, dan target, plus laporan PDF |
+| Sesudahnya | Mulai dari nol | Meneruskan pertanyaan lanjutan ke komite yang sama, atau memasang pilot otomatis untuk terus memantau |
+
+## Yang bisa Anda tanyakan
+
+Setelah skill terpasang, tanyakan dengan kata-kata Anda sendiri:
+
+- *"Panggil komite SimianX untuk menganalisis NVDA buat swing trading."* Empat analis melapor, sisi bullish dan bearish beradu argumen, lalu manajer risiko menyerahkan kesimpulan, rencana, dan PDF.
+- *"Tanya peneliti bearish, apa yang bisa membuktikan argumen bullish salah."* Pertanyaan lanjutan masuk ke sesi analisis yang sama, jadi jawabannya dibangun dari semua yang sudah dibaca komite.
+- *"Jalankan komite untuk SOL dengan horizon pendek."* Untuk koin, para analis juga membaca aliran dana on-chain dan pasar derivatif.
+- *"Bagaimana BTC di grafik 15 menit sekarang?"* Empat agen live menjawab, lalu agen Keputusan menyatakan beli, jual, atau tidak masuk dulu, lengkap dengan entry, stop, dan target.
+- *"Kabari saya kalau ada berita penting soal TSLA atau ETH."* Stream berita bernilai untuk simbol Anda, langsung begitu setiap berita selesai dinilai.
+- *"Pantau AAPL di grafik 1 jam dan kelola posisi simulasi."* Pilot otomatis menjalankan ulang agen setiap candle ditutup dan mencatat setiap sinyal.
+- *"Ada tanggal PDUFA biofarmasi apa saja dalam 30 hari ke depan?"* Sector Watch, dari sumber primer.
+- *"Kripto apa yang bergerak tajam dalam satu jam terakhir?"* Market Pulse: pergerakan mendadak, harga tertinggi dan terendah baru, lonjakan volume, dan gap.
+
+Akun gratis bisa mencoba komite untuk simbol populer seperti NVDA, AAPL, TSLA, BTC, dan ETH.
+
 ## Apa saja isi SimianX
 
 Dua fitur ini yang paling sering dipakai.
@@ -54,7 +82,7 @@ Pasar: 13.000+ saham dan ETF AS dengan candle `1m` sampai `1mo`, serta 4.000+ pa
 Tempel kalimat ini ke agen Anda:
 
 ```text
-Install the SimianX skill from https://www.simianx.ai/INSTALL.md and set it up for this project.
+Install the SimianX skill from https://www.simianx.ai/INSTALL.md and sign me in.
 ```
 
 Agen akan menaruh skill di tempat ia biasa mencari skill, lalu membantu Anda masuk: setujui tautan di browser, atau ketik kode 6 digit yang kami kirim lewat email. Alamat email baru langsung dibuatkan akun. Hasilnya, agen memegang kunci API miliknya sendiri di `SIMIANX_API_KEY`, tidak pernah login situs web Anda.
@@ -68,6 +96,10 @@ gh skill install SimianX-AI/simianx-skills simianx
 
 Perintah dan direktori untuk setiap agen (Claude Code, Codex, Cursor, Copilot, Gemini CLI, Windsurf, Amp, Cline, dan lainnya) ada di [INSTALL.md](INSTALL.md).
 
+### Muse, Grok Bot, dots, dan agen lain yang punya komputer sendiri
+
+Agen yang berjalan di komputer cloud miliknya sendiri membaca kalimat yang sama. Mereka terhubung lewat MCP atau membuat konektor dari [dokumen OpenAPI](https://service.simianx.ai/v1/openapi.json), membantu Anda masuk, menyimpan kunci di penyimpanan kredensial mereka sendiri, dan memasang SimianX sebagai skill. Kalimat persisnya untuk Muse, Grok Bot, dan dots ada di [INSTALL.md](INSTALL.md#agents-with-their-own-computer-muse-grok-bot-dots).
+
 ### Atau hubungkan lewat MCP
 
 Agen AI yang mendukung MCP bisa memakai SimianX sebagai alat tanpa memasang skill. Tambahkan server jarak jauh sekali dengan kunci Anda:
@@ -76,7 +108,7 @@ Agen AI yang mendukung MCP bisa memakai SimianX sebagai alat tanpa memasang skil
 claude mcp add --transport http simianx https://service.simianx.ai/v1/mcp --header "Authorization: Bearer $SIMIANX_API_KEY"
 ```
 
-Cara yang sama untuk Claude Desktop, Cursor, Codex, VS Code, Windsurf, dan Gemini CLI ada di [INSTALL.md](INSTALL.md#connect-over-mcp). Nama di registry: `io.github.SimianX-AI/simianx`.
+Cara yang sama untuk Claude Desktop, Cursor, Codex, VS Code, Windsurf, Gemini CLI, Grok Bot, dan Muse ada di [INSTALL.md](INSTALL.md#connect-over-mcp). Nama di registry: `io.github.SimianX-AI/simianx`.
 
 ## Panggilan pertama
 

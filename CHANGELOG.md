@@ -4,6 +4,11 @@ The version here, in `skills/simianx/SKILL.md` (`metadata.version`), in `example
 in every plugin manifest (see `RELEASING.md`) and in the git tag is always the same number; `scripts/check_version.py` refuses a release when they differ. The API
 publishes the same number at `GET /v1/skill` and answers `426` to skills older than its minimum.
 
+## 1.0.3 - 2026-10-20
+
+- Changed: the skill leads with the 8-agent research committee for questions that need a full view (buy or not, the case, the risks) and with follow-up questions to the same committee; the four live agents stay the quick read on one timeframe. Descriptions in every manifest and in the MCP Registry entry say so.
+- Added: INSTALL.md covers agents on their own computer (Muse, Grok Bot, dots): connect over MCP or a connector built from the OpenAPI document, sign in, keep the key in the agent's credential store, save the skill. The install sentence ends in "and sign me in".
+
 ## 1.0.2 - 2026-10-16
 
 - Added: a remote MCP server at `https://service.simianx.ai/v1/mcp` (your SimianX API key as a bearer token) with the /v1 endpoints as tools, an A2A agent card, and the MCP Registry entry `io.github.SimianX-AI/simianx`. Setup for each client is in INSTALL.md.

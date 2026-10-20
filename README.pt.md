@@ -10,7 +10,7 @@
 <h1 align="center">SimianX AI para agentes de IA</h1>
 
 <p align="center">
-  IA em tempo real para live trading. Quatro agentes analisam ao vivo qualquer ação dos EUA ou par cripto e devolvem entrada, stop e alvo, junto com um fluxo de notícias avaliadas em tempo real, alertas do Market Pulse, pesquisa aprofundada, Sector Watch e autopilots. Um skill e um servidor MCP remoto para Claude Code, Codex, Cursor e qualquer outro agente de IA.
+  Dê a qualquer agente de IA uma mesa de análise completa. Com o SimianX AI, seu agente pode convocar um comitê de análise de 8 agentes sobre qualquer ação dos EUA ou par cripto e fazer perguntas a ele depois, receber uma leitura ao vivo de quatro agentes com entrada, stop e alvo, e manter um fluxo de notícias avaliadas aberto nos seus ativos. Uma skill e um servidor MCP remoto para Claude Code, Codex, Cursor, Muse, Grok Bot, dots e qualquer outro agente.
 </p>
 
 <p align="center">
@@ -33,6 +33,34 @@
 
 ---
 
+## Por que dar o SimianX ao seu agente
+
+Pergunte a um agente sozinho *"Vale a pena comprar NVDA para um swing trade?"* e ele pesquisa na web, resume manchetes que podem ter dias e dá a opinião de um único modelo. Ele não tem gráfico ao vivo, não tem ninguém defendendo o outro lado e para quando o chat acaba.
+
+Com o SimianX, o mesmo agente:
+
+| | Sozinho | Com o SimianX AI |
+|---|---|---|
+| Quem trabalha nisso | Um modelo | Um comitê de 8 agentes: quatro analistas, um pesquisador altista e um baixista, um gerente de pesquisa e um gestor de risco |
+| O que ele lê | Resultados de busca na web | Velas ao vivo, documentos regulatórios, negociações de insiders, o noticiário; dados on-chain e de derivativos no caso de uma moeda |
+| O que você recebe | Uma opinião | Um veredito com entrada, stop e alvo, e um relatório em PDF |
+| Depois | Começa do zero | Leva perguntas de acompanhamento ao mesmo comitê ou deixa um piloto automático de olho |
+
+## O que você pode pedir
+
+Com a skill instalada, peça com as suas palavras:
+
+- *"Convoque o comitê do SimianX sobre NVDA para um swing trade."* Quatro analistas apresentam seus relatórios, o altista e o baixista debatem, e o gestor de risco entrega o veredito, o plano e um PDF.
+- *"Pergunte ao pesquisador baixista o que provaria que a tese altista está errada."* As perguntas de acompanhamento vão para a mesma análise, então a resposta parte de tudo o que o comitê já leu.
+- *"Rode o comitê em SOL com horizonte curto."* Para uma moeda, os analistas também leem os fluxos on-chain e o mercado de derivativos.
+- *"Como está o BTC no gráfico de 15 minutos agora?"* Quatro agentes ao vivo respondem, e o agente de Decisão diz se é hora de comprar, vender ou ficar de fora, com entrada, stop e alvo.
+- *"Me avise quando sair notícia relevante sobre TSLA ou ETH."* Um fluxo de notícias avaliadas sobre os seus ativos, ao vivo, conforme cada notícia é avaliada.
+- *"Acompanhe a AAPL no gráfico de 1 hora e administre uma posição simulada."* Um piloto automático roda os agentes de novo a cada fechamento de vela e registra cada sinal.
+- *"Quais datas PDUFA de biofarmacêuticas caem nos próximos 30 dias?"* Setores em Foco, a partir de fontes primárias.
+- *"O que teve movimento forte em cripto na última hora?"* Pulso do Mercado: movimentos bruscos, novas máximas e mínimas, picos de volume e gaps.
+
+Contas gratuitas podem testar o comitê com ativos populares como NVDA, AAPL, TSLA, BTC e ETH.
+
 ## O que o SimianX faz
 
 Duas funções fazem quase todo o trabalho.
@@ -54,7 +82,7 @@ Mercados: mais de 13.000 ações e ETFs dos EUA, com velas de `1m` a `1mo`, e ma
 Cole isto no seu agente:
 
 ```text
-Install the SimianX skill from https://www.simianx.ai/INSTALL.md and set it up for this project.
+Install the SimianX skill from https://www.simianx.ai/INSTALL.md and sign me in.
 ```
 
 O agente coloca a skill onde costuma procurar skills e depois faz o seu login: você aprova um link no navegador ou digita o código de 6 dígitos que mandamos por e-mail. Se o e-mail for novo, a conta é criada na hora. No fim, o agente fica com uma chave de API só dele em `SIMIANX_API_KEY`, nunca com o seu login do site.
@@ -68,6 +96,10 @@ gh skill install SimianX-AI/simianx-skills simianx
 
 O comando e o diretório de cada agente (Claude Code, Codex, Cursor, Copilot, Gemini CLI, Windsurf, Amp, Cline e os demais) estão no [INSTALL.md](INSTALL.md).
 
+### Muse, Grok Bot, dots e outros agentes com computador próprio
+
+Agentes que rodam no próprio computador na nuvem leem a mesma frase. Eles se conectam por MCP ou criam um conector a partir do [documento OpenAPI](https://service.simianx.ai/v1/openapi.json), fazem o seu login, guardam a chave no próprio cofre de credenciais e salvam o SimianX como skill. As instruções exatas para Muse, Grok Bot e dots estão no [INSTALL.md](INSTALL.md#agents-with-their-own-computer-muse-grok-bot-dots).
+
 ### Ou conecte por MCP
 
 Agentes de IA que falam MCP podem usar a SimianX como ferramentas sem instalar a skill. Adicione o servidor remoto uma vez com sua chave:
@@ -76,7 +108,7 @@ Agentes de IA que falam MCP podem usar a SimianX como ferramentas sem instalar a
 claude mcp add --transport http simianx https://service.simianx.ai/v1/mcp --header "Authorization: Bearer $SIMIANX_API_KEY"
 ```
 
-O mesmo para Claude Desktop, Cursor, Codex, VS Code, Windsurf e Gemini CLI está em [INSTALL.md](INSTALL.md#connect-over-mcp). Nome no registro: `io.github.SimianX-AI/simianx`.
+O mesmo para Claude Desktop, Cursor, Codex, VS Code, Windsurf, Gemini CLI, Grok Bot e Muse está em [INSTALL.md](INSTALL.md#connect-over-mcp). Nome no registro: `io.github.SimianX-AI/simianx`.
 
 ## Primeiras chamadas
 

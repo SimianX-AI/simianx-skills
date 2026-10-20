@@ -10,7 +10,7 @@
 <h1 align="center">SimianX AI for AI agents</h1>
 
 <p align="center">
-  Real-time AI for live trading. Four agents analyze any US stock or crypto pair live and return entry, stop and target, alongside a real-time scored news stream, Market Pulse alerts, deep research, Sector Watch and autopilots. One skill and a remote MCP server for Claude Code, Codex, Cursor and every other AI agent.
+  Give any AI agent a full research desk. With SimianX AI your agent can convene an 8-agent research committee on any US stock or crypto pair and question it afterwards, get a live four-agent read with entry, stop and target, and keep a scored news stream open on your symbols. One skill and a remote MCP server for Claude Code, Codex, Cursor, Muse, Grok Bot, dots and every other agent.
 </p>
 
 <p align="center">
@@ -33,6 +33,34 @@
 
 ---
 
+## Why give your agent SimianX
+
+Ask an agent on its own *"Should I buy NVDA for a swing trade?"* and it searches the web, summarises headlines that may be days old and gives one model's opinion. It has no live chart, nobody arguing the other side, and it stops when the chat ends.
+
+With SimianX the same agent:
+
+| | On its own | With SimianX AI |
+|---|---|---|
+| Who works on it | One model | An 8-agent committee: four analysts, a bull and a bear researcher, a research manager, a risk manager |
+| What it reads | Web search results | Live candles, filings, insider trades, the news flow; on-chain and derivatives data for a coin |
+| What you get | An opinion | A verdict with entry, stop and target, and a PDF report |
+| Afterwards | Starts over | Puts follow-up questions to the same committee, or sets an autopilot to keep watching |
+
+## What you can ask
+
+Once the skill is in, ask in your own words:
+
+- *"Convene the SimianX committee on NVDA for a swing trade."* Four analysts report, the bull and the bear argue it out, and the risk manager hands back the verdict, the plan and a PDF.
+- *"Ask the bear researcher what would prove the bull case wrong."* Follow-ups go to the same run, so the answer builds on everything the committee already read.
+- *"Run the committee on SOL with a short horizon."* For a coin the analysts also read on-chain flows and the derivatives market.
+- *"How does BTC look on the 15-minute chart right now?"* Four live agents answer, and the Decision agent says buy, sell or stay out with entry, stop and target.
+- *"Tell me when high-value news hits TSLA or ETH."* A scored news stream on your symbols, live as each story is scored.
+- *"Watch AAPL on the 1-hour chart and manage a paper position."* An autopilot reruns the agents on every candle close and logs every signal.
+- *"Which biopharma PDUFA dates fall in the next 30 days?"* Sector Watch, from primary sources.
+- *"What moved sharply in crypto in the last hour?"* Market Pulse: sudden moves, new highs and lows, volume spikes and gaps.
+
+Free accounts can try the committee on popular symbols such as NVDA, AAPL, TSLA, BTC and ETH.
+
 ## What SimianX covers
 
 Two things do most of the work.
@@ -54,7 +82,7 @@ Markets: 13,000+ US stocks and ETFs on `1m` to `1mo` candles, and 4,000+ crypto 
 Paste this to your agent:
 
 ```text
-Install the SimianX skill from https://www.simianx.ai/INSTALL.md and set it up for this project.
+Install the SimianX skill from https://www.simianx.ai/INSTALL.md and sign me in.
 ```
 
 It puts the skill where your agent looks for skills, then signs you in: you approve a link in your browser, or type the 6-digit code we email you. A new address gets an account on the spot. The agent ends up with an API key of its own in `SIMIANX_API_KEY` and never with your website login.
@@ -68,6 +96,10 @@ gh skill install SimianX-AI/simianx-skills simianx
 
 The command and the directory for each agent (Claude Code, Codex, Cursor, Copilot, Gemini CLI, Windsurf, Amp, Cline and the rest) are in [INSTALL.md](INSTALL.md).
 
+### Muse, Grok Bot, dots and other agents on their own computer
+
+Agents that run on their own cloud computer read the same sentence. They connect over MCP or build a connector from the [OpenAPI document](https://service.simianx.ai/v1/openapi.json), sign you in, keep the key in their own credential store and save SimianX as a skill. The exact words for Muse, Grok Bot and dots are in [INSTALL.md](INSTALL.md#agents-with-their-own-computer-muse-grok-bot-dots).
+
 ### Or connect over MCP
 
 AI agents that speak MCP can use SimianX as tools without installing the skill. Add the remote server once with your key:
@@ -76,7 +108,7 @@ AI agents that speak MCP can use SimianX as tools without installing the skill. 
 claude mcp add --transport http simianx https://service.simianx.ai/v1/mcp --header "Authorization: Bearer $SIMIANX_API_KEY"
 ```
 
-The same for Claude Desktop, Cursor, Codex, VS Code, Windsurf and Gemini CLI is in [INSTALL.md](INSTALL.md#connect-over-mcp). Registry name: `io.github.SimianX-AI/simianx`.
+The same for Claude Desktop, Cursor, Codex, VS Code, Windsurf, Gemini CLI, Grok Bot and Muse is in [INSTALL.md](INSTALL.md#connect-over-mcp). Registry name: `io.github.SimianX-AI/simianx`.
 
 ## First calls
 

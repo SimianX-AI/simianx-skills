@@ -10,7 +10,7 @@
 <h1 align="center">面向 AI 智能体的 SimianX AI</h1>
 
 <p align="center">
-  为实盘交易打造的实时 AI。四个智能体实时分析任意美股或加密交易对，直接给出入场、止损和目标价；另有实时打分的新闻流、市场脉搏异动提醒、深度研究、板块观察和自动驾驶仪。一个 skill 加一个远程 MCP 服务器，适用于 Claude Code、Codex、Cursor 以及其他所有 AI agent。
+  给任何 AI agent 配一整个投研团队。装上 SimianX AI，你的 agent 就能对任意美股或加密交易对召开 8 个 agent 的投研委员会并继续追问，拿到四个实时 agent 给出的入场、止损和目标价，还能在你关注的标的上开着一条评分新闻流。一个 skill 加一个远程 MCP 服务器，适用于 Claude Code、Codex、Cursor、Muse、Grok Bot、dots 以及其他所有 agent。
 </p>
 
 <p align="center">
@@ -33,6 +33,34 @@
 
 ---
 
+## 为什么要给 agent 装上 SimianX
+
+单独问一个 agent *“NVDA 现在适合做波段吗？”*，它只会搜一遍网页，总结一些可能已经过时好几天的标题，再给出一个模型的看法。它没有实时图表，没有人站在对立面反驳，对话一结束就停了。
+
+装上 SimianX 之后，同一个 agent：
+
+| | 只有 agent 自己 | 装了 SimianX AI |
+|---|---|---|
+| 谁在分析 | 一个模型 | 8 个 agent 的委员会：四位分析师、多头和空头研究员、研究经理、风控经理 |
+| 读什么 | 网页搜索结果 | 实时 K 线、财报文件、内部人交易、新闻流；币则读链上和衍生品数据 |
+| 你拿到什么 | 一个观点 | 带入场、止损和目标价的结论，外加 PDF 报告 |
+| 之后 | 从头再来 | 把追问交给同一个委员会，或设一个自动驾驶仪持续盯着 |
+
+## 你可以这样问
+
+装好之后，用你自己的话问就行：
+
+- *“对 NVDA 召开 SimianX 委员会，看看适不适合做波段。”* 四位分析师汇报，多空研究员辩论，风控经理给出结论、交易计划和 PDF。
+- *“问问空头研究员，什么情况会证明多头的逻辑是错的。”* 追问进入同一次分析，回答建立在委员会已经读过的全部材料上。
+- *“用短线视角对 SOL 跑一次委员会。”* 分析币的时候，分析师还会读链上资金流和衍生品市场。
+- *“BTC 现在 15 分钟图怎么样？”* 四个实时 agent 作答，由决策 agent 给出买入、卖出还是观望，以及入场、止损和目标价。
+- *“TSLA 或 ETH 一有高价值新闻就告诉我。”* 你关注标的的评分新闻流，每条新闻一评完分就送到。
+- *“在 1 小时图上盯着 AAPL，并管理一个模拟仓位。”* 自动驾驶仪在每根 K 线收盘时重跑 agent，并记录每个信号。
+- *“未来 30 天有哪些生物医药 PDUFA 日期？”* 板块观察，数据来自一手来源。
+- *“过去一小时加密市场有什么大幅波动？”* 市场脉搏：价格急动、新高新低、放量和跳空。
+
+免费账户可以用 NVDA、AAPL、TSLA、BTC、ETH 等热门标的体验委员会。
+
 ## SimianX 能做什么
 
 最常用的是这两样。
@@ -54,7 +82,7 @@
 把这句话发给你的智能体：
 
 ```text
-Install the SimianX skill from https://www.simianx.ai/INSTALL.md and set it up for this project.
+Install the SimianX skill from https://www.simianx.ai/INSTALL.md and sign me in.
 ```
 
 它会把 skill 装进你的智能体读取 skill 的目录，然后帮你登录：在浏览器里批准一个链接，或者输入我们发到你邮箱的 6 位验证码。新邮箱当场就开好账户。智能体最后拿到的是一把只属于它自己的 API key，放在 `SIMIANX_API_KEY` 里，你的网站登录它碰不到。
@@ -68,6 +96,10 @@ gh skill install SimianX-AI/simianx-skills simianx
 
 每个智能体（Claude Code、Codex、Cursor、Copilot、Gemini CLI、Windsurf、Amp、Cline 等）各自的命令和目录，都在 [INSTALL.md](INSTALL.md) 里。
 
+### Muse、Grok Bot、dots 等自带电脑的 agent
+
+运行在自己云端电脑上的 agent 读的是同一句话。它们通过 MCP 接入，或者用 [OpenAPI 文档](https://service.simianx.ai/v1/openapi.json) 建一个连接器，帮你登录，把 key 存进自己的凭据库，再把 SimianX 存成技能。对 Muse、Grok Bot 和 dots 具体怎么说，见 [INSTALL.md](INSTALL.md#agents-with-their-own-computer-muse-grok-bot-dots)。
+
 ### 或者通过 MCP 连接
 
 支持 MCP 的 AI 智能体不用装 skill，就能把 SimianX 当工具用。用你的 key 添加一次远程服务器：
@@ -76,7 +108,7 @@ gh skill install SimianX-AI/simianx-skills simianx
 claude mcp add --transport http simianx https://service.simianx.ai/v1/mcp --header "Authorization: Bearer $SIMIANX_API_KEY"
 ```
 
-Claude Desktop、Cursor、Codex、VS Code、Windsurf 和 Gemini CLI 的写法见 [INSTALL.md](INSTALL.md#connect-over-mcp)。注册表名称：`io.github.SimianX-AI/simianx`。
+Claude Desktop、Cursor、Codex、VS Code、Windsurf、Gemini CLI、Grok Bot 和 Muse 的写法见 [INSTALL.md](INSTALL.md#connect-over-mcp)。注册表名称：`io.github.SimianX-AI/simianx`。
 
 ## 先从这几个调用开始
 

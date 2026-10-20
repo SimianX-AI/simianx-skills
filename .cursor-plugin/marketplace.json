@@ -2,15 +2,15 @@
   "name": "simianx",
   "owner": { "name": "SimianX", "url": "https://www.simianx.ai" },
   "metadata": {
-    "description": "SimianX AI skills for AI agents.",
-    "version": "1.0.2"
+    "description": "SimianX AI for AI agents: a research desk on US stocks and crypto.",
+    "version": "1.0.3"
   },
   "plugins": [
     {
       "name": "simianx",
       "source": "./",
-      "description": "SimianX AI for agents: autopilots with an execution-grade event log, 8-agent deep research, live agents, classified news, crypto data, Market Pulse and Sector Watch catalysts. Billed in points from your plan.",
-      "version": "1.0.2",
+      "description": "Give any AI agent a full research desk on US stocks and crypto: an 8-agent research committee you can question, four live agents with entry, stop and target, a scored news stream, Market Pulse, Sector Watch catalysts and autopilots. Billed in points from your plan.",
+      "version": "1.0.3",
       "category": "productivity",
       "keywords": ["simianx", "trading", "stocks", "crypto", "market-analysis", "autopilot", "news", "biopharma", "catalysts"],
       "homepage": "https://www.simianx.ai/agents",

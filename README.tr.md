@@ -10,7 +10,7 @@
 <h1 align="center">Yapay zekâ ajanları için SimianX AI</h1>
 
 <p align="center">
-  Canlı işlem (live trading) için gerçek zamanlı yapay zekâ. Dört ajan her ABD hissesini ve kripto paritesini canlı analiz edip giriş, stop ve hedef verir; yanında gerçek zamanlı puanlı haber akışı, Market Pulse uyarıları, derin araştırma, Sector Watch ve otopilotlar. Claude Code, Codex, Cursor ve diğer tüm yapay zekâ ajanları için bir skill ve uzak MCP sunucusu.
+  Her yapay zekâ ajanına tam donanımlı bir araştırma ekibi verin. SimianX AI ile ajanınız her ABD hissesi ya da kripto paritesi için 8 ajanlı bir araştırma komitesi toplayıp ardından ona soru sorabilir, dört ajandan giriş, stop ve hedef içeren canlı bir değerlendirme alabilir ve sembolleriniz için puanlı bir haber akışını açık tutabilir. Claude Code, Codex, Cursor, Muse, Grok Bot, dots ve diğer tüm ajanlar için bir skill ve uzak MCP sunucusu.
 </p>
 
 <p align="center">
@@ -33,6 +33,34 @@
 
 ---
 
+## Ajanınıza neden SimianX vermelisiniz
+
+Bir ajana tek başına *"Swing trade için NVDA almalı mıyım?"* diye sorun; web'de arama yapar, günler önceye ait olabilecek başlıkları özetler ve tek bir modelin görüşünü verir. Canlı grafiği yoktur, karşı tarafı savunan kimse yoktur ve sohbet bitince o da durur.
+
+SimianX ile aynı ajan:
+
+| | Tek başına | SimianX AI ile |
+|---|---|---|
+| Kim çalışıyor | Tek bir model | 8 ajanlı bir komite: dört analist, bir boğa ve bir ayı araştırmacısı, bir araştırma müdürü, bir risk müdürü |
+| Neyi okuyor | Web arama sonuçlarını | Canlı mumları, şirket bildirimlerini, içeriden öğrenenlerin işlemlerini, haber akışını; coinlerde zincir üstü ve türev verilerini |
+| Ne elde edersiniz | Bir görüş | Giriş, stop ve hedef içeren bir karar ile bir PDF raporu |
+| Sonrasında | Baştan başlar | Ek soruları aynı komiteye iletir ya da izlemeyi sürdürmek için bir otopilot kurar |
+
+## Neler sorabilirsiniz
+
+Skill kurulduktan sonra kendi cümlelerinizle sorun:
+
+- *"Swing trade için NVDA üzerine SimianX komitesini topla."* Dört analist raporunu sunar, boğa ile ayı tartışır, risk müdürü de kararı, planı ve PDF'i teslim eder.
+- *"Ayı araştırmacısına boğa senaryosunu neyin çürüteceğini sor."* Ek sorular aynı çalıştırmaya gider; böylece yanıt, komitenin zaten okuduğu her şeyin üzerine kurulur.
+- *"SOL için kısa vadeli bir komite çalıştır."* Coinlerde analistler zincir üstü akışları ve türev piyasasını da okur.
+- *"BTC şu an 15 dakikalık grafikte nasıl görünüyor?"* Dört canlı ajan yanıt verir; karar ajanı al, sat ya da uzak dur der ve giriş, stop ve hedefi verir.
+- *"TSLA veya ETH ile ilgili önemli bir haber çıkınca bana bildir."* Sembolleriniz için puanlı haber akışı; her haber puanlandığı anda gelir.
+- *"AAPL'yi 1 saatlik grafikte izle ve sanal bir pozisyon yönet."* Otopilot her mum kapanışında ajanları yeniden çalıştırır ve her sinyali kaydeder.
+- *"Önümüzdeki 30 gün içinde hangi biyofarma PDUFA tarihleri var?"* Sector Watch, birincil kaynaklardan.
+- *"Son bir saatte kriptoda ne sert hareket etti?"* Market Pulse: ani hareketler, yeni zirve ve dipler, hacim patlamaları ve fiyat boşlukları.
+
+Ücretsiz hesaplar komiteyi NVDA, AAPL, TSLA, BTC ve ETH gibi popüler sembollerde deneyebilir.
+
 ## SimianX neler yapar
 
 İşin büyük kısmını iki özellik üstlenir.
@@ -54,7 +82,7 @@ Piyasalar: `1m` ile `1mo` arası mumlarla 13.000'den fazla ABD hissesi ve ETF, `
 Bunu ajanınıza yapıştırın:
 
 ```text
-Install the SimianX skill from https://www.simianx.ai/INSTALL.md and set it up for this project.
+Install the SimianX skill from https://www.simianx.ai/INSTALL.md and sign me in.
 ```
 
 Ajan, skill'i skill'leri aradığı yere koyar ve ardından oturum açmanızı sağlar: tarayıcıda bir bağlantıyı onaylarsınız ya da e-postanıza gönderdiğimiz 6 haneli kodu girersiniz. Yeni bir adres için hesap anında açılır. Sonunda ajanın `SIMIANX_API_KEY` içinde kendine ait bir API anahtarı olur; web sitesi oturumunuza ise hiçbir zaman erişemez.
@@ -68,6 +96,10 @@ gh skill install SimianX-AI/simianx-skills simianx
 
 Her ajanın (Claude Code, Codex, Cursor, Copilot, Gemini CLI, Windsurf, Amp, Cline ve diğerleri) komutu ve dizini [INSTALL.md](INSTALL.md) dosyasında.
 
+### Muse, Grok Bot, dots ve kendi bilgisayarı olan diğer ajanlar
+
+Kendi bulut bilgisayarında çalışan ajanlar aynı cümleyi okur. MCP ile bağlanır ya da [OpenAPI belgesinden](https://service.simianx.ai/v1/openapi.json) bir bağlayıcı oluşturur, oturumunuzu açar, anahtarı kendi kimlik bilgisi deposunda saklar ve SimianX'i bir skill olarak kaydeder. Muse, Grok Bot ve dots için tam ifadeler [INSTALL.md](INSTALL.md#agents-with-their-own-computer-muse-grok-bot-dots) dosyasında.
+
 ### Ya da MCP ile bağlanın
 
 MCP destekleyen yapay zekâ ajanları, skill kurmadan SimianX'i araç olarak kullanabilir. Uzak sunucuyu anahtarınızla bir kez ekleyin:
@@ -76,7 +108,7 @@ MCP destekleyen yapay zekâ ajanları, skill kurmadan SimianX'i araç olarak kul
 claude mcp add --transport http simianx https://service.simianx.ai/v1/mcp --header "Authorization: Bearer $SIMIANX_API_KEY"
 ```
 
-Claude Desktop, Cursor, Codex, VS Code, Windsurf ve Gemini CLI için aynısı [INSTALL.md](INSTALL.md#connect-over-mcp) dosyasında. Kayıt adı: `io.github.SimianX-AI/simianx`.
+Claude Desktop, Cursor, Codex, VS Code, Windsurf, Gemini CLI, Grok Bot ve Muse için aynısı [INSTALL.md](INSTALL.md#connect-over-mcp) dosyasında. Kayıt adı: `io.github.SimianX-AI/simianx`.
 
 ## İlk çağrılar
 

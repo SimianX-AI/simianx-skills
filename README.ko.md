@@ -10,7 +10,7 @@
 <h1 align="center">AI 에이전트를 위한 SimianX AI</h1>
 
 <p align="center">
-  라이브 트레이딩을 위한 실시간 AI. 네 개의 에이전트가 미국 주식이나 암호화폐 페어를 실시간으로 분석해 진입가, 손절가, 목표가를 내놓고, 실시간 점수형 뉴스 스트림, Market Pulse 알림, 심층 리서치, Sector Watch, 오토파일럿까지 제공합니다. Claude Code, Codex, Cursor 등 모든 AI 에이전트를 위한 skill과 원격 MCP 서버입니다.
+  어떤 AI 에이전트에든 리서치 데스크를 통째로. SimianX AI가 있으면 에이전트가 미국 주식이나 암호화폐 페어에 대해 에이전트 8개로 꾸린 리서치 위원회를 소집하고, 나중에 추가 질문까지 할 수 있습니다. 네 에이전트의 실시간 분석으로 진입가, 손절가, 목표가를 받고, 관심 종목에 점수형 뉴스 스트림을 열어 둘 수도 있습니다. Claude Code, Codex, Cursor, Muse, Grok Bot, dots 등 모든 에이전트를 위한 skill과 원격 MCP 서버입니다.
 </p>
 
 <p align="center">
@@ -33,6 +33,34 @@
 
 ---
 
+## 에이전트에게 SimianX를 줘야 하는 이유
+
+에이전트 혼자에게 이렇게 물어보세요. *"NVDA 스윙으로 사도 될까?"* 에이전트는 웹을 검색하고, 며칠 지났을지도 모르는 헤드라인을 요약한 뒤, 모델 하나의 의견을 내놓습니다. 실시간 차트도 없고, 반대 논리를 펴는 쪽도 없으며, 대화가 끝나면 거기서 멈춥니다.
+
+SimianX가 있으면 같은 에이전트가 이렇게 달라집니다.
+
+| | 에이전트 혼자 | SimianX AI와 함께 |
+|---|---|---|
+| 누가 분석하나 | 모델 하나 | 에이전트 8개 위원회: 분석가 4명, 강세·약세 리서처, 리서치 매니저, 리스크 매니저 |
+| 무엇을 읽나 | 웹 검색 결과 | 실시간 캔들, 공시, 내부자 거래, 뉴스 흐름. 코인이면 온체인과 파생상품 데이터 |
+| 무엇을 받나 | 의견 하나 | 진입가, 손절가, 목표가가 담긴 판정과 PDF 보고서 |
+| 그다음 | 처음부터 다시 | 같은 위원회에 추가 질문을 하거나, 오토파일럿으로 계속 지켜봄 |
+
+## 이렇게 물어보세요
+
+스킬을 설치했다면 평소 말투로 물어보면 됩니다.
+
+- *"NVDA 스윙 관점으로 SimianX 위원회 열어 줘."* 분석가 4명이 보고하고 강세와 약세가 맞붙은 뒤, 리스크 매니저가 판정, 계획, PDF를 돌려줍니다.
+- *"약세 리서처한테 강세 논리가 틀렸다는 걸 보여 줄 신호가 뭔지 물어봐."* 추가 질문은 같은 분석으로 들어가므로, 위원회가 이미 읽은 모든 내용을 바탕으로 답이 나옵니다.
+- *"SOL 단기 관점으로 위원회 돌려 줘."* 코인이면 분석가들이 온체인 자금 흐름과 파생상품 시장도 읽습니다.
+- *"BTC 지금 15분봉 어때?"* 실시간 에이전트 4개가 답하고, 결정 에이전트가 매수, 매도, 관망 중 하나를 진입가, 손절가, 목표가와 함께 내놓습니다.
+- *"TSLA나 ETH에 중요한 뉴스 나오면 알려 줘."* 관심 종목의 점수형 뉴스 스트림이 기사마다 점수가 매겨지는 즉시 들어옵니다.
+- *"AAPL 1시간봉으로 지켜보면서 모의 포지션 관리해 줘."* 오토파일럿이 캔들이 마감될 때마다 에이전트를 다시 돌리고 모든 신호를 로그로 남깁니다.
+- *"앞으로 30일 안에 있는 제약·바이오 PDUFA 일정 알려 줘."* 1차 출처에서 가져온 Sector Watch 데이터로 답합니다.
+- *"지난 한 시간 동안 코인 중에 크게 움직인 거 있어?"* Market Pulse: 급등락, 신고가·신저가, 거래량 급증, 갭.
+
+무료 계정으로도 NVDA, AAPL, TSLA, BTC, ETH 같은 인기 종목으로 위원회를 써 볼 수 있습니다.
+
 ## SimianX로 할 수 있는 일
 
 가장 많이 쓰는 기능은 이 두 가지입니다.
@@ -54,7 +82,7 @@
 에이전트에게 이 문장을 붙여 넣으세요.
 
 ```text
-Install the SimianX skill from https://www.simianx.ai/INSTALL.md and set it up for this project.
+Install the SimianX skill from https://www.simianx.ai/INSTALL.md and sign me in.
 ```
 
 에이전트가 스킬을 읽는 위치에 스킬을 설치한 뒤 로그인을 진행합니다. 브라우저에서 링크를 승인하거나, 이메일로 받은 6자리 코드를 입력하면 됩니다. 처음 쓰는 이메일이면 그 자리에서 계정이 만들어집니다. 에이전트가 갖게 되는 것은 `SIMIANX_API_KEY`에 담긴 자기 전용 API 키뿐이고, 웹사이트 로그인은 넘겨받지 않습니다.
@@ -68,6 +96,10 @@ gh skill install SimianX-AI/simianx-skills simianx
 
 에이전트별(Claude Code, Codex, Cursor, Copilot, Gemini CLI, Windsurf, Amp, Cline 등) 명령과 설치 디렉터리는 [INSTALL.md](INSTALL.md)에 있습니다.
 
+### Muse, Grok Bot, dots 등 자기 컴퓨터에서 돌아가는 에이전트
+
+자기 클라우드 컴퓨터에서 돌아가는 에이전트도 같은 문장을 읽습니다. MCP로 연결하거나 [OpenAPI 문서](https://service.simianx.ai/v1/openapi.json)로 커넥터를 만들고, 로그인을 진행한 뒤, 키를 자체 자격 증명 저장소에 보관하고 SimianX를 스킬로 저장합니다. Muse, Grok Bot, dots에 건넬 정확한 문장은 [INSTALL.md](INSTALL.md#agents-with-their-own-computer-muse-grok-bot-dots)에 있습니다.
+
 ### 또는 MCP로 연결
 
 MCP를 지원하는 AI 에이전트는 스킬을 설치하지 않아도 SimianX를 도구로 쓸 수 있습니다. 키와 함께 원격 서버를 한 번만 추가하세요.
@@ -76,7 +108,7 @@ MCP를 지원하는 AI 에이전트는 스킬을 설치하지 않아도 SimianX�
 claude mcp add --transport http simianx https://service.simianx.ai/v1/mcp --header "Authorization: Bearer $SIMIANX_API_KEY"
 ```
 
-Claude Desktop, Cursor, Codex, VS Code, Windsurf, Gemini CLI 설정은 [INSTALL.md](INSTALL.md#connect-over-mcp)에 있습니다. 레지스트리 이름: `io.github.SimianX-AI/simianx`.
+Claude Desktop, Cursor, Codex, VS Code, Windsurf, Gemini CLI, Grok Bot, Muse 설정은 [INSTALL.md](INSTALL.md#connect-over-mcp)에 있습니다. 레지스트리 이름: `io.github.SimianX-AI/simianx`.
 
 ## 처음 해 볼 호출
 

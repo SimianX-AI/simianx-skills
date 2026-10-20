@@ -10,7 +10,7 @@
 <h1 align="center">SimianX AI para sa mga AI agent</h1>
 
 <p align="center">
-  Real-time AI para sa live trading. Apat na agent ang live na sumusuri sa kahit anong US stock o crypto pair at nagbibigay ng entry, stop at target, kasama ang real-time na news stream na may score, Market Pulse alerts, deep research, Sector Watch at autopilots. Isang skill at remote MCP server para sa Claude Code, Codex, Cursor at iba pang AI agent.
+  Bigyan ang anumang AI agent ng buong pangkat ng pananaliksik. Sa SimianX AI, kaya ng agent mong tipunin ang komite sa pananaliksik na may 8 agent para sa anumang US stock o crypto pair at tanungin pa ito pagkatapos, kumuha ng live na basa mula sa apat na agent na may entry, stop at target, at panatilihing bukas ang news stream na may score sa mga symbol mo. Isang skill at remote MCP server para sa Claude Code, Codex, Cursor, Muse, Grok Bot, dots at lahat ng iba pang agent.
 </p>
 
 <p align="center">
@@ -33,6 +33,34 @@
 
 ---
 
+## Bakit dapat bigyan ng SimianX ang agent mo
+
+Tanungin ang isang agent na walang katuwang ng *"Dapat ba akong bumili ng NVDA para sa swing trade?"* at maghahanap ito sa web, magbubuod ng mga ulo ng balita na baka ilang araw nang luma, at magbibigay ng opinyon ng iisang model. Wala itong live na chart, walang kumokontra, at humihinto ito kapag natapos ang usapan.
+
+Kapag may SimianX, ang parehong agent ay:
+
+| | Nang mag-isa | Kasama ang SimianX AI |
+|---|---|---|
+| Sino ang gumagawa | Iisang model | Komiteng may 8 agent: apat na analyst, isang bull at isang bear na mananaliksik, isang tagapamahala ng pananaliksik, isang tagapamahala ng panganib |
+| Ano ang binabasa | Resulta ng paghahanap sa web | Mga live na candle, filing, trade ng insider, daloy ng balita; on-chain at derivatives data para sa coin |
+| Ano ang makukuha mo | Isang opinyon | Hatol na may entry, stop at target, at isang PDF na ulat |
+| Pagkatapos | Magsisimula ulit | Ipinapasa ang mga karagdagang tanong sa parehong komite, o nagtatakda ng autopilot para patuloy na magbantay |
+
+## Mga puwede mong itanong
+
+Kapag naka-install na ang skill, magtanong sa sarili mong pananalita:
+
+- *"Ipunin ang komite ng SimianX para suriin ang NVDA bilang swing trade."* Nag-uulat ang apat na analyst, nagtatalo nang husto ang bull at ang bear, at ibinabalik ng tagapamahala ng panganib ang hatol, ang plano at isang PDF.
+- *"Tanungin ang bear na mananaliksik kung ano ang magpapatunay na mali ang pananaw ng bull."* Napupunta ang mga karagdagang tanong sa parehong pagsusuri, kaya nakabatay ang sagot sa lahat ng nabasa na ng komite.
+- *"Ipasuri sa komite ang SOL para sa maikling panahon."* Kapag coin, binabasa rin ng mga analyst ang on-chain na daloy ng pondo at ang derivatives market.
+- *"Kumusta ang BTC sa 15-minutong chart ngayon?"* Sumasagot ang apat na live agent, at sinasabi ng Decision agent kung bibili, magbebenta o huwag munang pumasok, na may entry, stop at target.
+- *"Sabihan mo ako kapag may mahalagang balita sa TSLA o ETH."* News stream na may score sa mga symbol mo, live sa sandaling ma-score ang bawat balita.
+- *"Bantayan ang AAPL sa 1-oras na chart at hawakan ang isang paper position."* Muling pinapatakbo ng autopilot ang mga agent sa bawat pagsara ng candle at itinatala ang bawat signal.
+- *"Anong mga PDUFA date sa biopharma ang papatak sa susunod na 30 araw?"* Sector Watch, mula sa mga pangunahing pinagmulan.
+- *"Ano ang biglang gumalaw nang malakas sa crypto nitong nakaraang oras?"* Market Pulse: biglaang galaw, mga bagong high at low, pagsipa ng volume at mga gap.
+
+Masusubukan ng mga libreng account ang komite sa mga sikat na symbol gaya ng NVDA, AAPL, TSLA, BTC at ETH.
+
 ## Ano ang saklaw ng SimianX
 
 Ito ang dalawang pinakaginagamit.
@@ -54,7 +82,7 @@ Mga merkado: 13,000+ na US stock at ETF sa `1m` hanggang `1mo` na candle, at 4,0
 I-paste ito sa agent mo:
 
 ```text
-Install the SimianX skill from https://www.simianx.ai/INSTALL.md and set it up for this project.
+Install the SimianX skill from https://www.simianx.ai/INSTALL.md and sign me in.
 ```
 
 Ilalagay nito ang skill kung saan naghahanap ng skills ang agent mo, saka ka nito isa-sign in. Aaprubahan mo ang isang link sa browser, o ita-type mo ang 6-digit na code na i-e-email namin. Kung bagong email, gagawan ka agad ng account. Sa huli, may sariling API key ang agent sa `SIMIANX_API_KEY`, at hindi nito kailanman makukuha ang login mo sa website.
@@ -68,6 +96,10 @@ gh skill install SimianX-AI/simianx-skills simianx
 
 Nasa [INSTALL.md](INSTALL.md) ang command at directory para sa bawat agent (Claude Code, Codex, Cursor, Copilot, Gemini CLI, Windsurf, Amp, Cline at iba pa).
 
+### Muse, Grok Bot, dots at iba pang agent na may sariling computer
+
+Binabasa rin ng mga agent na tumatakbo sa sarili nilang cloud computer ang parehong pangungusap. Kumokonekta sila gamit ang MCP o gumagawa ng pangkonekta mula sa [dokumentong OpenAPI](https://service.simianx.ai/v1/openapi.json), isina-sign in ka, itinatabi ang key sa sarili nilang taguan ng kredensyal, at sine-save ang SimianX bilang skill. Nasa [INSTALL.md](INSTALL.md#agents-with-their-own-computer-muse-grok-bot-dots) ang eksaktong sasabihin sa Muse, Grok Bot at dots.
+
 ### O kumonekta gamit ang MCP
 
 Magagamit ng mga AI agent na marunong ng MCP ang SimianX bilang mga tool kahit walang naka-install na skill. Idagdag ang remote server nang isang beses gamit ang key mo:
@@ -76,7 +108,7 @@ Magagamit ng mga AI agent na marunong ng MCP ang SimianX bilang mga tool kahit w
 claude mcp add --transport http simianx https://service.simianx.ai/v1/mcp --header "Authorization: Bearer $SIMIANX_API_KEY"
 ```
 
-Nasa [INSTALL.md](INSTALL.md#connect-over-mcp) ang katumbas para sa Claude Desktop, Cursor, Codex, VS Code, Windsurf at Gemini CLI. Pangalan sa registry: `io.github.SimianX-AI/simianx`.
+Nasa [INSTALL.md](INSTALL.md#connect-over-mcp) ang katumbas para sa Claude Desktop, Cursor, Codex, VS Code, Windsurf, Gemini CLI, Grok Bot at Muse. Pangalan sa registry: `io.github.SimianX-AI/simianx`.
 
 ## Mga unang tawag
 

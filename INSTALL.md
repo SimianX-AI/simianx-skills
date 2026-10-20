@@ -7,7 +7,7 @@ https://www.simianx.ai/SKILL.md to learn the API. Never commit the key. Humans: 
 agent is
 
 ```
-Install the SimianX skill from https://www.simianx.ai/INSTALL.md and set it up for this project.
+Install the SimianX skill from https://www.simianx.ai/INSTALL.md and sign me in.
 ```
 
 The skill is one folder, `simianx/`, holding `SKILL.md` and `references/*.md`. Every client below reads the
@@ -29,6 +29,31 @@ curl -fsSL https://raw.githubusercontent.com/SimianX-AI/simianx-skills/main/scri
 # Windows: irm https://raw.githubusercontent.com/SimianX-AI/simianx-skills/main/scripts/install.ps1 -OutFile install.ps1; .\install.ps1 -Agent auto
 ```
 
+## Agents with their own computer (Muse, Grok Bot, dots)
+
+Agents that run on their own cloud computer or VM, and keep secrets in a credential store instead of a shell
+profile, install SimianX the same way: connect, sign the user in, save it as a skill.
+
+1. **Connect.** If you can add MCP servers or connectors, add the remote server below
+   (`https://service.simianx.ai/v1/mcp`, Streamable HTTP, bearer token). If you build connectors from an API
+   instead, build it from `https://service.simianx.ai/v1/openapi.json` with bearer auth. If you can write a skills
+   directory, also copy `skills/simianx` there (any route above).
+2. **Sign in.** Run SKILL.md "Setup" step 1 over HTTPS: the browser link (`POST /v1/auth/link`) or the emailed
+   6-digit code (`POST /v1/auth/code`). Put the token in your secure credential prompt or secret store, never in the
+   chat, and give it a daily points budget when you will work while the user is away.
+3. **Save the playbook.** Save https://www.simianx.ai/SKILL.md (and its `references/*.md`) as a reusable skill or
+   instructions, so later questions about a stock, a coin, news or catalysts go to SimianX: the 8-agent committee
+   for a full verdict, the four live agents for a read on a timeframe, the news stream to keep watching.
+4. **Test it.** `GET /v1/me`, then one cheap call (`GET /v1/news?symbols=BTC&limit=3`), and show the user the result.
+
+Per agent:
+
+| Agent | What to tell it |
+|---|---|
+| Muse (Meta) | `Create a custom connector for SimianX AI from https://service.simianx.ai/v1/openapi.json, sign me in as https://www.simianx.ai/INSTALL.md describes, and save it as a skill.` |
+| Grok Bot (xAI) | `Connect the SimianX MCP server https://service.simianx.ai/v1/mcp, sign me in as https://www.simianx.ai/INSTALL.md describes, and save the SimianX skill.` |
+| dots (OpenAI) | `Install the SimianX skill from https://www.simianx.ai/INSTALL.md and sign me in.` |
+
 ## Connect over MCP
 
 No skill needed: an MCP client can use SimianX as tools (live analysis, scored news, deep research, Market Pulse,
@@ -43,6 +68,8 @@ Sector Watch, autopilots, account). Remote server `https://service.simianx.ai/v1
 | Codex | terminal | `codex mcp add simianx --url https://service.simianx.ai/v1/mcp --bearer-token-env-var SIMIANX_API_KEY` |
 | VS Code / Copilot | `.vscode/mcp.json` | `{"inputs": [{"type": "promptString", "id": "simianx-key", "description": "SimianX API key", "password": true}], "servers": {"simianx": {"type": "http", "url": "https://service.simianx.ai/v1/mcp", "headers": {"Authorization": "Bearer ${input:simianx-key}"}}}}` |
 | Windsurf | `~/.codeium/windsurf/mcp_config.json` | `{"mcpServers": {"simianx": {"serverUrl": "https://service.simianx.ai/v1/mcp", "headers": {"Authorization": "Bearer ${env:SIMIANX_API_KEY}"}}}}` |
+| Grok Bot | chat | `Connect the MCP server https://service.simianx.ai/v1/mcp (Streamable HTTP) with my SimianX API key as a bearer token. Ask me for the key in the secure prompt.` |
+| Muse | chat | `Create a custom connector from the MCP server https://service.simianx.ai/v1/mcp with bearer auth. Ask me for my SimianX API key in the secure prompt.` |
 | Gemini CLI | terminal | `gemini mcp add --transport http --header "Authorization: Bearer $SIMIANX_API_KEY" simianx https://service.simianx.ai/v1/mcp` |
 
 The tool list follows the API (one tool per endpoint), so new endpoints appear after a release without a client

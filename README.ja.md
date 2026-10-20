@@ -10,7 +10,7 @@
 <h1 align="center">AI エージェントのための SimianX AI</h1>
 
 <p align="center">
-  ライブトレードのためのリアルタイム AI。4 つのエージェントが米国株・暗号資産ペアをライブで分析し、エントリー・ストップ・ターゲットを返します。リアルタイムのスコア付きニュース、Market Pulse アラート、ディープリサーチ、Sector Watch、オートパイロットも。Claude Code・Codex・Cursor などあらゆる AI エージェント向けの skill とリモート MCP サーバーです。
+  どの AI エージェントにも、リサーチデスクを丸ごと。SimianX AI があれば、エージェントは米国株や暗号資産ペアについて 8 エージェントのリサーチ委員会を招集し、あとから追加で質問できます。4 つのエージェントによるエントリー・ストップ・ターゲット付きのライブ分析を受け取り、あなたの銘柄のスコア付きニュースストリームを開いたままにしておくこともできます。Claude Code・Codex・Cursor・Muse・Grok Bot・dots などあらゆるエージェント向けの skill とリモート MCP サーバーです。
 </p>
 
 <p align="center">
@@ -33,6 +33,34 @@
 
 ---
 
+## エージェントに SimianX を渡す理由
+
+エージェント単体に *「NVDA、スイングトレードで買うべき？」* と聞くと、ウェブを検索し、数日前のものかもしれない見出しを要約して、1 つのモデルの意見を返します。ライブチャートはなく、反対の立場から論じる者もおらず、チャットが終わればそこで止まります。
+
+SimianX があれば、同じエージェントがこう変わります。
+
+| | エージェント単体 | SimianX AI あり |
+|---|---|---|
+| 誰が取り組むか | 1 つのモデル | 8 エージェントの委員会：アナリスト 4 人、強気派と弱気派のリサーチャー、リサーチマネージャー、リスクマネージャー |
+| 何を読むか | ウェブ検索の結果 | ライブのローソク足、開示資料、インサイダー取引、ニュースの流れ。コインならオンチェーンとデリバティブのデータも |
+| 何が得られるか | 意見 | エントリー・損切り・目標価格付きの結論と PDF レポート |
+| そのあと | 一からやり直し | 追加の質問を同じ委員会に投げかけるか、オートパイロットで見張りを続ける |
+
+## こんなことを頼めます
+
+スキルを入れたら、あとは普段の言葉で頼むだけです。
+
+- *「NVDA をスイングで狙いたい。SimianX の委員会を開いて。」* 4 人のアナリストが報告し、強気派と弱気派が議論を戦わせ、リスクマネージャーが結論、プラン、PDF を返します。
+- *「弱気派のリサーチャーに、強気シナリオが崩れるのはどんなときか聞いて。」* 追加の質問は同じ分析に送られるので、委員会がすでに読んだ内容をすべて踏まえて答えが返ります。
+- *「SOL について、短期目線で委員会を開いて。」* コインの場合、アナリストはオンチェーンの資金の流れとデリバティブ市場も読みます。
+- *「BTC、いまの 15 分足はどう？」* 4 つのライブエージェントが答え、意思決定エージェントが買い・売り・見送りをエントリー・損切り・目標価格とともに示します。
+- *「TSLA か ETH に重要なニュースが出たら教えて。」* あなたの銘柄のスコア付きニュースストリームが、記事がスコア付けされるたびにリアルタイムで届きます。
+- *「AAPL を 1 時間足で見張って、仮想ポジションを管理して。」* オートパイロットがローソク足の確定ごとにエージェントを再実行し、シグナルをすべてログに残します。
+- *「今後 30 日以内にあるバイオ医薬品の PDUFA 日程は？」* Sector Watch が一次情報をもとに答えます。
+- *「この 1 時間で大きく動いた暗号資産は？」* Market Pulse：急な値動き、高値・安値の更新、出来高の急増、ギャップ。
+
+無料アカウントでも、NVDA、AAPL、TSLA、BTC、ETH などの人気銘柄で委員会を試せます。
+
 ## SimianX でできること
 
 中心になるのは次の 2 つです。
@@ -54,7 +82,7 @@
 エージェントにこの一文を貼ってください。
 
 ```text
-Install the SimianX skill from https://www.simianx.ai/INSTALL.md and set it up for this project.
+Install the SimianX skill from https://www.simianx.ai/INSTALL.md and sign me in.
 ```
 
 エージェントがスキルを所定の場所に入れ、そのままサインインまで進めます。ブラウザでリンクを承認するか、メールで届く 6 桁のコードを入力してください。初めてのメールアドレスなら、その場でアカウントが作られます。エージェントが受け取るのは専用の API キーで、`SIMIANX_API_KEY` に保存されます。ウェブサイトのログインがエージェントに渡ることはありません。
@@ -68,6 +96,10 @@ gh skill install SimianX-AI/simianx-skills simianx
 
 エージェントごと（Claude Code、Codex、Cursor、Copilot、Gemini CLI、Windsurf、Amp、Cline など）のコマンドとディレクトリは [INSTALL.md](INSTALL.md) にまとめています。
 
+### Muse、Grok Bot、dots など、自分のコンピューターで動くエージェント
+
+自分のクラウドコンピューターで動くエージェントも、同じ一文を読みます。MCP で接続するか、[OpenAPI ドキュメント](https://service.simianx.ai/v1/openapi.json)からコネクターを作り、サインインを済ませ、キーを自身の認証情報ストアに保管して、SimianX をスキルとして保存します。Muse、Grok Bot、dots に伝える具体的な文言は [INSTALL.md](INSTALL.md#agents-with-their-own-computer-muse-grok-bot-dots) にあります。
+
 ### MCP で接続する方法も
 
 MCP に対応した AI エージェントなら、スキルを入れなくても SimianX をツールとして使えます。キーを添えてリモートサーバーを一度追加するだけです。
@@ -76,7 +108,7 @@ MCP に対応した AI エージェントなら、スキルを入れなくても
 claude mcp add --transport http simianx https://service.simianx.ai/v1/mcp --header "Authorization: Bearer $SIMIANX_API_KEY"
 ```
 
-Claude Desktop、Cursor、Codex、VS Code、Windsurf、Gemini CLI での設定は [INSTALL.md](INSTALL.md#connect-over-mcp) にあります。レジストリ名：`io.github.SimianX-AI/simianx`。
+Claude Desktop、Cursor、Codex、VS Code、Windsurf、Gemini CLI、Grok Bot、Muse での設定は [INSTALL.md](INSTALL.md#connect-over-mcp) にあります。レジストリ名：`io.github.SimianX-AI/simianx`。
 
 ## まず試す呼び出し
 
