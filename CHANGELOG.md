@@ -4,6 +4,10 @@ The version here, in `skills/simianx/SKILL.md` (`metadata.version`), in `example
 in every plugin manifest (see `RELEASING.md`) and in the git tag is always the same number; `scripts/check_version.py` refuses a release when they differ. The API
 publishes the same number at `GET /v1/skill` and answers `426` to skills older than its minimum.
 
+## 1.0.5 - 2026-10-20
+
+- Changed: real trading is stated plainly in SKILL.md, the autopilot reference and all 16 READMEs. Connect SimianX analysis and signals through the API to your own authorized trading system to place real orders through your broker or exchange; positions and position actions recorded inside SimianX stay simulated. (1.0.4 is skipped so every directory carries the same number.)
+
 ## 1.0.3 - 2026-10-20
 
 - Changed: the skill leads with the 8-agent research committee for questions that need a full view (buy or not, the case, the risks) and with follow-up questions to the same committee; the four live agents stay the quick read on one timeframe. Descriptions in every manifest and in the MCP Registry entry say so.

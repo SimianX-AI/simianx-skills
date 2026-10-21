@@ -24,7 +24,7 @@ import urllib.request
 from datetime import date, datetime, timezone
 
 API = os.environ.get("SIMIANX_API", "https://service.simianx.ai")
-SKILL_VERSION = "1.0.3"  # keep equal to skills/simianx/SKILL.md metadata.version
+SKILL_VERSION = "1.0.5"  # keep equal to skills/simianx/SKILL.md metadata.version
 SKILL_URL = "https://www.simianx.ai/SKILL.md"
 STOP_TYPES = {"autopilot.stopped", "autopilot.paused_budget"}
 
