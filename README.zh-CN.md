@@ -114,7 +114,9 @@ Claude Desktop、Cursor、Codex、VS Code、Windsurf、Gemini CLI、Grok Bot 和
 
 | 做什么 | 调用 | 文档 |
 |---|---|---|
-| 跑一次实时分析 | `POST /v1/analysis/live` → `GET /v1/analysis/live/{id}?wait=30` | [live](skills/simianx/references/live.md) |
+| 实时分析会话（每根 K 线收盘） | `POST /v1/live/sessions` → the WebSocket, or `GET /v1/updates?wait=30` | [live](skills/simianx/references/live.md) |
+| 快速研判（一次） | `POST /v1/analysis/quick` → `GET /v1/updates?wait=30` | [quick](skills/simianx/references/quick.md) |
+| 用户还没听到的所有更新 | `GET /v1/updates?ack=<id>&wait=30` | [following](skills/simianx/references/following.md) |
 | 看某个标的的新闻 | `GET /v1/news?symbols=NVDA&min_value=medium` | [news](skills/simianx/references/news.md) |
 | 新闻一到就收到 | `GET /v1/news/stream`（SSE，断线可续） | [news](skills/simianx/references/news.md) |
 | 市场脉搏 | `GET /v1/pulse/events` | [data](skills/simianx/references/data.md) |
@@ -145,7 +147,7 @@ skill 会在 `X-SimianX-Skill` 请求头里带上自己的版本。某个版本�
 
 ```
 skills/simianx/SKILL.md           the skill (Agent Skills format)
-skills/simianx/references/        live · news · data · deep · sectors · autopilots · billing
+skills/simianx/references/        following · live · quick · deep · news · autopilots · data · sectors · developers · billing
 INSTALL.md                        agent-readable install guide (also at simianx.ai/INSTALL.md)
 scripts/install.{sh,py,ps1}       installer for every agent; check_version.py · check_readmes.py
 examples/curl · examples/runner   the first calls in curl; an always-on runner for autopilots

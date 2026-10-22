@@ -114,7 +114,9 @@ Claude Desktop, Cursor, Codex, VS Code, Windsurf, Gemini CLI, Grok Bot ve Muse i
 
 | Ne | Çağrı | Referans |
 |---|---|---|
-| Tek seferlik canlı analiz | `POST /v1/analysis/live` → `GET /v1/analysis/live/{id}?wait=30` | [live](skills/simianx/references/live.md) |
+| Canlı analiz oturumu (her mum kapanışında) | `POST /v1/live/sessions` → the WebSocket, or `GET /v1/updates?wait=30` | [live](skills/simianx/references/live.md) |
+| Hızlı okuma, tek seferlik | `POST /v1/analysis/quick` → `GET /v1/updates?wait=30` | [quick](skills/simianx/references/quick.md) |
+| Kullanıcının henüz duymadığı her şey | `GET /v1/updates?ack=<id>&wait=30` | [following](skills/simianx/references/following.md) |
 | Sembolleriniz için haberler | `GET /v1/news?symbols=NVDA&min_value=medium` | [news](skills/simianx/references/news.md) |
 | Haberler geldiği anda | `GET /v1/news/stream` (server-sent events, kaldığı yerden devam eder) | [news](skills/simianx/references/news.md) |
 | Piyasa Nabzı | `GET /v1/pulse/events` | [data](skills/simianx/references/data.md) |
@@ -145,7 +147,7 @@ Skill, sürümünü `X-SimianX-Skill` başlığında gönderir. Bir sürüm kull
 
 ```
 skills/simianx/SKILL.md           the skill (Agent Skills format)
-skills/simianx/references/        live · news · data · deep · sectors · autopilots · billing
+skills/simianx/references/        following · live · quick · deep · news · autopilots · data · sectors · developers · billing
 INSTALL.md                        agent-readable install guide (also at simianx.ai/INSTALL.md)
 scripts/install.{sh,py,ps1}       installer for every agent; check_version.py · check_readmes.py
 examples/curl · examples/runner   the first calls in curl; an always-on runner for autopilots

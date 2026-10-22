@@ -114,7 +114,9 @@ Dasselbe für Claude Desktop, Cursor, Codex, VS Code, Windsurf, Gemini CLI, Grok
 
 | Was | Aufruf | Referenz |
 |---|---|---|
-| Live-Analyse, einmalig | `POST /v1/analysis/live` → `GET /v1/analysis/live/{id}?wait=30` | [live](skills/simianx/references/live.md) |
+| Live-Analyse-Sitzung (bei jedem Kerzenschluss) | `POST /v1/live/sessions` → the WebSocket, or `GET /v1/updates?wait=30` | [live](skills/simianx/references/live.md) |
+| Schnellanalyse, einmalig | `POST /v1/analysis/quick` → `GET /v1/updates?wait=30` | [quick](skills/simianx/references/quick.md) |
+| Alles, was der Nutzer noch nicht gehört hat | `GET /v1/updates?ack=<id>&wait=30` | [following](skills/simianx/references/following.md) |
 | News zu Ihren Symbolen | `GET /v1/news?symbols=NVDA&min_value=medium` | [news](skills/simianx/references/news.md) |
 | News, sobald sie erscheinen | `GET /v1/news/stream` (Server-Sent Events, fortsetzbar) | [news](skills/simianx/references/news.md) |
 | Marktpuls | `GET /v1/pulse/events` | [data](skills/simianx/references/data.md) |
@@ -145,7 +147,7 @@ Der Skill sendet seine Version im Header `X-SimianX-Skill`. Wird eine Version ni
 
 ```
 skills/simianx/SKILL.md           the skill (Agent Skills format)
-skills/simianx/references/        live · news · data · deep · sectors · autopilots · billing
+skills/simianx/references/        following · live · quick · deep · news · autopilots · data · sectors · developers · billing
 INSTALL.md                        agent-readable install guide (also at simianx.ai/INSTALL.md)
 scripts/install.{sh,py,ps1}       installer for every agent; check_version.py · check_readmes.py
 examples/curl · examples/runner   the first calls in curl; an always-on runner for autopilots

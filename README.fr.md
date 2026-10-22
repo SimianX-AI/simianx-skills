@@ -114,7 +114,9 @@ La même chose pour Claude Desktop, Cursor, Codex, VS Code, Windsurf, Gemini CLI
 
 | Quoi | Appel | Référence |
 |---|---|---|
-| Lancer une analyse en direct | `POST /v1/analysis/live` → `GET /v1/analysis/live/{id}?wait=30` | [live](skills/simianx/references/live.md) |
+| Session d'analyse en direct (à chaque clôture de bougie) | `POST /v1/live/sessions` → the WebSocket, or `GET /v1/updates?wait=30` | [live](skills/simianx/references/live.md) |
+| Lecture rapide, une fois | `POST /v1/analysis/quick` → `GET /v1/updates?wait=30` | [quick](skills/simianx/references/quick.md) |
+| Tout ce que l'utilisateur n'a pas encore entendu | `GET /v1/updates?ack=<id>&wait=30` | [following](skills/simianx/references/following.md) |
 | Les actualités de vos symboles | `GET /v1/news?symbols=NVDA&min_value=medium` | [news](skills/simianx/references/news.md) |
 | Les actualités dès leur sortie | `GET /v1/news/stream` (server-sent events, reprend après une coupure) | [news](skills/simianx/references/news.md) |
 | Pouls du Marché | `GET /v1/pulse/events` | [data](skills/simianx/references/data.md) |
@@ -145,7 +147,7 @@ Le skill envoie sa version dans l'en-tête `X-SimianX-Skill`. Quand une version 
 
 ```
 skills/simianx/SKILL.md           the skill (Agent Skills format)
-skills/simianx/references/        live · news · data · deep · sectors · autopilots · billing
+skills/simianx/references/        following · live · quick · deep · news · autopilots · data · sectors · developers · billing
 INSTALL.md                        agent-readable install guide (also at simianx.ai/INSTALL.md)
 scripts/install.{sh,py,ps1}       installer for every agent; check_version.py · check_readmes.py
 examples/curl · examples/runner   the first calls in curl; an always-on runner for autopilots

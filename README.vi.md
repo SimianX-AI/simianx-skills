@@ -114,7 +114,9 @@ Cách làm tương tự cho Claude Desktop, Cursor, Codex, VS Code, Windsurf, Ge
 
 | Việc cần làm | Lệnh gọi | Tài liệu |
 |---|---|---|
-| Chạy phân tích trực tiếp một lần | `POST /v1/analysis/live` → `GET /v1/analysis/live/{id}?wait=30` | [live](skills/simianx/references/live.md) |
+| Phiên phân tích trực tiếp (mỗi nến đóng) | `POST /v1/live/sessions` → the WebSocket, or `GET /v1/updates?wait=30` | [live](skills/simianx/references/live.md) |
+| Đọc nhanh, một lần | `POST /v1/analysis/quick` → `GET /v1/updates?wait=30` | [quick](skills/simianx/references/quick.md) |
+| Mọi thứ người dùng chưa nghe | `GET /v1/updates?ack=<id>&wait=30` | [following](skills/simianx/references/following.md) |
 | Tin tức về các mã của bạn | `GET /v1/news?symbols=NVDA&min_value=medium` | [news](skills/simianx/references/news.md) |
 | Nhận tin ngay khi có | `GET /v1/news/stream` (server-sent events, nối tiếp được khi mất kết nối) | [news](skills/simianx/references/news.md) |
 | Nhịp Thị Trường | `GET /v1/pulse/events` | [data](skills/simianx/references/data.md) |
@@ -145,7 +147,7 @@ Skill gửi phiên bản của mình trong header `X-SimianX-Skill`. Khi một p
 
 ```
 skills/simianx/SKILL.md           the skill (Agent Skills format)
-skills/simianx/references/        live · news · data · deep · sectors · autopilots · billing
+skills/simianx/references/        following · live · quick · deep · news · autopilots · data · sectors · developers · billing
 INSTALL.md                        agent-readable install guide (also at simianx.ai/INSTALL.md)
 scripts/install.{sh,py,ps1}       installer for every agent; check_version.py · check_readmes.py
 examples/curl · examples/runner   the first calls in curl; an always-on runner for autopilots

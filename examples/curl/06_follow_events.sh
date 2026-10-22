@@ -1,10 +1,9 @@
 #!/usr/bin/env sh
-# Long-poll an autopilot's event log. Usage: 06_follow_events.sh <autopilot id> [cursor]
+# Follow everything this key's runs produce: the updates feed, acked with the last id relayed. Usage: 06_follow_events.sh [ack]
 API=${SIMIANX_API:-https://service.simianx.ai}
-ID=$1; CURSOR=${2:-0}
+ACK=${1:-0}
 while true; do
-  OUT=$(curl -s "$API/v1/autopilots/$ID/events?after=$CURSOR&wait=30&types=position.changed,signal.fired,autopilot.stopped" \
-    -H "Authorization: Bearer $SIMIANX_API_KEY")
-  printf "%s" "$OUT" | python3 -c 'import json,sys; d=json.load(sys.stdin)["data"]; [print(e["ts"], e["type"], json.dumps(e["data"])[:160]) for e in d["events"]]; print("cursor", d["cursor"])'
-  CURSOR=$(printf "%s" "$OUT" | python3 -c 'import json,sys; print(json.load(sys.stdin)["data"]["cursor"])')
+  OUT=$(curl -s "$API/v1/updates?ack=$ACK&wait=30&notify=1" -H "Authorization: Bearer $SIMIANX_API_KEY" -H "X-SimianX-Skill: 1.0.6")
+  printf "%s" "$OUT" | python3 -c 'import json,sys; d=json.load(sys.stdin)["data"]; [print(u["id"], u["kind"], u["say"], "|", u.get("ask") or "") for u in d["updates"]]; print("pending", d["pending"])'
+  ACK=$(printf "%s" "$OUT" | python3 -c 'import json,sys; print(json.load(sys.stdin)["data"]["cursor"])')
 done

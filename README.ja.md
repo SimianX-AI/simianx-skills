@@ -114,7 +114,9 @@ Claude Desktop、Cursor、Codex、VS Code、Windsurf、Gemini CLI、Grok Bot、M
 
 | やりたいこと | 呼び出し | リファレンス |
 |---|---|---|
-| ライブ分析を 1 回実行 | `POST /v1/analysis/live` → `GET /v1/analysis/live/{id}?wait=30` | [live](skills/simianx/references/live.md) |
+| ライブ分析セッション（ローソク足が確定するたび） | `POST /v1/live/sessions` → the WebSocket, or `GET /v1/updates?wait=30` | [live](skills/simianx/references/live.md) |
+| クイックリード（1 回） | `POST /v1/analysis/quick` → `GET /v1/updates?wait=30` | [quick](skills/simianx/references/quick.md) |
+| ユーザーがまだ聞いていないすべて | `GET /v1/updates?ack=<id>&wait=30` | [following](skills/simianx/references/following.md) |
 | 銘柄のニュースを取得 | `GET /v1/news?symbols=NVDA&min_value=medium` | [news](skills/simianx/references/news.md) |
 | ニュースを届いた瞬間に受け取る | `GET /v1/news/stream`（SSE、切れても続きから再開） | [news](skills/simianx/references/news.md) |
 | マーケットパルス | `GET /v1/pulse/events` | [data](skills/simianx/references/data.md) |
@@ -145,7 +147,7 @@ SimianX API の分析やシグナルを自分の取引システムに連携し�
 
 ```
 skills/simianx/SKILL.md           the skill (Agent Skills format)
-skills/simianx/references/        live · news · data · deep · sectors · autopilots · billing
+skills/simianx/references/        following · live · quick · deep · news · autopilots · data · sectors · developers · billing
 INSTALL.md                        agent-readable install guide (also at simianx.ai/INSTALL.md)
 scripts/install.{sh,py,ps1}       installer for every agent; check_version.py · check_readmes.py
 examples/curl · examples/runner   the first calls in curl; an always-on runner for autopilots

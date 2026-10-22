@@ -114,7 +114,9 @@ claude mcp add --transport http simianx https://service.simianx.ai/v1/mcp --head
 
 | Что | Вызов | Справка |
 |---|---|---|
-| Разовый анализ в реальном времени | `POST /v1/analysis/live` → `GET /v1/analysis/live/{id}?wait=30` | [live](skills/simianx/references/live.md) |
+| Сессия анализа в реальном времени (на каждом закрытии свечи) | `POST /v1/live/sessions` → the WebSocket, or `GET /v1/updates?wait=30` | [live](skills/simianx/references/live.md) |
+| Быстрый разбор, разово | `POST /v1/analysis/quick` → `GET /v1/updates?wait=30` | [quick](skills/simianx/references/quick.md) |
+| Всё, что пользователь ещё не слышал | `GET /v1/updates?ack=<id>&wait=30` | [following](skills/simianx/references/following.md) |
 | Новости по вашим тикерам | `GET /v1/news?symbols=NVDA&min_value=medium` | [news](skills/simianx/references/news.md) |
 | Новости в момент выхода | `GET /v1/news/stream` (server-sent events, с возобновлением) | [news](skills/simianx/references/news.md) |
 | Пульс рынка | `GET /v1/pulse/events` | [data](skills/simianx/references/data.md) |
@@ -145,7 +147,7 @@ Skill передаёт свою версию в заголовке `X-SimianX-Sk
 
 ```
 skills/simianx/SKILL.md           the skill (Agent Skills format)
-skills/simianx/references/        live · news · data · deep · sectors · autopilots · billing
+skills/simianx/references/        following · live · quick · deep · news · autopilots · data · sectors · developers · billing
 INSTALL.md                        agent-readable install guide (also at simianx.ai/INSTALL.md)
 scripts/install.{sh,py,ps1}       installer for every agent; check_version.py · check_readmes.py
 examples/curl · examples/runner   the first calls in curl; an always-on runner for autopilots

@@ -4,6 +4,15 @@ The version here, in `skills/simianx/SKILL.md` (`metadata.version`), in `example
 in every plugin manifest (see `RELEASING.md`) and in the git tag is always the same number; `scripts/check_version.py` refuses a release when they differ. The API
 publishes the same number at `GET /v1/skill` and answers `426` to skills older than its minimum.
 
+## 1.0.6 - 2026-10-23
+
+- Added: `GET /v1/updates`, one feed of everything the user has not heard yet (finished steps, decisions, matched news), each with a server-written `say` sentence in the request language; ack with `?ack=<id>` on the next request, unacked items are sent again. Every keyed response carries `_pending` while updates wait and `_skill_update` when the reported skill is behind the current version; both prepend a line to `notify`.
+- Changed: live analysis is a continuous session. `POST /v1/live/sessions`, then the WebSocket (bearer key, no Origin header needed) or `GET /v1/updates` every 10 seconds; every candle close reports fundamentals, technicals, news flow and the decision with the next run time, and asks whether to connect the user's exchange or broker. A 2-minute grace window covers reconnects. The one-pass run is now the quick read, `POST /v1/analysis/quick`; `POST /v1/analysis/live` is deprecated (sunset 2026-12-01).
+- Changed: deep research relays every step: four analysts, two researchers, each debate round's start and end, the verdict, the PDF link. Events carry `say` and `notify_user`.
+- Added: news watches (`POST /v1/news/watches`) match stories server side, offline too, cluster one event across sources, merge bursts and deliver through `/v1/updates`; webhooks (`POST /v1/webhooks`) deliver the same updates to a URL with an HMAC signature, retries and dead letters. `references/developers.md` for code clients (Idempotency-Key, WebSocket acks, the stable decision fields, Python and JavaScript clients).
+- Changed: the browser sign-in link lives 30 minutes and an approved key waits 30 minutes; the agent polls at once instead of waiting to be told; `/v1/me` reports daily resets for daily plans.
+- Changed: agents keep points in the background: no quotes, balances or confirmations unless the user asks or a 402 refuses a call. "Following a run" fixes the numbers (long-poll 30 s, fixed 10 s otherwise, deep 30 min, quick 10 min, sessions until stopped) and `scripts/follow_run.py` exits on every new update for agents woken only when a command exits.
+
 ## 1.0.5 - 2026-10-20
 
 - Changed: real trading is stated plainly in SKILL.md, the autopilot reference and all 16 READMEs. Connect SimianX analysis and signals through the API to your own authorized trading system to place real orders through your broker or exchange; positions and position actions recorded inside SimianX stay simulated. (1.0.4 is skipped so every directory carries the same number.)

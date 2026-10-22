@@ -1,7 +1,7 @@
 {
   "name": "simianx",
-  "version": "1.0.5",
-  "description": "Give any AI agent a full research desk on US stocks and crypto: an 8-agent research committee you can question, four live agents with entry, stop and target, a scored news stream, Market Pulse, Sector Watch catalysts and autopilots. Billed in points from your plan.",
+  "version": "1.0.6",
+  "description": "Give any AI agent a research desk on US stocks and crypto that keeps talking: an 8-agent research committee relayed step by step, live analysis sessions at every candle close with entry, stop and target, quick reads, news watches, Market Pulse, Sector Watch catalysts and autopilots. One updates feed carries everything the user has not heard yet.",
   "author": { "name": "SimianX", "url": "https://www.simianx.ai/agents" },
   "homepage": "https://www.simianx.ai/agents",
   "repository": "https://github.com/SimianX-AI/simianx-skills",

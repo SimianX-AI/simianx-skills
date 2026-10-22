@@ -2,8 +2,8 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.SimianX-AI/simianx",
   "title": "SimianX AI",
-  "description": "An 8-agent research committee, live analysis and scored news on US stocks and crypto, for any agent.",
-  "version": "1.0.5",
+  "description": "An 8-agent research committee, live analysis sessions and scored news on US stocks and crypto, relayed step by step to any agent.",
+  "version": "1.0.6",
   "websiteUrl": "https://www.simianx.ai/agents",
   "repository": {
     "url": "https://github.com/SimianX-AI/simianx-skills",

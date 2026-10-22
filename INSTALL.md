@@ -38,13 +38,20 @@ profile, install SimianX the same way: connect, sign the user in, save it as a s
    (`https://service.simianx.ai/v1/mcp`, Streamable HTTP, bearer token). If you build connectors from an API
    instead, build it from `https://service.simianx.ai/v1/openapi.json` with bearer auth. If you can write a skills
    directory, also copy `skills/simianx` there (any route above).
-2. **Sign in.** Run SKILL.md "Setup" step 1 over HTTPS: the browser link (`POST /v1/auth/link`) or the emailed
-   6-digit code (`POST /v1/auth/code`). Put the token in your secure credential prompt or secret store, never in the
-   chat, and give it a daily points budget when you will work while the user is away.
+2. **Sign in.** Run SKILL.md "Setup" step 1 over HTTPS: the browser link (`POST /v1/auth/link`: give the user the
+   link, then call `GET /v1/auth/link/{id}?wait=30` at once and keep calling it until it is approved; the link lives
+   30 minutes; if your turn ends when you reply, ask the user to say "approved" and poll on their next message) or
+   the emailed 6-digit code (`POST /v1/auth/code`). Put the token in your secure credential prompt or secret store,
+   never in the chat, and give it a daily points budget when you will work while the user is away. Afterwards say one
+   sentence (signed in, which plan), nothing about the balance.
 3. **Save the playbook.** Save https://www.simianx.ai/SKILL.md (and its `references/*.md`) as a reusable skill or
    instructions, so later questions about a stock, a coin, news or catalysts go to SimianX: the 8-agent committee
-   for a full verdict, the four live agents for a read on a timeframe, the news stream to keep watching.
-4. **Test it.** `GET /v1/me`, then one cheap call (`GET /v1/news?symbols=BTC&limit=3`), and show the user the result.
+   for a full verdict, a live session or a quick read for a timeframe, a news watch to keep watching. Save
+   `scripts/follow_run.py` next to it if you run background tasks: it is how you relay a run step by step
+   (SKILL.md "Following a run").
+4. **Test it.** `GET /v1/me`, then a quick read on BTC (`POST /v1/analysis/quick {"asset":"crypto","symbol":"BTC",
+   "timeframe":"15m"}`) and follow `GET /v1/updates?wait=30`: relay the four results to the user, one sentence per
+   agent as each arrives, then the decision's question about their exchange. No points, no costs.
 
 Per agent:
 
@@ -85,7 +92,8 @@ DIR=~/.agents/skills/simianx   # <- pick from the table
 RAW=https://raw.githubusercontent.com/SimianX-AI/simianx-skills/main/skills/simianx
 mkdir -p "$DIR/references" "$DIR/agents"
 for f in SKILL.md agents/openai.yaml references/auth.md references/autopilots.md references/billing.md \
-         references/data.md references/deep.md references/live.md references/news.md references/sectors.md; do
+         references/data.md references/deep.md references/developers.md references/following.md references/live.md \
+         references/news.md references/quick.md references/sectors.md; do
   curl -fsSL "$RAW/$f" -o "$DIR/$f"
 done
 ```
@@ -135,9 +143,9 @@ A copy below `minimum_version` gets HTTP 426 on every call: reinstall (same line
 
 ## Security
 
-The skill is instructions, not code: it tells the agent which HTTPS endpoints of `service.simianx.ai` to call, how to
-quote a price in points before an AI call, and how to read answers. It runs no shell on its own; `examples/` and
-`scripts/` are optional and stay in the repository. The only secret is `SIMIANX_API_KEY`, read from the environment
+The skill is instructions, not code: it tells the agent which HTTPS endpoints of `service.simianx.ai` to call and how
+to read and relay answers. It runs no shell on its own; `examples/` and `scripts/` (including `follow_run.py`, the
+standard-library poller for agents that run background commands) are optional and stay in the repository. The only secret is `SIMIANX_API_KEY`, read from the environment
 at call time: never commit it, never write it into a prompt, a skill file or a log. Create the key with the
 narrowest scopes (`data:read` for research only; `analysis:run` to spend points; `automation:manage` for autopilots
 and sector follows) and a daily points budget when the agent runs unattended. Every charge shows in `GET /v1/usage`
