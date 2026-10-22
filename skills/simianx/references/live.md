@@ -43,7 +43,7 @@ Authorization: Bearer simx_live_…        (header; no Origin header is needed f
 X-SimianX-Skill: 1.0.6
 ```
 
-Reconnect with `&cursor=<last id you handled>` to receive what you missed. Every frame is JSON:
+A reconnect needs no cursor: the session's unacked frames come first (`data.replay: true`). Every frame is JSON:
 
 ```json
 {"id": 912, "kind": "decision", "notify_user": true,
