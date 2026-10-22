@@ -34,10 +34,9 @@ POST /v1/news/watches
 GET /v1/news/watches                 → the key's watches (symbols, when the last match was, how many)
 DELETE /v1/news/watches/{id}         → stop
 ```
-<!-- verify: watch fields and answer shape -->
 
 - `min_value` (default `medium`): `low` / `medium` / `high`. `sentiment` filters one side. `symbols: []` = global
-  stories only. `include_pulse: true` adds Market Pulse price events on the same symbols as `news` rows.
+  stories only. `include_pulse` is accepted and stored for a coming release; today a watch delivers news only.
 - `quiet_hours`: inside the window only `high` stories pass.
 - Each match is one update, kind `news`:
   `say` = "[important · bullish] NVDA: <title> — <one-line summary> (Reuters, 3 min ago)" + the link in `data.url`;

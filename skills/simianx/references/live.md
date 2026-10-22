@@ -27,7 +27,6 @@ An autopilot is the same engine running server side without you (`references/aut
           "updates_url": "/v1/updates?wait=30", "cursor": 0,
           "next_step": "Connect ws_url with the bearer header and stay connected; relay each frame …"}}
 ```
-<!-- verify: field names of the create answer -->
 
 - `asset`, `symbol`, `timeframe`, `tier`, `models`, `agents`, `language`: as for a quick read.
 - `status` is `waiting` until the socket connects, `running` while it is connected (or within the grace window),
@@ -65,22 +64,25 @@ Reconnect with `&cursor=<last id you handled>` to receive what you missed. Every
 | `data` | the structured fields (`references/developers.md`) |
 | `next_run_at` | when the next analysis runs: say it in the user's time zone |
 
-Acknowledge what you relayed by sending a frame back: `{"ack": 912}`. Acked ids are never resent, on the socket or
-through `/v1/updates`; the same rows also sit in `/v1/updates` until acked, so a cut never loses a result.
-<!-- verify: ack frame shape and reconnect query parameter -->
+Acknowledge what you relayed by sending a frame back: `{"ack": 912}` (the server answers with a frame of kind `ack`,
+`data.acked` = rows acked). Acked ids are never resent, on the socket or through `/v1/updates`; the same rows also
+sit in `/v1/updates` until acked, so a cut never loses a result. A reconnect needs no cursor: unacked rows of the
+session come first, with `data.replay: true`.
 
 Order per candle: the three analysts (whichever finishes first is sent first), then `decision`, then `next_run`.
 Relay each as it comes; on the decision, give the full plan and put the `ask` to the user.
 
 ## If you leave
 
-The session needs a connection: that is what "live" means here. When the socket drops, the server keeps the session
-for a **grace window of 2 minutes**: reconnect with the cursor and nothing is lost (frames that fell in the gap are
-replayed). After 2 minutes without a connection the session ends with `session_end` (`data.reason: agent_left`),
-and its `say` tells the user that an autopilot keeps watching even when the agent is away; offer to start one.
+The session needs a connection: that is what "live" means here. The agents run while the socket is open; when it
+drops, the analysis **pauses** and the server keeps the session for a **grace window of 2 minutes**. Reconnect to the
+same `ws_url` (same `session_id`) inside that window and it resumes on the same session; every unacked frame is
+replayed first, so nothing is lost. After 2 minutes without a connection the session ends with `session_end`
+(`data.reason: agent_left`), and its `say` tells the user that an autopilot keeps watching even when the agent is
+away; offer to start one. The one-pass quick read and autopilots run on our side whatever your connection does.
 
 Agents woken only when a background command exits (Grok Bot, dots, Muse) run the socket with a wrapper that exits on
-every `notify_user: true` frame and reconnects at once with the cursor (well inside the 2 minutes); or they skip the
+every `notify_user: true` frame and reconnects at once to the same `ws_url` (well inside the 2 minutes); or they skip the
 socket and poll `GET /v1/updates?ack=…&wait=30` (or every 10 s exactly) while a separate process keeps the socket
 open for presence. `scripts/follow_run.py live <id>` is the HTTP fallback (`references/following.md`).
 

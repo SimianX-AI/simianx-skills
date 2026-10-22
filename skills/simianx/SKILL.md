@@ -197,7 +197,7 @@ See `references/auth.md`, `references/following.md`, `references/live.md`, `refe
 | Tell us something | `POST /v1/feedback` (read, not answered) |
 
 The one-pass endpoint `POST /v1/analysis/live` of skills before 1.0.6 still answers but is deprecated (sunset
-2026-12-01, `Deprecation` and `Link` headers); use `/v1/analysis/quick`. <!-- verify -->
+2026-12-01, `Deprecation` and `Link` headers); use `/v1/analysis/quick`.
 
 ## Feedback
 

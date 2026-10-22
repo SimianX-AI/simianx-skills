@@ -28,7 +28,6 @@ Either from the feed (`GET /v1/updates?ack=…&wait=30`, `references/following.m
 Each event carries `type`, `step`, `agent`, and for everything the user should hear a `say` sentence and
 `notify_user: true`; `data.next_step` says what to do now. `stream=1` for SSE (resume with `Last-Event-ID`).
 Call again the moment a call returns (or every 10 s exactly where long-polling is impossible); longest wait 30 minutes.
-<!-- verify: say / notify_user / next_step on deep events; topic / index / result on debate events -->
 
 The order, and the one line you say at each step (the server's `say`; paraphrase lightly if you like):
 

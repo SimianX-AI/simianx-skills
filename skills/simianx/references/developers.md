@@ -28,7 +28,7 @@ acking it on one path acks it everywhere.
 | Path | How | Ack |
 |---|---|---|
 | **Webhook** (recommended for servers) | `POST /v1/webhooks` with your URL; every update is POSTed to it | a 2xx answer within 10 s is the ack (when the webhook was created with `acks: true`; default `false` leaves the row for the feed) |
-| **WebSocket** | the live session socket (`references/live.md`), frames carry `id`/`cursor` | send `{"ack": <id>}`; reconnect with `&cursor=<id>` <!-- verify --> |
+| **WebSocket** | the live session socket (`references/live.md`), frames carry `id`/`cursor` | send `{"ack": <id>}`; a reconnect to the same `ws_url` replays unacked rows (`data.replay: true`) |
 | **SSE** | `GET …/events?stream=1` on deep runs and autopilots, `GET /v1/news/stream` | `Last-Event-ID` on reconnect; ack through the feed when you need exactly-once |
 | **Polling** | `GET /v1/updates?ack=<id>&wait=30` | `ack` on the next request |
 

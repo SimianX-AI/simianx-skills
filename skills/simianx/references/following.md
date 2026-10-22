@@ -121,9 +121,9 @@ long-poll loop, the SSE stream (`stream=1`, resume with `Last-Event-ID`) or the 
 
 - Deep: `GET /v1/analysis/deep/{id}/events?after=<cursor>&wait=30` → `data.events[]` with `type`, `step`, `agent`,
   `say`, `notify_user`, `next_step` (and `stance`, `verdict`, `topic`, `index`, `result` where they apply), `data.cursor`,
-  `data.status`, `data.busy`. `stream=1` for SSE. <!-- verify: say/notify_user/next_step on deep events -->
+  `data.status`, `data.busy`. `stream=1` for SSE.
 - Quick: `GET /v1/analysis/quick/{id}?wait=30` returns as soon as **any** agent finished since your last call
-  (`data.run.results` per agent, `data.run.analyses[]`, `data.next_candle_close_at`). <!-- verify -->
+  (`data.run.results` per agent, `data.run.analyses[]`, `data.next_candle_close_at`).
 - Live: the WebSocket (`references/live.md`); `GET /v1/live/sessions/{id}` for the state.
 - Autopilot: `GET /v1/autopilots/{id}/events?after=<cursor>&wait=30` (`references/autopilots.md`).
 

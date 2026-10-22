@@ -13,7 +13,7 @@ fundamental (the business or the coin), decision (a call with entry, stop and ta
 ```
 
 Answer `202`: `data.run.id`, `status: queued`, `data.poll_url`, `data.next_candle_close_at` (ISO: when the next
-candle of this timeframe closes), `data.next_step` (keep following). <!-- verify: next_candle_close_at on the create answer -->
+candle of this timeframe closes), `data.next_step` (keep following).
 
 ## Follow
 
@@ -24,7 +24,7 @@ Each agent's result is an update the moment it lands (`fundamental_done`, `indic
 `GET /v1/analysis/quick/{id}?wait=30` → returns as soon as **any** agent finished since your last call (not only at
 the end), with `run.status` (`queued | running | done | partial | failed`), `run.results` per agent (`status`,
 `analysis_id`), `run.analyses[]` (agent, timeframe, model, conclusion) and `next_candle_close_at`. `?include=text`
-adds the full write-ups. Call again until the status is terminal; longest wait 10 minutes (usually 1–2). <!-- verify -->
+adds the full write-ups. Call again until the status is terminal; longest wait 10 minutes (usually 1–2).
 
 `GET /v1/analysis/quick?limit=20` lists recent runs.
 
