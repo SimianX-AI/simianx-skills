@@ -95,8 +95,8 @@ open for presence. `scripts/follow_run.py live <id>` is the HTTP fallback (`refe
   not ended for a restart: the grace window counts from the moment the server is back.
 - **On reconnect** nothing is lost: every unacked frame is replayed first (`data.replay: true`), and anything that
   finished while you were away also sits in `GET /v1/updates` until acked.
-- **Close 4014** = the session was stopped over the API (`DELETE`), **4003** = no such session for this key, **4000** =
-  the handshake failed (bad key or scope): do not reconnect. Read `GET /v1/live/sessions/{id}`; if it is `ended`, tell
+- **Close 4014** = the session was stopped over the API (`DELETE`), **4003** = refused: no such session for this key,
+  an unknown key, or a key without the `analysis:run` scope (the close reason says which): do not reconnect. Read `GET /v1/live/sessions/{id}`; if it is `ended`, tell
   the user why (`ended_reason`) and offer a new session or an autopilot.
 - A `session_end` frame (reason `stopped`, `agent_left`, `never_connected`) also means the session is over.
 - Never send pings or keep-alives; the open socket is your presence.
