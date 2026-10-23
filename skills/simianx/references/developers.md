@@ -17,7 +17,8 @@ Create keys by hand at https://www.simianx.ai/#api or let a CLI sign the user in
 Send `Idempotency-Key: <your unique string>` on any `POST`, `PATCH` or `DELETE`. For 24 hours the same key on the
 same endpoint from the same API key returns the stored answer (`X-Idempotent-Replay: true`) without running the call
 again: a retry after a network cut cannot start a second session, a second deep run or a second charge. A replayed
-key-creation answer never repeats the token (it was shown once). Use one Idempotency-Key per logical operation.
+key-creation answer never repeats the token (it was shown once). Use one Idempotency-Key per logical operation: the
+same key sent with a different method, path or body answers `422 idempotency_mismatch` rather than the other call's result.
 
 ## Delivery: four ways to the same updates
 
