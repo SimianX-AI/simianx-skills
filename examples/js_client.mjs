@@ -40,23 +40,32 @@ async function catchUp(ack) {
   return ack;
 }
 
-function follow(wsUrl, ack = 0) {
+const SESSION_OVER = new Set([4003, 4014]); // refused (no such session for this key) / stopped over the API
+const BACKOFF = [2000, 5000, 10000, 20000, 30000]; // a deploy keeps the server away for a minute or two
+
+function follow(wsUrl, ack = 0, attempt = 0) {
   return new Promise((resolve) => {
-    const ws = new WebSocket(wsUrl + (ack ? `&cursor=${ack}` : ""), { headers: { Authorization: H.Authorization } });
+    let done = false;
+    const ws = new WebSocket(wsUrl, { headers: { Authorization: H.Authorization } });
+    ws.on("open", () => { attempt = 0; });
     ws.on("message", (raw) => {
       const f = JSON.parse(raw);
-      if (!f.notify_user) return; // heartbeat / tick
+      if (!f.notify_user) return; // heartbeat / tick / ack
       console.log(f.kind, f.say, f.next_run_at ?? "");
       if (f.kind === "decision") placeOrder(f.data);
       ack = f.id;
       ws.send(JSON.stringify({ ack }));
-      if (f.kind === "session_end") { ws.close(); resolve(null); }
+      if (f.kind === "session_end") { done = true; ws.close(); resolve(null); }
     });
-    ws.on("close", async () => {
-      ack = await catchUp(ack);
-      setTimeout(() => resolve(follow(wsUrl, ack)), 2000); // well inside the 2-minute grace window
+    ws.on("close", async (code, reason) => {
+      if (done) return;
+      if (SESSION_OVER.has(code)) { console.log("session over:", code, String(reason)); resolve(null); return; } // start a new one if wanted
+      ack = await catchUp(ack); // anything finished while we were away comes from the feed
+      const wait = BACKOFF[Math.min(attempt, BACKOFF.length - 1)];
+      console.log(`reconnecting in ${wait / 1000} s (close ${code})`);
+      setTimeout(() => resolve(follow(wsUrl, ack, attempt + 1)), wait);
     });
-    ws.on("error", (e) => console.error("socket", e.message));
+    ws.on("error", (e) => console.error("socket", e.message)); // followed by "close": the reconnect happens there
   });
 }
 

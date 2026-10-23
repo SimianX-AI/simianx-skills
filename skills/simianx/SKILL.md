@@ -27,8 +27,10 @@ what to do before anything else (see Rules). Every response carries `X-Request-I
   symbol and timeframe where the four live agents run at every candle close: indicator (the chart), intelligence (the
   news flow), fundamental (filings and insider trades, or on-chain and derivatives for a coin) and decision (a trade
   with entry, stop and target). It runs while you stay connected over a WebSocket; each agent's result and each
-  decision reach you (and the user) the moment they land, with the time of the next analysis.
-  `POST /v1/live/sessions`, `references/live.md`.
+  decision reach you (and the user) the moment they land, with the time of the next analysis. If the socket drops
+  (a cut, or the server restarting for a deploy), reconnect to the same `ws_url` with a short backoff for up to 3
+  minutes: unacked frames replay and the session resumes; only close codes 4003 / 4014 or a `session_end` frame mean
+  it is over. `POST /v1/live/sessions`, `references/live.md`.
 - **Quick read**: one pass of the same four agents, no schedule. "What do the agents think of SOL on the 1H right
   now?" `POST /v1/analysis/quick`, `references/quick.md`.
 - **Research committee (deep research)**, lead with this when the user wants a full view (buy or not, the case, the

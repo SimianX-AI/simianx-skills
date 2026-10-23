@@ -47,16 +47,28 @@ def catch_up(ack: int) -> int:
     return ack
 
 
+SESSION_OVER = {4003, 4014}  # refused (no such session for this key) / stopped over the API: do not reconnect
+BACKOFF = (2, 5, 10, 20, 30)  # seconds between reconnects; a deploy keeps the server away for a minute or two
+
+
+def connect(url: str):
+    headers = {"Authorization": H["Authorization"]}
+    try:
+        return websockets.connect(url, additional_headers=headers)  # websockets >= 14
+    except TypeError:
+        return websockets.connect(url, extra_headers=headers)  # websockets <= 13
+
+
 async def follow(ws_url: str) -> None:
-    ack = 0
+    ack, attempt = 0, 0
     while True:
-        url = ws_url + (f"&cursor={ack}" if ack else "")
         try:
-            async with websockets.connect(url, additional_headers={"Authorization": H["Authorization"]}) as ws:
+            async with connect(ws_url) as ws:
+                attempt = 0
                 async for raw in ws:
                     f = json.loads(raw)
                     if not f.get("notify_user"):
-                        continue  # heartbeat / tick
+                        continue  # heartbeat / tick / ack
                     print(f["kind"], f.get("say"), f.get("next_run_at") or "")
                     if f["kind"] == "decision":
                         place_order(f["data"])
@@ -64,10 +76,16 @@ async def follow(ws_url: str) -> None:
                     await ws.send(json.dumps({"ack": ack}))
                     if f["kind"] == "session_end":
                         return
-        except (websockets.ConnectionClosed, OSError) as exc:
-            print("reconnecting after", exc)
-            ack = catch_up(ack)
-            await asyncio.sleep(2)  # well inside the 2-minute grace window
+        except websockets.ConnectionClosed as exc:
+            if exc.rcvd is not None and exc.rcvd.code in SESSION_OVER:
+                print("session over:", exc.rcvd.code, exc.rcvd.reason)  # start a new session if the user still wants one
+                return
+            print("connection closed, reconnecting:", exc)
+        except OSError as exc:  # refused / reset: the server is restarting
+            print("server unreachable, retrying:", exc)
+        ack = catch_up(ack)  # anything finished while we were away comes from the feed
+        await asyncio.sleep(BACKOFF[min(attempt, len(BACKOFF) - 1)])
+        attempt += 1
 
 
 if __name__ == "__main__":

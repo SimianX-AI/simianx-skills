@@ -87,6 +87,20 @@ every `notify_user: true` frame and reconnects at once to the same `ws_url` (wel
 socket and poll `GET /v1/updates?ack=…&wait=30` (or every 10 s exactly) while a separate process keeps the socket
 open for presence. `scripts/follow_run.py live <id>` is the HTTP fallback (`references/following.md`).
 
+## Cuts, close codes and server restarts
+
+- **Any close you did not ask for** (codes 1001, 1006, 1011, 1012, a reset, a refused connection) means reconnect to the
+  **same `ws_url`**: wait 2 s, then 5, 10, 20, 30 s between attempts, for up to 3 minutes. While the server restarts
+  (a deploy) the connection is refused or answers 502 for a minute or two; that is normal, keep retrying. Sessions are
+  not ended for a restart: the grace window counts from the moment the server is back.
+- **On reconnect** nothing is lost: every unacked frame is replayed first (`data.replay: true`), and anything that
+  finished while you were away also sits in `GET /v1/updates` until acked.
+- **Close 4014** = the session was stopped over the API (`DELETE`), **4003** = no such session for this key, **4000** =
+  the handshake failed (bad key or scope): do not reconnect. Read `GET /v1/live/sessions/{id}`; if it is `ended`, tell
+  the user why (`ended_reason`) and offer a new session or an autopilot.
+- A `session_end` frame (reason `stopped`, `agent_left`, `never_connected`) also means the session is over.
+- Never send pings or keep-alives; the open socket is your presence.
+
 ## What to say
 
 - On start: "Live analysis on BTC (15m) is running; I will report each agent and each decision as they land."
