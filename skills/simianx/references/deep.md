@@ -34,11 +34,11 @@ The order, and the one line you say at each step (the server's `say`; paraphrase
 | Event | Update kind | Say |
 |---|---|---|
 | `run` | `deep.started` | "The committee started on NVDA: 4 analysts are working in parallel." |
-| `step_done` for `agent:fundamentals`, `agent:market`, `agent:news`, `agent:timing` (crypto: `agent:derivatives`) | `deep.analyst_done` | "Fundamentals analyst finished: bullish (confidence 7/10) — data-centre revenue still accelerating." |
-| `step_done` for `agent:bull_researcher`, `agent:bear_researcher` | `deep.researcher_done` | "Bear researcher finished: bearish (confidence 6/10) — valuation leaves no room for a miss." |
+| `step_done` for `agent:fundamentals`, `agent:market`, `agent:news`, `agent:timing` (crypto: `agent:derivatives`) | `deep.analyst_done` | "Fundamentals analyst finished: bullish (confidence 72/100) — data-centre revenue still accelerating." |
+| `step_done` for `agent:bull_researcher`, `agent:bear_researcher` | `deep.researcher_done` | "Bear researcher finished: bearish (confidence 61/100) — valuation leaves no room for a miss." |
 | `step_start` for `disc:topic:0`, `disc:topic:1`, … (`topic`, `index`) | `deep.debate_start` | "Debate 1 of 3 opens: 'Is the data-centre growth already priced in?' — Bull researcher vs Bear researcher." |
 | `topic_done` (`index`, `result`) | `deep.debate_done` | "Debate 1 closed: the bull side prevailed. Guidance history outweighs the multiple." |
-| `step_done` for `verdict` (`verdict`) | `deep.verdict` | "Risk manager's verdict on NVDA: buy (confidence 7/10). Entry 118–124, stop 109, target 150. Reasons: … Risks: …" |
+| `step_done` for `verdict` (`verdict`) | `deep.verdict` | "Risk manager's verdict on NVDA: buy (confidence 72/100). Entry 118–124, stop 109, target 150. Reasons: … Risks: …" |
 | `step_done` for `report` | `deep.report` | "The full report is ready as a PDF: https://…pdf" |
 | `paused` (`reason: no_points`) | `deep.paused` | the points exception: say the account's points ran out and give the renew / change-plan links; the run resumes with `POST …/resume` once points are back |
 | `stopped`, `error` | `deep.stopped`, `deep.error` | say it |
