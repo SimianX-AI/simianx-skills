@@ -53,10 +53,10 @@ BACKOFF = (2, 5, 10, 20, 30)  # seconds between reconnects; a deploy keeps the s
 
 def connect(url: str):
     headers = {"Authorization": H["Authorization"]}
-    try:
-        return websockets.connect(url, additional_headers=headers)  # websockets >= 14
-    except TypeError:
-        return websockets.connect(url, extra_headers=headers)  # websockets <= 13
+    major = int(str(getattr(websockets, "__version__", "14")).split(".")[0] or 14)
+    if major >= 14:
+        return websockets.connect(url, additional_headers=headers)
+    return websockets.connect(url, extra_headers=headers)  # websockets <= 13 (legacy client)
 
 
 async def follow(ws_url: str) -> None:
