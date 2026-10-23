@@ -85,7 +85,7 @@ def sleep_step(args):
 # ---------------------------------------------------------------- the feed
 def feed(args, key, source=None, source_id=None, terminal=None):
     """Loop on GET /v1/updates until something new (0), the wait runs out (2) or the run is over (3)."""
-    ack, after = args.ack, args.ack
+    ack = after = int(args.ack) if str(args.ack).isdigit() else 0
     deadline = time.monotonic() + args.max
     acked_once = False
     while True:
@@ -168,7 +168,8 @@ def deep(args, key):
 
 # ---------------------------------------------------------------- one quick read, by its run
 def quick(args, key):
-    seen = set((args.cursor or "").split(",")) - {""}
+    relayed = args.cursor or ("" if str(args.ack).isdigit() else args.ack)  # the ACK= line of the last run, or --cursor
+    seen = set((relayed or "").split(",")) - {""}
     deadline = time.monotonic() + args.max
     while True:
         q = urllib.parse.urlencode({"wait": wait_param(args)})
@@ -188,7 +189,7 @@ def quick(args, key):
                     seen.add(agent)
                     detail = next((x for x in run.get("analyses", []) if x.get("agent") == agent), {})
                     rows.append({"id": f"{args.id}:{agent}", "kind": "decision" if agent == "decision" else f"{agent}_done",
-                                 "say": None, "ask": None, "next_run_at": body.get("data", {}).get("next_candle_close_at"),
+                                 "say": r.get("say"), "ask": r.get("ask"), "next_run_at": body.get("data", {}).get("next_candle_close_at"),
                                  "data": {"agent": agent, "status": r.get("status"), "conclusion": detail.get("conclusion"),
                                           "symbol": run.get("symbol"), "timeframe": run.get("timeframe")}})
                 emit(rows)
@@ -208,7 +209,7 @@ def main():
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     p.add_argument("what", choices=["updates", "deep", "quick", "live", "autopilot"])
     p.add_argument("id", nargs="?", help="run / session / autopilot id (not for `updates`)")
-    p.add_argument("--ack", type=int, default=0, help="last update id you relayed (feed-based modes)")
+    p.add_argument("--ack", default="0", help="last update id you relayed (feed-based modes); quick: the agents already relayed")
     p.add_argument("--cursor", default=None, help="deep: event cursor; quick: agents already relayed")
     p.add_argument("--interval", type=int, default=0, help="poll every N seconds exactly instead of long-polling (10 for Grok Bot style tasks)")
     p.add_argument("--max", type=int, default=60, help="longest this invocation waits before exiting 2 (default 60)")
