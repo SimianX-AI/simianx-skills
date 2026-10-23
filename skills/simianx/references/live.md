@@ -67,7 +67,8 @@ A reconnect needs no cursor: the session's unacked frames come first (`data.repl
 Acknowledge what you relayed by sending a frame back: `{"ack": 912}` (the server answers with a frame of kind `ack`,
 `data.acked` = rows acked). Acked ids are never resent, on the socket or through `/v1/updates`; the same rows also
 sit in `/v1/updates` until acked, so a cut never loses a result. A reconnect needs no cursor: unacked rows of the
-session come first, with `data.replay: true`.
+session come first, with `data.replay: true`. You never need to send pings or keep-alives: the open socket is your
+presence, and `heartbeat` frames arrive from the server about every 15 s.
 
 Order per candle: the three analysts (whichever finishes first is sent first), then `decision`, then `next_run`.
 Relay each as it comes; on the decision, give the full plan and put the `ask` to the user.
