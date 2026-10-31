@@ -52,7 +52,7 @@ external fill. Use the event cursor to resume processing and check `expires_at`,
   candle without a model call:
   - the decision answers `analysis.completed` with `skipped: "timing_gate"`, `model` (the gate model, `SX-1`; a
     retrained model becomes `SX-2`, …), `conclusion.gate` (`passed: false`, `score`, `threshold`, `candle_close`,
-    `timeframe`, `model_name`; `score` / `threshold` may be null) and `points`: 0.1 the first time the candle is
+    `timeframe`, `model_name`; `score` / `threshold` may be null) and `points`: 0.05 the first time the candle is
     skipped, 0 when a manual `run` hits the same candle again (one charge per candle);
   - the indicator answers `analysis.completed` with `skipped: "timing_gate"` and no new report: the latest
     indicator report stays the current one.

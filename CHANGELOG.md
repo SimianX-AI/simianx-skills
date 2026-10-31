@@ -6,7 +6,7 @@ publishes the same number at `GET /v1/skill` and answers `426` to skills older t
 
 ## 1.0.7 - 2026-10-31
 
-- Documented: `timing_gate` on crypto autopilots. While flat, the timing-gate model (`SX-1`, renamed on each retrain) scores each candle before the indicator and decision agents run; a skipped candle answers `analysis.completed` with `skipped: "timing_gate"`, `conclusion.gate` and 0.1 points (once per candle). Manual runs go through the gate; breaking-news decisions do not. `GET /v1/autopilots/{id}/analyses?agent=decision` lists the skipped candles as `agent: "gate"` rows.
+- Documented: `timing_gate` on crypto autopilots. While flat, the timing-gate model (`SX-1`, renamed on each retrain) scores each candle before the indicator and decision agents run; a skipped candle answers `analysis.completed` with `skipped: "timing_gate"`, `conclusion.gate` and 0.05 points (once per candle). Manual runs go through the gate; breaking-news decisions do not. `GET /v1/autopilots/{id}/analyses?agent=decision` lists the skipped candles as `agent: "gate"` rows.
 - Changed: autopilot `intervals` accept 30 s (fundamental 30 min), as in the web app.
 
 ## 1.0.6 - 2026-10-23
