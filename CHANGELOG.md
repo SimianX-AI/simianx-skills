@@ -4,6 +4,11 @@ The version here, in `skills/simianx/SKILL.md` (`metadata.version`), in `example
 in every plugin manifest (see `RELEASING.md`) and in the git tag is always the same number; `scripts/check_version.py` refuses a release when they differ. The API
 publishes the same number at `GET /v1/skill` and answers `426` to skills older than its minimum.
 
+## 1.0.7 - 2026-10-31
+
+- Documented: `timing_gate` on crypto autopilots. While flat, the timing-gate model (`SX-1`, renamed on each retrain) scores each candle before the indicator and decision agents run; a skipped candle answers `analysis.completed` with `skipped: "timing_gate"`, `conclusion.gate` and 0.1 points (once per candle). Manual runs go through the gate; breaking-news decisions do not. `GET /v1/autopilots/{id}/analyses?agent=decision` lists the skipped candles as `agent: "gate"` rows.
+- Changed: autopilot `intervals` accept 30 s (fundamental 30 min), as in the web app.
+
 ## 1.0.6 - 2026-10-23
 
 - Added: `GET /v1/updates`, one feed of everything the user has not heard yet (finished steps, decisions, matched news), each with a server-written `say` sentence in the request language; ack with `?ack=<id>` on the next request, unacked items are sent again. Every keyed response carries `_pending` while updates wait and `_skill_update` when the reported skill is behind the current version; both prepend a line to `notify`.

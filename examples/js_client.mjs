@@ -11,7 +11,7 @@ import { randomUUID } from "node:crypto";
 
 const API = process.env.SIMIANX_API ?? "https://service.simianx.ai";
 const KEY = process.env.SIMIANX_API_KEY;
-const H = { Authorization: `Bearer ${KEY}`, "X-SimianX-Skill": "1.0.6", "Content-Type": "application/json" };
+const H = { Authorization: `Bearer ${KEY}`, "X-SimianX-Skill": "1.0.7", "Content-Type": "application/json" };
 
 function placeOrder(decision) {
   console.log("DECISION", JSON.stringify(decision, null, 2)); // your execution code
