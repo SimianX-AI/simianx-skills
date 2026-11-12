@@ -198,7 +198,7 @@ See `references/auth.md`, `references/following.md`, `references/live.md`, `refe
 | Models you may set per agent | `GET /v1/models` (public) |
 | Tell us something | `POST /v1/feedback` (read, not answered) |
 
-The one-pass endpoint `POST /v1/analysis/live` of skills before 1.0.8 still answers but is deprecated (sunset
+The one-pass endpoint `POST /v1/analysis/live` of skills before 1.0.6 still answers but is deprecated (sunset
 2026-12-01, `Deprecation` and `Link` headers); use `/v1/analysis/quick`.
 
 ## Feedback
