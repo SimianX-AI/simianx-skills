@@ -4,6 +4,10 @@ The version here, in `skills/simianx/SKILL.md` (`metadata.version`), in `example
 in every plugin manifest (see `RELEASING.md`) and in the git tag is always the same number; `scripts/check_version.py` refuses a release when they differ. The API
 publishes the same number at `GET /v1/skill` and answers `426` to skills older than its minimum.
 
+## 1.0.8 - 2026-11-12
+
+- Changed: the stock committee's fourth analyst is the positioning analyst (the next earnings date against the holding period and how the stock moved across past reports, analyst targets and estimate revisions, the options market's implied move, short interest, insiders and institutional holders). It replaces the timing analyst; runs started earlier keep their timing report. The crypto committee is unchanged (derivatives in the fourth seat). Step ids in events follow: `agent:positioning`.
+
 ## 1.0.7 - 2026-10-31
 
 - Documented: `timing_gate` on crypto autopilots. While flat, the timing-gate model (`SX-1`, renamed on each retrain) scores each candle before the indicator and decision agents run; a skipped candle answers `analysis.completed` with `skipped: "timing_gate"`, `conclusion.gate` and 0.05 points (once per candle). Manual runs go through the gate; breaking-news decisions do not. `GET /v1/autopilots/{id}/analyses?agent=decision` lists the skipped candles as `agent: "gate"` rows.
