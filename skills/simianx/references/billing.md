@@ -38,7 +38,7 @@ same case.
 
 | Plan | req/min | req/day | heavy/min | points/min | analyses at once | streams | news streams | keys | news delay |
 |---|---|---|---|---|---|---|---|---|---|
-| Free | 30 | 1,000 | 10 | 5 | 1 | 1 | 0 | 1 | 30 min |
+| Free | 60 | 1,000 | 10 | 5 | 1 | 1 | 0 | 1 | 30 min |
 | Starter | 120 | 20,000 | 30 | 30 | 2 | 2 | 0 | 3 | 30 min |
 | Plus | 300 | 100,000 | 90 | 80 | 3 | 5 | 1 | 10 | live |
 | Pro | 600 | 500,000 | 180 | 300 | 10 | 10 | 3 | 50 | live |
