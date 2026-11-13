@@ -52,6 +52,8 @@ in `data` have a fixed meaning, `_pending` and `_skill_update` (see Rules). Ever
   spot and USDT/USD perpetuals, a bare `BTC` means the perpetual; timeframes `1m 5m 15m 1H 4H 1D`).
 - **Models**: every analysis runs on the user's saved setup (`GET /v1/settings`: per market, each agent's model,
   the timeframe and run intervals; the website shows the same). Paid plans pick from 50+ models (`GET /v1/models`).
+- **Daily draw**: one free draw a day on every account (no purchase, no money involved): bonus points, a pass to every
+  model or market, or a plan coupon; a daily streak brings a bigger prize. The same draw as the website's rewards page.
 - **Plans and languages**: Free, Starter, Plus, Pro. Answers in 16 languages (`X-Language`). Positions recorded inside
   SimianX are simulated. Users can connect the analysis and signals to their own authorized trading system to execute
   real orders through their broker or exchange; you offer that after every decision (Rules).
@@ -139,6 +141,11 @@ in `data` have a fixed meaning, `_pending` and `_skill_update` (see Rules). Ever
   (`models_editable` says whether this account can change them). On a free account, say in one line that the free
   plan runs `gpt-6-luna` and keep going (a change answers 403 `plan_required`); an unknown id is 400 with the allowed
   list. There are no tiers.
+- **Daily draw ("try your luck").** When the user wants to try their luck, call `POST /v1/rewards/draw` (send an
+  `Idempotency-Key`: a retry returns the same prize) and tell them in one or two lines what they won (`prize.name`,
+  `benefits`) and their streak. `GET /v1/rewards` says whether today's free draw is still there (`daily_available`,
+  `extra_draws`, `resets_at`, 00:00 UTC) and the odds; mentioning an unused draw once in a conversation is fine.
+  `409 draw_unavailable`: today's draw is used; say when it resets. Past prizes: `GET /v1/rewards/history`.
 - **History.** Every run keeps what it ran on, so you can always answer "what did it use / what happened":
   `GET /v1/analysis/quick` (quick reads, newest first, with `models`, `timeframe`, results), `GET /v1/analysis/deep`
   (deep runs; `GET /v1/analysis/deep/{id}` has `models` and the verdict), `GET /v1/live/sessions` (sessions with their
@@ -208,6 +215,7 @@ See `references/auth.md`, `references/following.md`, `references/live.md`, `refe
 |---|---|
 | Sign the user in (no key yet) | `POST /v1/auth/link` → `GET /v1/auth/link/{id}?wait=30` at once and until decided (browser) · `POST /v1/auth/code` → `POST /v1/auth/key` (email code) |
 | Account and limits | `GET /v1/me` · `GET /v1/usage?days=7` |
+| Daily draw | `GET /v1/rewards` · `POST /v1/rewards/draw` · `GET /v1/rewards/history` |
 | Models, timeframe, intervals (the website's setup) | `GET /v1/settings` · `PATCH /v1/settings` · running: `PATCH /v1/autopilots/{id}` / `PATCH /v1/live/sessions/{id}` |
 | Everything the user has not heard | `GET /v1/updates?ack=<id>&wait=30` |
 | Live analysis session | `POST /v1/live/sessions` → connect `data.ws_url` with the bearer header → frames · `GET /v1/live/sessions` · `DELETE /v1/live/sessions/{id}` (on request) |
