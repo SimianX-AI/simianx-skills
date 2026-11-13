@@ -4,6 +4,14 @@ The version here, in `skills/simianx/SKILL.md` (`metadata.version`), in `example
 in every plugin manifest (see `RELEASING.md`) and in the git tag is always the same number; `scripts/check_version.py` refuses a release when they differ. The API
 publishes the same number at `GET /v1/skill` and answers `426` to skills older than its minimum.
 
+## 1.0.12 - 2026-11-13
+
+- Changed: every analysis runs on the user's own setup, the same one the website uses. `GET /v1/settings` shows it per market (each live agent's model, timeframe and run intervals, the research committee's models), `PATCH /v1/settings` changes it, and `PATCH /v1/autopilots/{id}` / `PATCH /v1/live/sessions/{id}` switch models while they run. There are no tiers; a `tier` sent by an older skill is ignored. Starting an analysis needs no model choice.
+- Added: `GET /v1/models` marks each model with `min_plan` (`gpt-6-luna` on every plan, the rest from Starter).
+- Added: the free daily reward: `GET /v1/rewards`, `POST /v1/rewards/draw`, `GET /v1/rewards/history`.
+- Changed: retries are safe everywhere: a replayed `Idempotency-Key` is never charged again, a retry that arrives while the first call still runs answers `409 request_in_progress`, and MCP tools that change something take an `idempotency_key` argument.
+- Fixed: tool descriptions and parameters match what each call does (webhook updates, positions and logs filters, news watch options, autopilot plans and what stopping leaves in the paper book, stock timeframes, free plan points).
+
 ## 1.0.11 - 2026-11-12
 
 - Changed: a live session starts when the user asks for a symbol to be watched live; the agent asks for the symbol or timeframe when it is unclear. If the user asks what a session uses, the agent says it runs at every candle close until stopped and reads the points from `GET /v1/usage`.
