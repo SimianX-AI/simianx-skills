@@ -40,7 +40,8 @@ profile, install SimianX the same way: connect, sign the user in, save it as a s
    directory, also copy `skills/simianx` there (any route above).
 2. **Sign in.** Run SKILL.md "Setup" step 1 over HTTPS: the browser link (`POST /v1/auth/link`: give the user the
    link, then call `GET /v1/auth/link/{id}?wait=30` at once and keep calling it until it is approved; the link lives
-   30 minutes; if your turn ends when you reply, ask the user to say "approved" and poll on their next message) or
+   24 hours, so keep its id and poll the same link when the user comes back; if your turn ends when you reply, ask
+   the user to say "approved" and poll on their next message) or
    the emailed 6-digit code (`POST /v1/auth/code`). Put the token in your secure credential prompt or secret store,
    never in the chat, and give it a daily points budget when you will work while the user is away. Afterwards say one
    sentence (signed in, which plan), nothing about the balance.
@@ -64,12 +65,28 @@ Per agent:
 ## Connect over MCP
 
 No skill needed: an MCP client can use SimianX as tools (live analysis, scored news, deep research, Market Pulse,
-Sector Watch, autopilots, account). Remote server `https://service.simianx.ai/v1/mcp` (Streamable HTTP), auth `Authorization: Bearer <key>` (or
-`X-API-Key: <key>`), the same key, scopes, limits and points as the REST API. Set `SIMIANX_API_KEY` first.
+Sector Watch, autopilots, account). Remote server `https://service.simianx.ai/v1/mcp` (Streamable HTTP).
+
+**Sign in from the app (OAuth, nothing to copy).** Apps that sign users in themselves need only the URL: the first
+tool call opens the SimianX approval page in the browser, the user approves, and the app holds a key of its own
+(listed and revocable under My Account → API keys).
+
+| App | Where | What to enter |
+|---|---|---|
+| Claude (web, desktop, mobile) | Settings → Connectors → Add custom connector | `https://service.simianx.ai/v1/mcp` |
+| ChatGPT | Settings → Connectors | `https://service.simianx.ai/v1/mcp` |
+| Claude Code | terminal, then `/mcp` to sign in | `claude mcp add --transport http simianx https://service.simianx.ai/v1/mcp` |
+| Cursor | `~/.cursor/mcp.json` | `{"mcpServers": {"simianx": {"url": "https://service.simianx.ai/v1/mcp"}}}` |
+| VS Code / Copilot | `.vscode/mcp.json` | `{"servers": {"simianx": {"type": "http", "url": "https://service.simianx.ai/v1/mcp"}}}` |
+
+**Or with an API key.** Auth `Authorization: Bearer <key>` (or `X-API-Key: <key>`), the same key, scopes, limits and
+points as the REST API. Set `SIMIANX_API_KEY` first, in the environment the client itself starts from (a shell
+profile, not only the current terminal): a command run while the variable is unset stores an empty key and every
+call then answers 401.
 
 | Client | Where | Snippet |
 |---|---|---|
-| Claude Code | terminal | `claude mcp add --transport http simianx https://service.simianx.ai/v1/mcp --header "Authorization: Bearer $SIMIANX_API_KEY"` |
+| Claude Code | terminal | `claude mcp add --transport http simianx https://service.simianx.ai/v1/mcp --header "Authorization: Bearer ${SIMIANX_API_KEY:?set SIMIANX_API_KEY first}"` |
 | Claude Desktop | `claude_desktop_config.json` | `{"mcpServers": {"simianx": {"command": "npx", "args": ["-y", "mcp-remote", "https://service.simianx.ai/v1/mcp", "--header", "Authorization: Bearer ${SIMIANX_API_KEY}"], "env": {"SIMIANX_API_KEY": "simx_live_..."}}}}` |
 | Cursor | `~/.cursor/mcp.json` | `{"mcpServers": {"simianx": {"url": "https://service.simianx.ai/v1/mcp", "headers": {"Authorization": "Bearer ${env:SIMIANX_API_KEY}"}}}}` |
 | Codex | terminal | `codex mcp add simianx --url https://service.simianx.ai/v1/mcp --bearer-token-env-var SIMIANX_API_KEY` |
@@ -77,7 +94,7 @@ Sector Watch, autopilots, account). Remote server `https://service.simianx.ai/v1
 | Windsurf | `~/.codeium/windsurf/mcp_config.json` | `{"mcpServers": {"simianx": {"serverUrl": "https://service.simianx.ai/v1/mcp", "headers": {"Authorization": "Bearer ${env:SIMIANX_API_KEY}"}}}}` |
 | Grok Bot | chat | `Connect the MCP server https://service.simianx.ai/v1/mcp (Streamable HTTP) with my SimianX API key as a bearer token. Ask me for the key in the secure prompt.` |
 | Muse | chat | `Create a custom connector from the MCP server https://service.simianx.ai/v1/mcp with bearer auth. Ask me for my SimianX API key in the secure prompt.` |
-| Gemini CLI | terminal | `gemini mcp add --transport http --header "Authorization: Bearer $SIMIANX_API_KEY" simianx https://service.simianx.ai/v1/mcp` |
+| Gemini CLI | terminal | `gemini mcp add --transport http --header "Authorization: Bearer ${SIMIANX_API_KEY:?set SIMIANX_API_KEY first}" simianx https://service.simianx.ai/v1/mcp` |
 
 The tool list follows the API (one tool per endpoint), so new endpoints appear after a release without a client
 update; list tools again if a call answers "unknown tool". Discovery: server card `https://service.simianx.ai/v1/mcp/server-card`, agent card
@@ -147,8 +164,9 @@ The skill is instructions, not code: it tells the agent which HTTPS endpoints of
 to read and relay answers. It runs no shell on its own; `examples/` and `scripts/` (including `follow_run.py`, the
 standard-library poller for agents that run background commands) are optional and stay in the repository. The only secret is `SIMIANX_API_KEY`, read from the environment
 at call time: never commit it, never write it into a prompt, a skill file or a log. Create the key with the
-narrowest scopes (`data:read` for research only; `analysis:run` to spend points; `automation:manage` for autopilots
-and sector follows) and a daily points budget when the agent runs unattended. Every charge shows in `GET /v1/usage`
+scopes the work needs (`data:read` reads data and news; `analysis:run` runs analyses, which is what most people
+install the skill for; `automation:manage` is for autopilots, news watches and sector follows) and a daily points
+budget when the agent runs unattended. Every charge shows in `GET /v1/usage`
 and on the site; revoke a key at any time at My Account → API keys. The skill never asks for a card number, never
 changes a subscription and never pays on its own; it hands 402 links to the human. Report a problem at
 https://github.com/SimianX-AI/simianx-skills/security/advisories/new or `POST /v1/feedback`.

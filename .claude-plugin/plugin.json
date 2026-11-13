@@ -1,6 +1,6 @@
 {
   "name": "simianx",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Give any AI agent a research desk on US stocks and crypto that keeps talking: an 8-agent research committee relayed step by step, live analysis sessions at every candle close with entry, stop and target, quick reads, news watches, Market Pulse, Sector Watch catalysts and autopilots. One updates feed carries everything the user has not heard yet.",
   "author": { "name": "SimianX", "url": "https://www.simianx.ai/agents" },
   "homepage": "https://www.simianx.ai/agents",

@@ -4,6 +4,15 @@ The version here, in `skills/simianx/SKILL.md` (`metadata.version`), in `example
 in every plugin manifest (see `RELEASING.md`) and in the git tag is always the same number; `scripts/check_version.py` refuses a release when they differ. The API
 publishes the same number at `GET /v1/skill` and answers `426` to skills older than its minimum.
 
+## 1.0.9 - 2026-11-12
+
+- Added: OAuth for MCP apps. An app connected to `https://service.simianx.ai/v1/mcp` that signs users in itself (Claude, ChatGPT, Cursor, VS Code, Codex, Gemini CLI) needs only the URL: a tool call without a key answers HTTP 401 with the protected-resource challenge, the user approves on the same page as the browser link, and the app holds an ordinary agent key (scoped, budgeted, revocable under API keys) with a refresh token that rotates it. Discovery at `/.well-known/oauth-protected-resource/v1/mcp` and `/.well-known/oauth-authorization-server`; Client ID Metadata Documents and dynamic registration; PKCE S256. Tools in `tools/list` carry `securitySchemes`.
+- Changed: the browser sign-in link and an approved key that was not collected yet live 24 hours (were 30 minutes). Keep the `link_id` and poll the same link when the user comes back instead of creating a new one. The approval page stays readable after approval.
+- Added: `GET /v1/instruments/search?symbols=A,B,C` resolves up to 20 names in one call. Search, candle and batch-list calls get more room per minute on every plan (Free 10, Starter 30, Plus 90, Pro 180).
+- Changed: `403 insufficient_scope` carries `data.actions.edit_key`; a key request without `scopes` gets `data:read`, `analysis:run` and `automation:manage`, and the docs no longer recommend `data:read` alone.
+- Changed: deep research on a fund or ETF answers `400 deep_not_covered` with the calls to use instead (quick read, live session) rather than `symbol_not_found`.
+- Changed: the deprecated one-pass `POST /v1/analysis/live` stays until 2027-06-01 (was 2026-12-01). `get_autopilot_events` lists its event types.
+
 ## 1.0.8 - 2026-11-12
 
 - Changed: the stock committee's fourth analyst is the positioning analyst (the next earnings date against the holding period and how the stock moved across past reports, analyst targets and estimate revisions, the options market's implied move, short interest, insiders and institutional holders). It replaces the timing analyst; runs started earlier keep their timing report. The crypto committee is unchanged (derivatives in the fourth seat). Step ids in events follow: `agent:positioning`.

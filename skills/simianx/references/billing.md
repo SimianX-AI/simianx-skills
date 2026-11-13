@@ -38,14 +38,14 @@ same case.
 
 | Plan | req/min | req/day | heavy/min | points/min | analyses at once | streams | news streams | keys | news delay |
 |---|---|---|---|---|---|---|---|---|---|
-| Free | 30 | 1,000 | 5 | 5 | 1 | 1 | 0 | 1 | 30 min |
-| Starter | 120 | 20,000 | 20 | 30 | 2 | 2 | 0 | 3 | 30 min |
-| Plus | 300 | 100,000 | 60 | 80 | 3 | 5 | 1 | 10 | live |
-| Pro | 600 | 500,000 | 120 | 300 | 10 | 10 | 3 | 50 | live |
+| Free | 30 | 1,000 | 10 | 5 | 1 | 1 | 0 | 1 | 30 min |
+| Starter | 120 | 20,000 | 30 | 30 | 2 | 2 | 0 | 3 | 30 min |
+| Plus | 300 | 100,000 | 90 | 80 | 3 | 5 | 1 | 10 | live |
+| Pro | 600 | 500,000 | 180 | 300 | 10 | 10 | 3 | 50 | live |
 
 ## 426
 
-`{"code": 426, "data": {"reason": "skill_outdated", "minimum_version": "1.0.8", "current_version": "1.0.8", "skill_url": "https://www.simianx.ai/SKILL.md"}}`
+`{"code": 426, "data": {"reason": "skill_outdated", "minimum_version": "1.0.9", "current_version": "1.0.9", "skill_url": "https://www.simianx.ai/SKILL.md"}}`
 
 Your cached skill is older than the API allows. Re-read `skill_url`, then retry the request with the new version in
 `X-SimianX-Skill`. `GET /v1/skill` always answers (it is the update path) and lists the changelog and deprecations.

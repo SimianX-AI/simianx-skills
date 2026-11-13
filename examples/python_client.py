@@ -19,7 +19,7 @@ import websockets
 
 API = os.environ.get("SIMIANX_API", "https://service.simianx.ai")
 KEY = os.environ["SIMIANX_API_KEY"]
-H = {"Authorization": f"Bearer {KEY}", "X-SimianX-Skill": "1.0.8", "Content-Type": "application/json"}
+H = {"Authorization": f"Bearer {KEY}", "X-SimianX-Skill": "1.0.9", "Content-Type": "application/json"}
 
 
 def place_order(decision: dict) -> None:

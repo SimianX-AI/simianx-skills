@@ -5,7 +5,7 @@ license: MIT
 compatibility: "Needs network access to the SimianX API. Optional: python3 for scripts/follow_run.py and the runner."
 metadata:
   author: simianx
-  version: "1.0.8"
+  version: "1.0.9"
   api_base: https://service.simianx.ai
   docs: https://www.simianx.ai/agents
   openapi: https://service.simianx.ai/v1/openapi.json
@@ -14,7 +14,7 @@ metadata:
 # SimianX for agents
 
 Base URL: `https://service.simianx.ai` (every path below starts with `/v1`). Auth: `Authorization: Bearer $SIMIANX_API_KEY`,
-plus `X-SimianX-Skill: 1.0.8` (this file's version) on every request.
+plus `X-SimianX-Skill: 1.0.9` (this file's version) on every request.
 Responses use `{"code": <http status>, "notify": "<text for you>", "data": {...}}`. `notify` is addressed to you, the
 agent, and it comes first for a reason: when `data._pending` or `data._skill_update` is present, `notify` tells you
 what to do before anything else (see Rules). Every response carries `X-Request-Id`, `X-SimianX-Skill-Version`,
@@ -59,8 +59,8 @@ what to do before anything else (see Rules). Every response carries `X-Request-I
 
 ## Setup
 
-0. **Version check, once per session.** This file is version `1.0.8` (frontmatter `metadata.version`). Send
-   `X-SimianX-Skill: 1.0.8` on every request. Before the first real call, `GET /v1/skill` (public): if `data.version`
+0. **Version check, once per session.** This file is version `1.0.9` (frontmatter `metadata.version`). Send
+   `X-SimianX-Skill: 1.0.9` on every request. Before the first real call, `GET /v1/skill` (public): if `data.version`
    is newer than yours, or `data.minimum_version` is above yours, re-read https://www.simianx.ai/SKILL.md and follow
    the new file. Any response with HTTP 426 (`reason: skill_outdated`), or with `data._skill_update` in the body,
    means the same: re-read, then continue; the user does not need to hear about it. `data.deprecations` lists
@@ -71,7 +71,8 @@ what to do before anything else (see Rules). Every response carries `X-Request-I
    - **Browser link** (the user is at a computer): `POST /v1/auth/link {"framework": "<this agent>"}` → give the user
      `data.url` and the code in one short message. **Then, without waiting for a reply, call
      `GET /v1/auth/link/{link_id}?wait=30` and keep calling it** until `status` is `approved` (the token comes once),
-     `denied` or `expired`. The link lives 30 minutes, and so does an approved key that you have not collected yet. If
+     `denied` or `expired`. The link lives 24 hours, and so does an approved key that you have not collected yet: keep
+     the `link_id`, and when the user comes back later poll the same link again instead of creating a new one. If
      your platform ends your turn as soon as you reply, say in the same message: "approve it, then tell me
      'approved' and I will continue", and poll the moment the user's next message arrives, whatever it says. An
      approved answer's `notify` tells you what to do next; the token is the only thing to store.
@@ -80,13 +81,18 @@ what to do before anything else (see Rules). Every response carries `X-Request-I
      {"name", "daily_points_budget"}}` → `data.token`. An address without an account becomes one. `mfa_required` →
      ask for the authenticator or backup code and resend with `{"ticket", "mfa": {"method", "code"}}`; a 403
      `too_many_keys` lists the plan's keys: offer to replace one (`key.replace_key_id`) with the same `ticket`.
+   Ask for the scopes the work needs; leave `scopes` out for the default (`data:read`, `analysis:run`,
+   `automation:manage`): a key with `data:read` alone cannot run an analysis.
    Offer both and follow the one the user picks. Store the token where this agent reads its environment (shell
    profile, a git-ignored `.env`, the agent's secret store); never print it in full, never write it into a repository
    or a log. The user can also create a key by hand at https://www.simianx.ai/#api. Never ask for a card number.
    After sign-in say one sentence: signed in, which plan (the plan name is fine). Not the balance, not the budgets.
 2. `GET /v1/me` → plan, this key's budgets and the plan's limits. Keep `data.limits` in mind for pacing; keep the
    points to yourself (Rules).
-3. If `data._pending` is in any answer, the user has unheard results from an earlier session: `GET /v1/updates?wait=30`
+3. Connected over MCP inside an app that signs in by itself (Claude, ChatGPT, Cursor, VS Code)? Then there is no key
+   for you to handle: the first tool that needs one answers 401, the app opens the same approval page for the user
+   (OAuth), and the tool works on the retry. Skip step 1.
+4. If `data._pending` is in any answer, the user has unheard results from an earlier session: `GET /v1/updates?wait=30`
    and relay them before doing anything else.
 
 ## Rules
@@ -121,7 +127,10 @@ what to do before anything else (see Rules). Every response carries `X-Request-I
   To pick a model per agent, send `models: {"<agent>": "<id>"}` with an id from `GET /v1/models` (paid plans); an id
   outside the catalogue is refused with 400 and the allowed list.
 - **Errors.** `429`: a limit (`data.limit`); wait `Retry-After` seconds, retry, do not tighten the loop. `402`: see
-  the first rule. `426` / `_skill_update`: re-read this file.
+  the first rule. `426` / `_skill_update`: re-read this file. `403 insufficient_scope`: the key lacks a scope; give
+  the user `data.actions.edit_key` (they tick the scope on the site) and retry after they say so. `400
+  deep_not_covered`: the committee researches companies and coins, not funds; run a quick read or a live session on
+  that symbol instead.
 - **Ask the human before** starting an autopilot that manages a paper position, or anything about subscription
   changes. Never put the key in a repository, a log or a message.
 
@@ -185,7 +194,7 @@ See `references/auth.md`, `references/following.md`, `references/live.md`, `refe
 | News | `GET /v1/news?symbols=BTC,NVDA&since=<iso>` · `GET /v1/news/{id}` · `GET /v1/news/stream` (SSE, Plus+) |
 | News watch (server side, offline too) | `POST /v1/news/watches {"symbols", "min_value"}` · `GET /v1/news/watches` · `DELETE /v1/news/watches/{id}` |
 | Market Pulse | `GET /v1/pulse/events` · `GET /v1/pulse/summary` |
-| Search before starting | `GET /v1/instruments/search?q=` (best match first; use `symbol`) · `GET /v1/market/status` |
+| Search before starting | `GET /v1/instruments/search?q=` (best match first; use `symbol`); several names at once: `?symbols=NVDA,SOXL,PEPE` (up to 20, one call) · `GET /v1/market/status` |
 | Crypto data | `GET /v1/quotes?symbols=` · `GET /v1/market/{symbol}/candles` · `/indicators` |
 | Sector Watch | `GET /v1/sectors` · `GET /v1/sectors/{sector}/calendar` · `/events?min_severity=3` · `/events/{slug}` · `/stocks` · `/assets` · `POST /v1/sectors/{sector}/follows` |
 | Start / list autopilots | `POST /v1/autopilots` · `GET /v1/autopilots` |
@@ -199,7 +208,7 @@ See `references/auth.md`, `references/following.md`, `references/live.md`, `refe
 | Tell us something | `POST /v1/feedback` (read, not answered) |
 
 The one-pass endpoint `POST /v1/analysis/live` of skills before 1.0.6 still answers but is deprecated (sunset
-2026-12-01, `Deprecation` and `Link` headers); use `/v1/analysis/quick`.
+2027-06-01, `Deprecation` and `Link` headers); use `/v1/analysis/quick`.
 
 ## Feedback
 
