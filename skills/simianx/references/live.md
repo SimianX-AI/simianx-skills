@@ -32,6 +32,8 @@ An autopilot is the same engine running server side without you (`references/aut
 - `asset`, `symbol`, `timeframe`, `models`, `agents`, `language`: as for a quick read (models and timeframe default to the saved setup).
 - `status` is `waiting` until the socket connects, `running` while it is connected (or within the grace window),
   `ended` afterwards (`ended_reason`: `stopped`, `agent_left`, `error`).
+- `PATCH /v1/live/sessions/{id}` `{"models": {"decision": "<id>"}}` switches models while it runs (paid plans; the next
+  analysis uses them; the saved setup in `GET /v1/settings` stays as it is).
 - `GET /v1/live/sessions` lists the key's sessions (`?status=running`), `GET /v1/live/sessions/{id}` one of them,
   `DELETE /v1/live/sessions/{id}` (on request) stops it (also stops the analysis; the socket receives `session_end`).
 

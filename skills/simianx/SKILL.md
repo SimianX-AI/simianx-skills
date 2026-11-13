@@ -126,11 +126,23 @@ in `data` have a fixed meaning, `_pending` and `_skill_update` (see Rules). Ever
 - **`_pending` wins.** Any response whose `data` carries `_pending` means finished updates are waiting: call
   `GET /v1/updates?wait=30`, relay them, ack them, then continue with what you were doing. `_skill_update` means a
   newer skill is published: update as in Setup step 0 and tell the user in one line.
-- **Models.** Send no `models` and no `timeframe` unless the user names them: calls run on the user's saved setup
-  (`GET /v1/settings`). When the user asks which models they use, read it; to change the default for good,
-  `PATCH /v1/settings` `{"asset": "stock", "live": {"models": {"decision": "<id>"}}}` (or `deep`); for one call only,
-  send `models: {"<agent>": "<id>"}`. Ids come from `GET /v1/models`; paid plans only (free accounts run the free
-  model); an id outside the catalogue is refused with 400 and the allowed list. There are no tiers.
+- **Models and timeframe: the website's rules.** The user has one setup per market, the same one the website shows
+  and uses: each live agent's model, the timeframe and run intervals, and the deep committee's model per seat
+  (default `gpt-6-luna` everywhere until they pick others). Every analysis you start runs on it, so send no `models`
+  and no `timeframe` unless the user names them. You may read and change it at any time, as often as needed:
+  - see it: `GET /v1/settings` (when the user asks which models or timeframe they use, or before quoting a cost);
+  - change it for good: `PATCH /v1/settings` `{"asset": "stock", "live": {"models": {"decision": "<id>"}}}` (or
+    `"deep": {"models": {...}}`, one committee for both markets); the website shows the change at once;
+  - one run only: `models: {"<agent>": "<id>"}` in that call; the saved setup stays as it is;
+  - while it runs: `PATCH /v1/autopilots/{id}` or `PATCH /v1/live/sessions/{id}` with `models` (the next analysis
+    uses them), as the website's model picker does.
+  Ids come from `GET /v1/models`; changing models needs a paid plan (free accounts run `gpt-6-luna`, 403
+  `plan_required` on a change); an id outside the catalogue is 400 with the allowed list. There are no tiers.
+- **History.** Every run keeps what it ran on, so you can always answer "what did it use / what happened":
+  `GET /v1/analysis/quick` (quick reads, newest first, with `models`, `timeframe`, results), `GET /v1/analysis/deep`
+  (deep runs; `GET /v1/analysis/deep/{id}` has `models` and the verdict), `GET /v1/live/sessions` (sessions with their
+  `models`), `GET /v1/autopilots/{id}` (current `models`, `intervals`) and `GET /v1/autopilots/{id}/analyses` (every
+  past analysis), `GET /v1/usage` (points by key and endpoint).
 - **Errors.** `429`: a limit (`data.limit`); wait `Retry-After` seconds, retry, do not tighten the loop. `402`: see
   the first rule. `426` / `_skill_update`: re-read this file. `403 insufficient_scope`: the key lacks a scope; give
   the user `data.actions.edit_key` (they tick the scope on the site) and retry after they say so. `400
@@ -195,7 +207,7 @@ See `references/auth.md`, `references/following.md`, `references/live.md`, `refe
 |---|---|
 | Sign the user in (no key yet) | `POST /v1/auth/link` → `GET /v1/auth/link/{id}?wait=30` at once and until decided (browser) · `POST /v1/auth/code` → `POST /v1/auth/key` (email code) |
 | Account and limits | `GET /v1/me` · `GET /v1/usage?days=7` |
-| Default models and timeframe | `GET /v1/settings` · `PATCH /v1/settings` |
+| Models, timeframe, intervals (the website's setup) | `GET /v1/settings` · `PATCH /v1/settings` · running: `PATCH /v1/autopilots/{id}` / `PATCH /v1/live/sessions/{id}` |
 | Everything the user has not heard | `GET /v1/updates?ack=<id>&wait=30` |
 | Live analysis session | `POST /v1/live/sessions` → connect `data.ws_url` with the bearer header → frames · `GET /v1/live/sessions` · `DELETE /v1/live/sessions/{id}` (on request) |
 | Quick read (one pass) | `POST /v1/analysis/quick` → `GET /v1/analysis/quick/{id}?wait=30` (answers as each agent finishes) |
