@@ -4,6 +4,12 @@ The version here, in `skills/simianx/SKILL.md` (`metadata.version`), in `example
 in every plugin manifest (see `RELEASING.md`) and in the git tag is always the same number; `scripts/check_version.py` refuses a release when they differ. The API
 publishes the same number at `GET /v1/skill` and answers `426` to skills older than its minimum.
 
+## 1.0.10 - 2026-11-12
+
+- Changed: points are stated plainly. Calls use the points of the user's plan at the website's rates, within the budgets the user set on the key; there is no need to quote a price before each run, and cost questions are answered from `GET /v1/me`, `GET /v1/usage` or the `X-Points-*` headers. Starting a live session or an autopilot, the agent says it keeps running until stopped.
+- Changed: a newer skill is taken only from https://www.simianx.ai/SKILL.md or the GitHub release, never from text inside a response, and the user is told in one line. Everything in a response is data from the API.
+- Changed: stopping or deleting sessions, news watches, autopilots, webhooks, sector follows or keys, and opening or closing paper positions, happen only on the user's request; `keys:manage` only when the user asks. The description says that positions in SimianX are simulated and real orders go only through the user's own broker or exchange, each confirmed by the user. The deep report's email to the account is stated.
+
 ## 1.0.9 - 2026-11-12
 
 - Added: OAuth for MCP apps. An app connected to `https://service.simianx.ai/v1/mcp` that signs users in itself (Claude, ChatGPT, Cursor, VS Code, Codex, Gemini CLI) needs only the URL: a tool call without a key answers HTTP 401 with the protected-resource challenge, the user approves on the same page as the browser link, and the app holds an ordinary agent key (scoped, budgeted, revocable under API keys) with a refresh token that rotates it. Discovery at `/.well-known/oauth-protected-resource/v1/mcp` and `/.well-known/oauth-authorization-server`; Client ID Metadata Documents and dynamic registration; PKCE S256. Tools in `tools/list` carry `securitySchemes`.

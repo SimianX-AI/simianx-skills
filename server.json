@@ -3,7 +3,7 @@
   "name": "io.github.SimianX-AI/simianx",
   "title": "SimianX AI",
   "description": "8-agent research committee, live analysis and scored news on US stocks and crypto, for any agent.",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "websiteUrl": "https://www.simianx.ai/agents",
   "repository": {
     "url": "https://github.com/SimianX-AI/simianx-skills",

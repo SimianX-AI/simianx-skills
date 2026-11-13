@@ -115,7 +115,7 @@ inside the app never sees the key and has nothing to store.
 
 Store `token` where this agent reads its environment: the shell profile, a git-ignored `.env`, or the agent's own
 secret store. Say which file you wrote and show only the prefix (`simx_live_abc123…`). Never commit it, never log it,
-never paste it into a prompt. Then continue with `GET /v1/me` as in SKILL.md, and keep the points to yourself.
+never paste it into a prompt. Then continue with `GET /v1/me` as in SKILL.md.
 
 ## Why no cookie
 

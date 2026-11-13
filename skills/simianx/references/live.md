@@ -40,7 +40,7 @@ Open `ws_url` with the same key the session was created with:
 
 ```
 Authorization: Bearer simx_live_…        (header; no Origin header is needed for a key)
-X-SimianX-Skill: 1.0.9
+X-SimianX-Skill: 1.0.10
 ```
 
 A reconnect needs no cursor: the session's unacked frames come first (`data.replay: true`). Every frame is JSON:
@@ -103,7 +103,8 @@ open for presence. `scripts/follow_run.py live <id>` is the HTTP fallback (`refe
 
 ## What to say
 
-- On start: "Live analysis on BTC (15m) is running; I will report each agent and each decision as they land."
+- On start: "Live analysis on BTC (15m) is running at every candle close until you stop it; I will report each agent
+  and each decision as they land."
 - On each `*_done`: the `say` line.
 - On `decision`: the full plan, "analysis, not investment advice", the next run time, then the `ask`. If the user
   declines the exchange / broker connection for this symbol, do not ask again this session.

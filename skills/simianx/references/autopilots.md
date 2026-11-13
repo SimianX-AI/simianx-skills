@@ -116,7 +116,7 @@ timeframes (`1m 15m 1H`) can only enter while the US market is open, pre- or pos
 with `data.next_open_et`); `1D 1W 1mo` autopilots hold their bracket overnight and can enter any time at the last
 price. One action runs at a time per autopilot (409 `state_conflict`, retry in a moment). With
 `ai_position_control: true` the decision agent may later move or close what you opened; set it to `false` if the
-book is yours alone (the agent still analyses and fires `signal.fired`).
+book is yours alone (the agent still analyses and fires `signal.fired`). Paper only, and only when the user asks:
 
 ```bash
 curl -s $API/v1/autopilots/$ID/actions -H "Authorization: Bearer $SIMIANX_API_KEY" -H 'Content-Type: application/json' \
