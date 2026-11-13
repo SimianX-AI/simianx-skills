@@ -4,6 +4,11 @@ The version here, in `skills/simianx/SKILL.md` (`metadata.version`), in `example
 in every plugin manifest (see `RELEASING.md`) and in the git tag is always the same number; `scripts/check_version.py` refuses a release when they differ. The API
 publishes the same number at `GET /v1/skill` and answers `426` to skills older than its minimum.
 
+## 1.0.11 - 2026-11-12
+
+- Changed: a live session starts when the user asks for a symbol to be watched live; the agent asks for the symbol or timeframe when it is unclear. If the user asks what a session uses, the agent says it runs at every candle close until stopped and reads the points from `GET /v1/usage`.
+- Changed: the remaining "no points" lines are gone from the references; stopping and deleting calls are marked as on the user's request; a quick read's `language` is the user's language.
+
 ## 1.0.10 - 2026-11-12
 
 - Changed: points are stated plainly. Calls use the points of the user's plan at the website's rates, within the budgets the user set on the key; there is no need to quote a price before each run, and cost questions are answered from `GET /v1/me`, `GET /v1/usage` or the `X-Points-*` headers. Starting a live session or an autopilot, the agent says it keeps running until stopped.

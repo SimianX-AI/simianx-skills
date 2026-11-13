@@ -52,7 +52,7 @@ profile, install SimianX the same way: connect, sign the user in, save it as a s
    (SKILL.md "Following a run").
 4. **Test it.** `GET /v1/me`, then a quick read on BTC (`POST /v1/analysis/quick {"asset":"crypto","symbol":"BTC",
    "timeframe":"15m"}`) and follow `GET /v1/updates?wait=30`: relay the four results to the user, one sentence per
-   agent as each arrives, then the decision's question about their exchange. No points, no costs.
+   agent as each arrives, then the decision's question about their exchange.
 
 Per agent:
 

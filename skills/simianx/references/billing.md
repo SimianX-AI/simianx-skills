@@ -45,7 +45,7 @@ same case.
 
 ## 426
 
-`{"code": 426, "data": {"reason": "skill_outdated", "minimum_version": "1.0.10", "current_version": "1.0.10", "skill_url": "https://www.simianx.ai/SKILL.md"}}`
+`{"code": 426, "data": {"reason": "skill_outdated", "minimum_version": "1.0.11", "current_version": "1.0.11", "skill_url": "https://www.simianx.ai/SKILL.md"}}`
 
 Your cached skill is older than the API allows. Re-read `skill_url`, then retry the request with the new version in
 `X-SimianX-Skill`. `GET /v1/skill` always answers (it is the update path) and lists the changelog and deprecations.
@@ -60,7 +60,7 @@ https://www.simianx.ai/SKILL.md and tell the user in one line that the skill was
   uses it only on the user's request. A key may create keys (`POST /v1/keys`) only within its own scopes. Agents
   never receive `billing:manage`.
 - `GET /v1/keys`, `GET /v1/keys/{id}` (with 30-day usage), `PATCH /v1/keys/{id}` (name, budgets, scopes, expires_at,
-  ip_whitelist), `DELETE /v1/keys/{id}` (revoke). The token is returned once at creation.
+  ip_whitelist), `DELETE /v1/keys/{id}` (revoke, on request). The token is returned once at creation.
 - `GET /v1/usage?days=7` → requests and points by key, endpoint and day.
 - Send `Idempotency-Key` on POST / PATCH / DELETE to make retries safe (24 h replay, `X-Idempotent-Replay: true`;
   a replayed key creation never repeats the token). Details in `references/developers.md`.

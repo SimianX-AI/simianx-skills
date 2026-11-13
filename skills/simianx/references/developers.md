@@ -41,7 +41,7 @@ POST /v1/webhooks
  "acks": true, "this_key_only": false}
 → 201 {"webhook": {"id", "url", "events", "active", "acks", …}, "secret": "<only when generated for you>",
         "signature_header": "X-SimianX-Signature: t=<unix seconds>,v1=<hex hmac_sha256(secret, '<t>.<body>')>"}
-GET /v1/webhooks · GET /v1/webhooks/{id} · PATCH /v1/webhooks/{id} {url?, events?, acks?, active?} · DELETE /v1/webhooks/{id}
+GET /v1/webhooks · GET /v1/webhooks/{id} · PATCH /v1/webhooks/{id} {url?, events?, acks?, active?} · DELETE /v1/webhooks/{id} (on request)
 POST /v1/webhooks/{id}/test        → one signed "test" event to your URL now
 GET  /v1/webhooks/{id}/failures    → the dead letters: update id, attempt, response status, error
 ```
@@ -100,7 +100,7 @@ paper books, `/autopilots/{id}/actions`) are simulated.
 - `429` carries `Retry-After`; paginated lists return `next_cursor`; every time is ISO 8601 UTC.
 - Breaking changes never edit a path in place: a new path or field is added, the old one gets `Deprecation`, `Sunset`
   and `Link: <…>; rel="successor-version"` headers and a `deprecations` entry in `GET /v1/skill`.
-- Send `X-SimianX-Skill: 1.0.10` (or your client's own version string) so `_skill_update` and `426` work as designed;
+- Send `X-SimianX-Skill: 1.0.11` (or your client's own version string) so `_skill_update` and `426` work as designed;
   a client that never sends it is never refused.
 
 ## Minimal clients
@@ -111,7 +111,7 @@ Python (`pip install requests websockets`):
 import asyncio, json, os, requests, websockets
 
 API = "https://service.simianx.ai"; KEY = os.environ["SIMIANX_API_KEY"]
-H = {"Authorization": f"Bearer {KEY}", "X-SimianX-Skill": "1.0.10", "Content-Type": "application/json"}
+H = {"Authorization": f"Bearer {KEY}", "X-SimianX-Skill": "1.0.11", "Content-Type": "application/json"}
 
 s = requests.post(f"{API}/v1/live/sessions", headers={**H, "Idempotency-Key": "live-btc-15m-1"},
                   json={"asset": "crypto", "symbol": "BTC", "timeframe": "15m"}).json()["data"]
@@ -137,7 +137,7 @@ JavaScript (Node 18+, `npm i ws`):
 ```js
 import WebSocket from "ws";
 const API = "https://service.simianx.ai", KEY = process.env.SIMIANX_API_KEY;
-const H = { Authorization: `Bearer ${KEY}`, "X-SimianX-Skill": "1.0.10", "Content-Type": "application/json" };
+const H = { Authorization: `Bearer ${KEY}`, "X-SimianX-Skill": "1.0.11", "Content-Type": "application/json" };
 
 const { data: s } = await (await fetch(`${API}/v1/live/sessions`, { method: "POST",
   headers: { ...H, "Idempotency-Key": "live-btc-15m-1" },

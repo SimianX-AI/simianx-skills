@@ -13,7 +13,7 @@ Every analysis and every decision of an autopilot started over the API is an upd
 broker `ask`), `next_run` (when the next cycle runs), and `position.changed` when the simulated book moves;
 `autopilot.stopped` / `autopilot.paused` at the end. Relay each as it arrives; when you were away, the feed has
 everything you missed, poll it every 10 s exactly (or `wait=30`) and catch up from the cursor. When the user asks
-"what is running?", list the autopilots (symbol, timeframe, since when, next run, last decision), no points.
+"what is running?", list the autopilots (symbol, timeframe, since when, next run, last decision).
 
 ## Connect your own real-trading system
 
@@ -139,6 +139,6 @@ decision agents answer `analysis.completed` with `skipped: timing_gate` on a can
 - `PATCH /v1/autopilots/{id}` with any of `timeframe`, `tier` / `models`, `intervals`, `timing_gate`, `language`, `ai_position_control`.
   `timeframe` behaves like the `set_timeframe` action (closes the book first); `ai_position_control: false` cancels the
   resting order and closes the open position (`close_reason: user_disabled`, no notification, still in the event log).
-- `POST /v1/autopilots/{id}/stop`, `POST /v1/autopilots/{id}/start` (restart, same checks as create), `DELETE /v1/autopilots/{id}` (archive; must be stopped)
+- `POST /v1/autopilots/{id}/stop`, `POST /v1/autopilots/{id}/start` (restart, same checks as create), `DELETE /v1/autopilots/{id}` (on request) (archive; must be stopped)
 
 Stops from the web app also appear as `autopilot.stopped` in the log, so a runner always learns about them.

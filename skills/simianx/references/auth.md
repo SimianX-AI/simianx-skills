@@ -39,7 +39,7 @@ yet waits **24 hours** too, so a user who approves and comes back to you later s
 `?wait=30` back to back until the status is decided; each call's `notify` tells you what to do next. If your platform
 ends your turn when you reply, write in the same message "approve it, then tell me 'approved'", and poll as soon as
 the next message arrives, whatever it says. Once approved, say one sentence (signed in, which plan) and go on with
-what the user asked; never read out the balance or the budgets.
+what the user asked.
 
 ## 2. Email code (no browser needed)
 

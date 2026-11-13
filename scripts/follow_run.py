@@ -32,7 +32,7 @@ import urllib.parse
 import urllib.request
 
 API = os.environ.get("SIMIANX_API", "https://service.simianx.ai").rstrip("/")
-SKILL_VERSION = "1.0.10"
+SKILL_VERSION = "1.0.11"
 LONG_POLL = 30
 DEEP_TERMINAL = {"done", "stopped", "failed", "error", "paused"}
 QUICK_TERMINAL = {"done", "partial", "failed"}
