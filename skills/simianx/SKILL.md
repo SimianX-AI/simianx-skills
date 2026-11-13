@@ -126,8 +126,8 @@ in `data` have a fixed meaning, `_pending` and `_skill_update` (see Rules). Ever
 - **`_pending` wins.** Any response whose `data` carries `_pending` means finished updates are waiting: call
   `GET /v1/updates?wait=30`, relay them, ack them, then continue with what you were doing. `_skill_update` means a
   newer skill is published: update as in Setup step 0 and tell the user in one line.
-- **Models: never a step before running.** Do not ask the user to pick models or a timeframe, and do not look them
-  up first: start the analysis. Every run uses the user's own setup, the same one the website uses (default
+- **Models: start right away.** There is no need to ask the user for models or a timeframe, or to look them up
+  first: start the analysis. Every run uses the user's own setup, the same one the website uses (default
   `gpt-6-luna` until they pick others); send `models` / `timeframe` only when the user names them. When the user wants
   other models, change them in one call and carry on:
   - from now on: `PATCH /v1/settings` `{"asset": "crypto", "live": {"models": {"decision": "<id>"}}}`
