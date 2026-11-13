@@ -7,7 +7,7 @@ ran out and give the links. Code clients read everything here from the headers a
 
 ## How points work
 
-- The account has one balance: the points of its plan (Free 25 a day; Starter, Plus and Pro monthly). Keys spend from it.
+- The account has one balance: the points of its plan (Free 20 a day; Starter, Plus and Pro monthly). Keys spend from it.
 - `GET /v1/models` lists every model with its price in points per million tokens and the typical points of one call per
   live agent; `POST /v1/analysis/quote` gives the cost of a whole cycle or run on the user's own models.
 - Flat endpoints charge per request (see `GET /v1/pricing`, `endpoints[].points`). AI endpoints are metered on the models
@@ -62,6 +62,8 @@ https://www.simianx.ai/SKILL.md and tell the user in one line that the skill was
 - `GET /v1/keys`, `GET /v1/keys/{id}` (with 30-day usage), `PATCH /v1/keys/{id}` (name, budgets, scopes, expires_at,
   ip_whitelist), `DELETE /v1/keys/{id}` (revoke, on request). The token is returned once at creation.
 - `GET /v1/usage?days=7` → requests and points by key, endpoint and day.
-- Send `Idempotency-Key` on POST / PATCH / DELETE to make retries safe (24 h replay, `X-Idempotent-Replay: true`;
-  a replayed key creation never repeats the token). Details in `references/developers.md`.
+- Send `Idempotency-Key` on POST / PATCH / DELETE to make retries safe (24 h replay, `X-Idempotent-Replay: true`,
+  never charged again; a replayed key creation never repeats the token, a webhook its secret). A retry that arrives
+  while the first call still runs answers 409 `request_in_progress` (`Retry-After: 3`). Over MCP, pass
+  `idempotency_key` in the tool arguments. Details in `references/developers.md`.
 - `webhook_endpoints` (Free 0, Starter 2, Plus 5, Pro 10) caps `POST /v1/webhooks`.

@@ -44,7 +44,8 @@ external fill. Use the event cursor to resume processing and check `expires_at`,
 - `intervals` are seconds per agent (≥ 30; fundamental ≥ 1800; ≤ 86400, out-of-range values are clamped). Without them the account's saved defaults apply.
 - `ai_position_control` (default true): the decision agent opens, moves and closes a paper position; `position.changed`
   events follow. `webhook` here is the engine's own per-autopilot notification channel (HMAC-signed
-  `X-SimianX-Signature: sha256=…` over `"<ts>.<body>"` when `secret` is set); account-wide webhooks that carry every
+  `X-SimianX-Signature: sha256=<hex>`, the HMAC-SHA256 of `"<ts>.<raw body>"` with `ts` from the `X-SimianX-Timestamp`
+  header, when `secret` is set); account-wide webhooks that carry every
   update of every run are `POST /v1/webhooks` (`references/developers.md`).
 - `timing_gate` (crypto, default false): while the autopilot holds no position and no resting order, our timing-gate
   model scores each decision candle before the indicator and decision agents run. Gated timeframes are the ones the
@@ -59,7 +60,13 @@ external fill. Use the event cursor to resume processing and check `expires_at`,
   A manual `run` goes through the gate too; breaking-news decisions are not gated.
 - Answer: `data.autopilot` (id, session_id, status, models, intervals…), `data.cursor` (start reading events here), `data.events_url`,
   `data.next_step` (keep following). Ask the human before starting one that manages a paper position.
-- Limits: running autopilots per plan (Free 1, Starter 2, Plus 3, Pro 10) and `ai_concurrency`; 429 `autopilot_limit` / `ai_concurrency` when full.
+- Limits: running autopilots per plan (Free 0: 403 `plan_required`, Starter 2, Plus 3, Pro 10); all in use: 409
+  `autopilot_limit` (stop one first; waiting does not free a slot); `ai_concurrency` 429 when analyses are running.
+- Send an `Idempotency-Key` (MCP: `idempotency_key`) so a retry after a timeout returns this autopilot instead of
+  starting a second one.
+- Stopping or archiving ends the analysis, not the paper book: an open position keeps its stop and target and a
+  resting order can still fill. To be flat, `close` and `cancel_order` first (actions below); archive is undone by
+  `POST /v1/autopilots/{id}/start`.
 
 ## Read the event log
 
@@ -112,7 +119,7 @@ the stop-loss / take-profit monitor, and lands in the event log (`position.chang
 Every answer carries `data.position`, `data.pending_order`, `data.capital` (`initial`, `realized_pnl`, `occupied`,
 `available`) and `data.cursor`. `open`, `add`, `place_order` and `set_timeframe` need a running autopilot (409
 `autopilot_not_running`); closing, reducing, moving levels and cancelling work on a stopped one too. Stocks: intraday
-timeframes (`1m 15m 1H`) can only enter while the US market is open, pre- or post-market included (409 `market_closed`
+timeframes (`1H`) can only enter while the US market is open, pre- or post-market included (409 `market_closed`
 with `data.next_open_et`); `1D 1W 1mo` autopilots hold their bracket overnight and can enter any time at the last
 price. One action runs at a time per autopilot (409 `state_conflict`, retry in a moment). With
 `ai_position_control: true` the decision agent may later move or close what you opened; set it to `false` if the

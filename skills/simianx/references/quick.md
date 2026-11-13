@@ -51,4 +51,4 @@ outside the catalogue for that market is refused with 400 and `data.allowed`. Fr
 ## The old path
 
 `POST /v1/analysis/live` and `GET /v1/analysis/live/{id}` (skills ≤ 1.0.5) still answer the same run, with
-`Deprecation`, `Sunset: 2026-12-01` and `Link: …; rel="successor-version"` headers. Use `/v1/analysis/quick`.
+`Deprecation`, `Sunset: 2027-06-01` and `Link: …; rel="successor-version"` headers. Use `/v1/analysis/quick`.

@@ -48,7 +48,7 @@ in `data` have a fixed meaning, `_pending` and `_skill_update` (see Rules). Ever
   and gaps, plus news events, crypto and stocks, severity 1–4. `references/data.md`.
 - **Sector Watch**: primary-source catalysts per sector: calendar (PDUFA dates, advisory committees, trial readouts),
   events with severity 1–4 and direction, constituents, drug assets, follows. Live sector: biopharma. `references/sectors.md`.
-- **Markets**: US stocks and ETFs (13,000+ instruments, timeframes `1m 15m 1H 1D 1W 1mo`) and crypto (4,000+ pairs,
+- **Markets**: US stocks and ETFs (13,000+ instruments, timeframes `1H 1D 1W 1mo`) and crypto (4,000+ pairs,
   spot and USDT/USD perpetuals, a bare `BTC` means the perpetual; timeframes `1m 5m 15m 1H 4H 1D`).
 - **Models**: every analysis runs on the user's saved setup (`GET /v1/settings`: per market, each agent's model,
   the timeframe and run intervals; the website shows the same). Paid plans pick from 50+ models (`GET /v1/models`).
@@ -178,7 +178,7 @@ others are bookkeeping. `references/following.md` has the full semantics and the
 |---|---|---|---|---|---|
 | Deep research | `GET /v1/updates?ack=…&wait=30` (or `GET /v1/analysis/deep/{id}/events?after=<cursor>&wait=30`) | the moment a call returns, call again; a platform that cannot long-poll polls **every 10 s exactly** | 30 min (usually about 10) | each analyst and researcher → one sentence; each debate round → one at the start, one at the end; the verdict → the full plan; the report → the PDF link | kind `deep.report` after `deep.verdict`; or `deep.stopped` / `deep.error`; `deep.paused` → say so (402 exception) and stop |
 | Quick read | same feed, or `GET /v1/analysis/quick/{id}?wait=30` | same | 10 min (usually 1–2) | fundamentals / technicals / news flow → one sentence each; decision → full plan + next candle close + the exchange/broker question | run `done` / `partial` / `failed` |
-| Live session | the WebSocket frames; `GET /v1/updates` to catch up after a cut | WebSocket: as frames arrive; HTTP fallback **every 10 s exactly** | until the user stops it or the session ends | same as quick read, at every candle close, plus `next_run` | `session_end` |
+| Live session | the WebSocket frames (the session runs only while the socket is open; over MCP use a quick read or an autopilot); `GET /v1/updates` to catch up after a cut | as frames arrive | until the user stops it or the session ends | same as quick read, at every candle close, plus `next_run` | `session_end` |
 | Autopilot | `GET /v1/updates?ack=…&wait=30` (or `/v1/autopilots/{id}/events?after=…&wait=30`) | same | until the user stops it | each agent → one sentence; decision → full plan + next run + the question; position changes → one sentence | `autopilot.stopped` / `autopilot.paused` |
 | News watch | `GET /v1/updates?ack=…&wait=30` | same | until the user stops it | each `news` row → the `say` line (+ its `ask` on high value) | the watch is deleted |
 
