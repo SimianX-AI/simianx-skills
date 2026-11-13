@@ -38,6 +38,8 @@ GET /v1/news/watches                 → the key's watches (symbols, when the la
 DELETE /v1/news/watches/{id}         → stop (when the user asks)
 ```
 
+`language` is the language of the user who asked: `"zh-CN"` for "帮我盯 NVDA 的新闻", `"en"` for the English request.
+
 - `min_value` (default `medium`): `low` / `medium` / `high`. `sentiment` filters one side. `symbols: []` = global
   stories only. `include_pulse` is accepted and stored for a coming release; today a watch delivers news only.
 - `quiet_hours`: inside the window only `high` stories pass.
