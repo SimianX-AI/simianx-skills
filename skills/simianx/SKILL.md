@@ -134,9 +134,11 @@ in `data` have a fixed meaning, `_pending` and `_skill_update` (see Rules). Ever
     (`"deep": {"models": {"<seat>": "<id>"}}` for the research committee); the website shows the change too;
   - this run only: `"models": {"decision": "<id>"}` in the call;
   - a running autopilot or live session: `PATCH /v1/autopilots/{id}` / `PATCH /v1/live/sessions/{id}` with `models`.
-  Ids: `GET /v1/models`. "Which models am I on?": `GET /v1/settings`. Changing models needs a paid plan: on a free
-  account say in one line that the free plan runs `gpt-6-luna` and keep going (a change answers 403
-  `plan_required`); an unknown id is 400 with the allowed list. There are no tiers.
+  Supported models: `GET /v1/models` (public; each with `available_for` and `min_plan`: `gpt-6-luna` is `free`, the
+  rest `starter`, so Starter and above pick any listed model). "Which models am I on?": `GET /v1/settings`
+  (`models_editable` says whether this account can change them). On a free account, say in one line that the free
+  plan runs `gpt-6-luna` and keep going (a change answers 403 `plan_required`); an unknown id is 400 with the allowed
+  list. There are no tiers.
 - **History.** Every run keeps what it ran on, so you can always answer "what did it use / what happened":
   `GET /v1/analysis/quick` (quick reads, newest first, with `models`, `timeframe`, results), `GET /v1/analysis/deep`
   (deep runs; `GET /v1/analysis/deep/{id}` has `models` and the verdict), `GET /v1/live/sessions` (sessions with their
