@@ -2,7 +2,7 @@
 # Start a deep analysis on NVDA and follow it step by step (each event carries a `say` line for the user).
 API=${SIMIANX_API:-https://service.simianx.ai}
 H1="Authorization: Bearer $SIMIANX_API_KEY"; H2="Content-Type: application/json"
-ID=$(curl -s "$API/v1/analysis/deep" -H "$H1" -H "$H2" -d '{"asset":"stock","symbol":"NVDA","horizon":"swing","tier":"fast"}' | python3 -c 'import json,sys; print(json.load(sys.stdin)["data"]["id"])')
+ID=$(curl -s "$API/v1/analysis/deep" -H "$H1" -H "$H2" -d '{"asset":"stock","symbol":"NVDA","horizon":"swing"}' | python3 -c 'import json,sys; print(json.load(sys.stdin)["data"]["id"])')
 echo "deep $ID"
 CURSOR=0
 while true; do

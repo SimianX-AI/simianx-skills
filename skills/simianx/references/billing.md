@@ -9,7 +9,7 @@ ran out and give the links. Code clients read everything here from the headers a
 
 - The account has one balance: the points of its plan (Free 25 a day; Starter, Plus and Pro monthly). Keys spend from it.
 - `GET /v1/models` lists every model with its price in points per million tokens and the typical points of one call per
-  live agent; `GET /v1/pricing` has the per-tier typical cost of a whole cycle or run.
+  live agent; `POST /v1/analysis/quote` gives the cost of a whole cycle or run on the user's own models.
 - Flat endpoints charge per request (see `GET /v1/pricing`, `endpoints[].points`). AI endpoints are metered on the models
   actually used, like the web app; `pricing.typical` and `POST /v1/analysis/quote` give code clients the usual cost.
 - Streams charge per connection hour, counted by the minute.

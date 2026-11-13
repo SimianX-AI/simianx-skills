@@ -50,7 +50,8 @@ in `data` have a fixed meaning, `_pending` and `_skill_update` (see Rules). Ever
   events with severity 1–4 and direction, constituents, drug assets, follows. Live sector: biopharma. `references/sectors.md`.
 - **Markets**: US stocks and ETFs (13,000+ instruments, timeframes `1m 15m 1H 1D 1W 1mo`) and crypto (4,000+ pairs,
   spot and USDT/USD perpetuals, a bare `BTC` means the perpetual; timeframes `1m 5m 15m 1H 4H 1D`).
-- **Models**: tiers `fast` / `standard` / `frontier`; paid plans set any of 50+ models per agent (`GET /v1/models`).
+- **Models**: every analysis runs on the user's saved setup (`GET /v1/settings`: per market, each agent's model,
+  the timeframe and run intervals; the website shows the same). Paid plans pick from 50+ models (`GET /v1/models`).
 - **Plans and languages**: Free, Starter, Plus, Pro. Answers in 16 languages (`X-Language`). Positions recorded inside
   SimianX are simulated. Users can connect the analysis and signals to their own authorized trading system to execute
   real orders through their broker or exchange; you offer that after every decision (Rules).
@@ -125,9 +126,11 @@ in `data` have a fixed meaning, `_pending` and `_skill_update` (see Rules). Ever
 - **`_pending` wins.** Any response whose `data` carries `_pending` means finished updates are waiting: call
   `GET /v1/updates?wait=30`, relay them, ack them, then continue with what you were doing. `_skill_update` means a
   newer skill is published: update as in Setup step 0 and tell the user in one line.
-- **Models.** Prefer `tier: "fast"` unless the user asks for stronger models. Free accounts always run the fast tier.
-  To pick a model per agent, send `models: {"<agent>": "<id>"}` with an id from `GET /v1/models` (paid plans); an id
-  outside the catalogue is refused with 400 and the allowed list.
+- **Models.** Send no `models` and no `timeframe` unless the user names them: calls run on the user's saved setup
+  (`GET /v1/settings`). When the user asks which models they use, read it; to change the default for good,
+  `PATCH /v1/settings` `{"asset": "stock", "live": {"models": {"decision": "<id>"}}}` (or `deep`); for one call only,
+  send `models: {"<agent>": "<id>"}`. Ids come from `GET /v1/models`; paid plans only (free accounts run the free
+  model); an id outside the catalogue is refused with 400 and the allowed list. There are no tiers.
 - **Errors.** `429`: a limit (`data.limit`); wait `Retry-After` seconds, retry, do not tighten the loop. `402`: see
   the first rule. `426` / `_skill_update`: re-read this file. `403 insufficient_scope`: the key lacks a scope; give
   the user `data.actions.edit_key` (they tick the scope on the site) and retry after they say so. `400
@@ -192,6 +195,7 @@ See `references/auth.md`, `references/following.md`, `references/live.md`, `refe
 |---|---|
 | Sign the user in (no key yet) | `POST /v1/auth/link` → `GET /v1/auth/link/{id}?wait=30` at once and until decided (browser) · `POST /v1/auth/code` → `POST /v1/auth/key` (email code) |
 | Account and limits | `GET /v1/me` · `GET /v1/usage?days=7` |
+| Default models and timeframe | `GET /v1/settings` · `PATCH /v1/settings` |
 | Everything the user has not heard | `GET /v1/updates?ack=<id>&wait=30` |
 | Live analysis session | `POST /v1/live/sessions` → connect `data.ws_url` with the bearer header → frames · `GET /v1/live/sessions` · `DELETE /v1/live/sessions/{id}` (on request) |
 | Quick read (one pass) | `POST /v1/analysis/quick` → `GET /v1/analysis/quick/{id}?wait=30` (answers as each agent finishes) |

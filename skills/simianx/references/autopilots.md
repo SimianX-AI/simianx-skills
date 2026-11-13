@@ -28,7 +28,7 @@ external fill. Use the event cursor to resume processing and check `expires_at`,
 `POST /v1/autopilots` (scope `automation:manage`, metered: each analysis cycle costs the models it uses; `typical_points_per_cycle` in the answer)
 
 ```json
-{"asset": "crypto", "symbol": "BTC", "timeframe": "15m", "tier": "fast",
+{"asset": "crypto", "symbol": "BTC",
  "agents": ["indicator", "intelligence", "fundamental", "decision"],
  "intervals": {"indicator": 900, "decision": 900},
  "ai_position_control": true, "timing_gate": false,
@@ -37,10 +37,10 @@ external fill. Use the event cursor to resume processing and check `expires_at`,
 ```
 
 - `asset`: `crypto` or `stock`; `symbol`: `BTC`, `BTC-USDT-SWAP`, `NVDA`.
-- `timeframe`: crypto `1m 5m 15m 1H 4H 1D`; stock `1m 15m 1H 1D 1W 1mo`.
-- `tier` picks a model per agent (`fast | standard | frontier`); `models` `{agent: model_id}` overrides per agent (paid
-  plans; ids from `GET /v1/models`, `live.crypto` / `live.stock` lists; an unknown id is 400 `invalid_parameter` with
-  `data.allowed`). `PATCH /v1/autopilots/{id}` with `models` or `tier` changes them for the next cycles.
+- `timeframe`: crypto `1m 5m 15m 1H 4H 1D`; stock `1H 1D 1W 1mo`. Default: the saved one (`GET /v1/settings`).
+- Models: the user's saved setup (`GET /v1/settings`); `models` `{agent: model_id}` overrides per agent for this autopilot
+  (paid plans; ids from `GET /v1/models`, `live.crypto` / `live.stock` lists; an unknown id is 400 `invalid_parameter` with
+  `data.allowed`). `PATCH /v1/autopilots/{id}` with `models` changes them for the next cycles.
 - `intervals` are seconds per agent (≥ 30; fundamental ≥ 1800; ≤ 86400, out-of-range values are clamped). Without them the account's saved defaults apply.
 - `ai_position_control` (default true): the decision agent opens, moves and closes a paper position; `position.changed`
   events follow. `webhook` here is the engine's own per-autopilot notification channel (HMAC-signed
@@ -136,7 +136,7 @@ decision agents answer `analysis.completed` with `skipped: timing_gate` on a can
 ## Control
 
 - `GET /v1/autopilots` (`?status=running`, `?archived=1`), `GET /v1/autopilots/{id}`
-- `PATCH /v1/autopilots/{id}` with any of `timeframe`, `tier` / `models`, `intervals`, `timing_gate`, `language`, `ai_position_control`.
+- `PATCH /v1/autopilots/{id}` with any of `timeframe`, `models`, `intervals`, `timing_gate`, `language`, `ai_position_control`.
   `timeframe` behaves like the `set_timeframe` action (closes the book first); `ai_position_control: false` cancels the
   resting order and closes the open position (`close_reason: user_disabled`, no notification, still in the event log).
 - `POST /v1/autopilots/{id}/stop`, `POST /v1/autopilots/{id}/start` (restart, same checks as create), `DELETE /v1/autopilots/{id}` (on request) (archive; must be stopped)

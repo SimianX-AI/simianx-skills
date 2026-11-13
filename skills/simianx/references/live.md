@@ -16,7 +16,7 @@ An autopilot is the same engine running server side without you (`references/aut
 `POST /v1/live/sessions` (scope `analysis:run`, metered per analysis like the website)
 
 ```json
-{"asset": "crypto", "symbol": "BTC", "timeframe": "15m", "tier": "fast",
+{"asset": "crypto", "symbol": "BTC",
  "agents": ["indicator", "intelligence", "fundamental", "decision"], "language": "en"}
 ```
 
@@ -29,7 +29,7 @@ An autopilot is the same engine running server side without you (`references/aut
           "next_step": "Connect ws_url with the bearer header and stay connected; relay each frame …"}}
 ```
 
-- `asset`, `symbol`, `timeframe`, `tier`, `models`, `agents`, `language`: as for a quick read.
+- `asset`, `symbol`, `timeframe`, `models`, `agents`, `language`: as for a quick read (models and timeframe default to the saved setup).
 - `status` is `waiting` until the socket connects, `running` while it is connected (or within the grace window),
   `ended` afterwards (`ended_reason`: `stopped`, `agent_left`, `error`).
 - `GET /v1/live/sessions` lists the key's sessions (`?status=running`), `GET /v1/live/sessions/{id}` one of them,
