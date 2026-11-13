@@ -126,18 +126,17 @@ in `data` have a fixed meaning, `_pending` and `_skill_update` (see Rules). Ever
 - **`_pending` wins.** Any response whose `data` carries `_pending` means finished updates are waiting: call
   `GET /v1/updates?wait=30`, relay them, ack them, then continue with what you were doing. `_skill_update` means a
   newer skill is published: update as in Setup step 0 and tell the user in one line.
-- **Models and timeframe: the website's rules.** The user has one setup per market, the same one the website shows
-  and uses: each live agent's model, the timeframe and run intervals, and the deep committee's model per seat
-  (default `gpt-6-luna` everywhere until they pick others). Every analysis you start runs on it, so send no `models`
-  and no `timeframe` unless the user names them. You may read and change it at any time, as often as needed:
-  - see it: `GET /v1/settings` (when the user asks which models or timeframe they use, or before quoting a cost);
-  - change it for good: `PATCH /v1/settings` `{"asset": "stock", "live": {"models": {"decision": "<id>"}}}` (or
-    `"deep": {"models": {...}}`, one committee for both markets); the website shows the change at once;
-  - one run only: `models: {"<agent>": "<id>"}` in that call; the saved setup stays as it is;
-  - while it runs: `PATCH /v1/autopilots/{id}` or `PATCH /v1/live/sessions/{id}` with `models` (the next analysis
-    uses them), as the website's model picker does.
-  Ids come from `GET /v1/models`; changing models needs a paid plan (free accounts run `gpt-6-luna`, 403
-  `plan_required` on a change); an id outside the catalogue is 400 with the allowed list. There are no tiers.
+- **Models: never a step before running.** Do not ask the user to pick models or a timeframe, and do not look them
+  up first: start the analysis. Every run uses the user's own setup, the same one the website uses (default
+  `gpt-6-luna` until they pick others); send `models` / `timeframe` only when the user names them. When the user wants
+  other models, change them in one call and carry on:
+  - from now on: `PATCH /v1/settings` `{"asset": "crypto", "live": {"models": {"decision": "<id>"}}}`
+    (`"deep": {"models": {"<seat>": "<id>"}}` for the research committee); the website shows the change too;
+  - this run only: `"models": {"decision": "<id>"}` in the call;
+  - a running autopilot or live session: `PATCH /v1/autopilots/{id}` / `PATCH /v1/live/sessions/{id}` with `models`.
+  Ids: `GET /v1/models`. "Which models am I on?": `GET /v1/settings`. Changing models needs a paid plan: on a free
+  account say in one line that the free plan runs `gpt-6-luna` and keep going (a change answers 403
+  `plan_required`); an unknown id is 400 with the allowed list. There are no tiers.
 - **History.** Every run keeps what it ran on, so you can always answer "what did it use / what happened":
   `GET /v1/analysis/quick` (quick reads, newest first, with `models`, `timeframe`, results), `GET /v1/analysis/deep`
   (deep runs; `GET /v1/analysis/deep/{id}` has `models` and the verdict), `GET /v1/live/sessions` (sessions with their
