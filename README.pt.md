@@ -130,7 +130,7 @@ URL base `https://service.simianx.ai/v1`, cabeçalho `Authorization: Bearer $SIM
 
 Free, Starter, Plus e Pro (veja os [preços](https://www.simianx.ai/pricing)). As chamadas do agente usam os pontos do seu plano, com as mesmas tarifas do site. O fluxo de notícias é em tempo real no Plus e no Pro; abaixo do Plus, as notícias chegam com 30 minutos de atraso. A API responde em 16 idiomas.
 
-Você pode conectar as análises e os sinais da API da SimianX ao seu próprio sistema de negociação e enviar ordens reais por uma corretora ou exchange que você autorize. As posições registradas dentro da SimianX são simuladas; sua integração envia e gerencia as ordens reais na sua própria conta.
+A SimianX é pesquisa e negociação simulada: não envia ordens reais e não tem acesso a contas de corretoras, exchanges ou bancos. As posições registradas na SimianX são simuladas.
 
 ## Segurança
 

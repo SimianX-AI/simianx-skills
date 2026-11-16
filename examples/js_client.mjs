@@ -1,11 +1,11 @@
 // Minimal SimianX client for code (Node 18+): start a live analysis session, read frames over the WebSocket, ack each
-// one, hand decisions to your own order code, catch up from the updates feed after a cut.
+// one, hand each decision to your own code, catch up from the updates feed after a cut.
 //
 //   npm i ws
 //   SIMIANX_API_KEY=simx_live_... node js_client.mjs BTC 15m
 //
-// SimianX supplies the analysis; placeOrder() is where your broker or exchange integration goes. Positions recorded
-// inside SimianX are simulated.
+// SimianX supplies the analysis; handleDecision() is where your own code shows or stores it. SimianX places no real
+// orders, and positions recorded inside SimianX are simulated.
 import WebSocket from "ws";
 import { randomUUID } from "node:crypto";
 
@@ -13,8 +13,8 @@ const API = process.env.SIMIANX_API ?? "https://service.simianx.ai";
 const KEY = process.env.SIMIANX_API_KEY;
 const H = { Authorization: `Bearer ${KEY}`, "X-SimianX-Skill": "1.0.11", "Content-Type": "application/json" };
 
-function placeOrder(decision) {
-  console.log("DECISION", JSON.stringify(decision, null, 2)); // your execution code
+function handleDecision(decision) {
+  console.log("DECISION", JSON.stringify(decision, null, 2)); // your code
 }
 
 async function startSession(symbol, timeframe) {
@@ -33,7 +33,7 @@ async function catchUp(ack) {
   for (const u of data.updates) {
     if (u.notify_user) {
       console.log(u.kind, u.say);
-      if (u.kind === "decision") placeOrder(u.data);
+      if (u.kind === "decision") handleDecision(u.data);
     }
     ack = u.id;
   }
@@ -52,7 +52,7 @@ function follow(wsUrl, ack = 0, attempt = 0) {
       const f = JSON.parse(raw);
       if (!f.notify_user) return; // heartbeat / tick / ack
       console.log(f.kind, f.say, f.next_run_at ?? "");
-      if (f.kind === "decision") placeOrder(f.data);
+      if (f.kind === "decision") handleDecision(f.data);
       ack = f.id;
       ws.send(JSON.stringify({ ack }));
       if (f.kind === "session_end") { done = true; ws.close(); resolve(null); }

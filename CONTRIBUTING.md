@@ -7,9 +7,10 @@ Thanks for helping agents use SimianX well. This repository holds instructions, 
   command-first. SKILL.md stays under 500 lines and its `description` under 1024 characters; put detail in
   `references/`, one level deep. Prices and limits must match `GET /v1/pricing` and `GET /v1/me`; when the API
   changes, the backend change and this repository ship together. Say "points", never "credits"; name no data vendors.
-- **Execution wording**: users can connect API analysis/signals to their own authorized trading system for real
-  orders through their broker or exchange. Positions and position-action tools inside SimianX are simulated.
-  Keep this distinction consistent with the frontend skill copies and backend discovery descriptions.
+- **Execution wording**: SimianX is research and simulated trading. It places no real orders and has no access to
+  exchange, broker or bank accounts; positions and position-action tools inside SimianX are simulated. The skill
+  never asks an agent to place or route orders. Keep this consistent with the frontend skill copies and the backend
+  discovery descriptions (MCP instructions, A2A card, OpenAPI).
 - **READMEs**: `README.md` is English and canonical. Any change to it is applied to all 15 `README.<locale>.md` in the
   same pull request; `python3 scripts/check_readmes.py` must pass (same logo block, navigation line, URLs and code
   blocks). The install sentence stays in English in every language, agents read it.

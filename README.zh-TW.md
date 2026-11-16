@@ -130,7 +130,7 @@ Base URL 是 `https://service.simianx.ai/v1`，請求標頭帶上 `Authorization
 
 Free、Starter、Plus 和 Pro，詳見[價格](https://www.simianx.ai/pricing)。代理發出的呼叫用的是你方案裡的點數，費率和網站相同。Plus 和 Pro 的新聞串流是即時的，Plus 以下的新聞會延遲 30 分鐘。回答支援 16 種語言。
 
-你可以透過 SimianX API 將分析和訊號串接至自己的交易系統，在你授權的券商或交易所執行真實交易。SimianX 平台內記錄的部位是模擬部位；真實委託由你串接的系統在自己的帳戶中送出和管理。
+SimianX 提供研究和模擬交易：不會下真實委託，也無法存取任何交易所、券商或銀行帳戶。SimianX 平台內記錄的部位是模擬部位。
 
 ## 安全性
 

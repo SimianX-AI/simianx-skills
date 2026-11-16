@@ -130,7 +130,7 @@ Base URL là `https://service.simianx.ai/v1`, header `Authorization: Bearer $SIM
 
 Free, Starter, Plus và Pro, xem [bảng giá](https://www.simianx.ai/pricing). Lệnh gọi từ agent dùng điểm trong gói của bạn, theo cùng đơn giá như trên website. Luồng tin tức là thời gian thực trên Plus và Pro; dưới Plus, tin tức chậm 30 phút. Câu trả lời có sẵn bằng 16 ngôn ngữ.
 
-Bạn có thể kết nối phân tích và tín hiệu từ API SimianX với hệ thống giao dịch của mình để đặt lệnh thật qua công ty chứng khoán hoặc sàn giao dịch mà bạn cho phép. Các vị thế được ghi nhận trong SimianX là giả lập; hệ thống bạn tích hợp sẽ gửi và quản lý lệnh thật trên tài khoản của bạn.
+SimianX là nghiên cứu và giao dịch mô phỏng: không đặt lệnh thật và không có quyền truy cập bất kỳ tài khoản sàn, công ty chứng khoán hay ngân hàng nào. Các vị thế ghi nhận trong SimianX là mô phỏng.
 
 ## Bảo mật
 

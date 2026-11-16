@@ -130,7 +130,7 @@ Base URL 是 `https://service.simianx.ai/v1`，请求头带 `Authorization: Bear
 
 Free、Starter、Plus 和 Pro，详见[价格](https://www.simianx.ai/pricing)。智能体调用用的是你套餐里的点数，费率和网站上一样。新闻流在 Plus 和 Pro 上是实时的，Plus 以下的新闻会晚 30 分钟。回答支持 16 种语言。
 
-你可以通过 SimianX API 将分析和信号接入自己的交易系统，在你授权的券商或交易所执行真实交易。SimianX 平台内记录的仓位是模拟仓位；真实订单由你接入的系统在自己的账户中提交和管理。
+SimianX 提供研究和模拟交易：不会下真实订单，也无法访问任何交易所、券商或银行账户。SimianX 平台内记录的仓位是模拟仓位。
 
 ## 安全
 

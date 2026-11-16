@@ -130,7 +130,7 @@ Base URL `https://service.simianx.ai/v1`, header `Authorization: Bearer $SIMIANX
 
 Free, Starter, Plus and Pro, see [pricing](https://www.simianx.ai/pricing). Agent calls use your plan's points at the same rates as the website. The news stream is live on Plus and Pro; below Plus, news runs 30 minutes behind. Answers come in 16 languages.
 
-You can use SimianX's API to connect its analysis and signals to your own trading system and place real orders through a broker or exchange you authorize. Positions recorded inside SimianX are simulated; your integration submits and manages real orders in your own account.
+SimianX is research and simulated trading: it places no real orders and has no access to any exchange, broker or bank account. Positions recorded inside SimianX are simulated.
 
 ## Security
 

@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 """Minimal SimianX client for code: start a live analysis session, read its frames over the WebSocket, ack each one,
-hand decisions to your own order code, and fall back to the updates feed after a cut.
+hand each decision to your own code, and fall back to the updates feed after a cut.
 
     pip install requests websockets
     export SIMIANX_API_KEY=simx_live_...
     python3 python_client.py BTC 15m
 
-SimianX supplies the analysis; `place_order()` is where your broker or exchange integration goes. Positions recorded
-inside SimianX are simulated."""
+SimianX supplies the analysis; `handle_decision()` is where your own code shows or stores it. SimianX places no real
+orders, and positions recorded inside SimianX are simulated."""
 import asyncio
 import json
 import os
@@ -22,8 +22,8 @@ KEY = os.environ["SIMIANX_API_KEY"]
 H = {"Authorization": f"Bearer {KEY}", "X-SimianX-Skill": "1.0.11", "Content-Type": "application/json"}
 
 
-def place_order(decision: dict) -> None:
-    """Your execution code. `decision` is the stable `data` of a decision update."""
+def handle_decision(decision: dict) -> None:
+    """Your code. `decision` is the stable `data` of a decision update."""
     print("DECISION", json.dumps(decision, indent=2))
 
 
@@ -42,7 +42,7 @@ def catch_up(ack: int) -> int:
         if u["notify_user"]:
             print(u["kind"], u["say"])
             if u["kind"] == "decision":
-                place_order(u["data"])
+                handle_decision(u["data"])
         ack = u["id"]
     return ack
 
@@ -71,7 +71,7 @@ async def follow(ws_url: str) -> None:
                         continue  # heartbeat / tick / ack
                     print(f["kind"], f.get("say"), f.get("next_run_at") or "")
                     if f["kind"] == "decision":
-                        place_order(f["data"])
+                        handle_decision(f["data"])
                     ack = f["id"]
                     await ws.send(json.dumps({"ack": ack}))
                     if f["kind"] == "session_end":

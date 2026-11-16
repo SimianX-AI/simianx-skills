@@ -78,9 +78,9 @@ def verify(secret: str, header: str, body: str, tolerance: int = 300) -> bool:
 `examples/webhook_verify.py` is the same function as a script; `examples/python_client.py` and
 `examples/js_client.mjs` are complete minimal clients.
 
-## The decision, for an execution system
+## The decision, for code
 
-A `decision` update's `data` is what a broker or exchange integration reads (never the `say` text):
+A `decision` update's `data` is what code reads (never the `say` text):
 
 | field | meaning |
 |---|---|
@@ -126,8 +126,7 @@ async def follow():
             if not f.get("notify_user"):
                 continue                      # heartbeat / tick
             if f["kind"] == "decision":
-                handle_decision(f["data"])    # your code: show it; orders only through your own broker
-                                              # integration, after the user confirms each one
+                handle_decision(f["data"])    # your code: show it to the user
             await ws.send(json.dumps({"ack": f["id"]}))
             if f["kind"] == "session_end":
                 break
@@ -150,8 +149,7 @@ const ws = new WebSocket(s.ws_url, { headers: { Authorization: H.Authorization }
 ws.on("message", (raw) => {
   const f = JSON.parse(raw);
   if (!f.notify_user) return;                        // heartbeat / tick
-  if (f.kind === "decision") handleDecision(f.data); // your code: show it; orders only through your own
-                                                     // broker integration, after the user confirms each one
+  if (f.kind === "decision") handleDecision(f.data); // your code: show it to the user
   ws.send(JSON.stringify({ ack: f.id }));
   if (f.kind === "session_end") ws.close();
 });

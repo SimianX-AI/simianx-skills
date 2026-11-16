@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """SimianX autopilot runner: long-polls an autopilot's event log and runs a command on every position change.
 
-AI agents are not daemons; this is the small always-on loop between the SimianX event log and your broker,
-exchange, notifier or a `claude -p` call. It keeps its cursor on disk, never acts on an expired event, enforces a
+AI agents are not daemons; this is the small always-on loop between the SimianX event log and your own
+notifier, webhook or a `claude -p` call (SimianX positions are simulated; SimianX places no real orders). It keeps its cursor on disk, never acts on an expired event, enforces a
 per-trade and a daily loss cap, and stops when the autopilot pauses for budget or is stopped.
 
     export SIMIANX_API_KEY=simx_live_...
-    python3 runner.py --autopilot <id> --exec './trade.sh {operation} {side} {symbol} {quantity} {price}'
+    python3 runner.py --autopilot <id> --exec './notify.sh {operation} {side} {symbol} {quantity} {price}'
     python3 runner.py --autopilot <id> --webhook https://example.com/hook --max-trade-usd 500 --daily-loss-usd 200
 
 Standard library only. Exit codes: 0 stopped cleanly, 2 autopilot stopped or paused for budget, 3 auth/plan error,

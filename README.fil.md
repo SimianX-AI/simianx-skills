@@ -130,7 +130,7 @@ Base URL `https://service.simianx.ai/v1`, header `Authorization: Bearer $SIMIANX
 
 Free, Starter, Plus at Pro ang mga plan. Nasa pahina ng [presyo](https://www.simianx.ai/pricing) ang detalye. Ginagamit ng mga tawag ng agent ang puntos ng plan mo, sa parehong rate ng website. Live ang news stream sa Plus at Pro. Sa ibaba ng Plus, 30 minutong huli ang balita. Sumasagot ito sa 16 na wika.
 
-Maaari mong ikonekta ang pagsusuri at mga signal mula sa SimianX API sa sarili mong trading system para magpadala ng tunay na order sa broker o exchange na pinahintulutan mo. Simulado ang mga posisyong nakatala sa SimianX; ang sarili mong integration ang nagpapadala at namamahala sa tunay na order sa iyong account.
+Ang SimianX ay pananaliksik at simulated na trading: hindi ito nagpapadala ng tunay na order at walang access sa anumang account sa exchange, broker o bangko. Simulated ang mga posisyong nakatala sa loob ng SimianX.
 
 ## Seguridad
 

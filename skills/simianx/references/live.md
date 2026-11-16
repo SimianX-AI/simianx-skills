@@ -5,8 +5,8 @@ timeframe and runs them **at every candle close, for as long as you stay connect
 analysis room on the website. Each agent's result and each decision reach you the moment they land, as updates with
 a `say` sentence; a `next_run` update tells you when the next analysis is. When the user asks for a symbol to be
 watched live ("watch BTC on the 15m", "keep analysing NVDA", "盯着 BTC"), this is what you start; if the symbol or the
-timeframe is unclear, ask first. No position is opened: the decision is analysis, and after
-each one you ask whether to connect the user's exchange or broker to act on it.
+timeframe is unclear, ask first. No position is opened: the decision is analysis, which you
+relay in full.
 
 An autopilot is the same engine running server side without you (`references/autopilots.md`); a quick read is one pass
 (`references/quick.md`).
@@ -63,7 +63,7 @@ A reconnect needs no cursor: the session's unacked frames come first (`data.repl
 | `kind` | `session_start`, `fundamental_done`, `indicator_done`, `intelligence_done`, `decision`, `next_run`, `session_end`, `heartbeat`, `tick` |
 | `notify_user` | `true`: tell the user. `heartbeat` and `tick` are `false`: ignore them |
 | `say` | the sentence to relay, in the request language |
-| `ask` | a question for the user; a `decision` always carries the exchange / broker question |
+| `ask` | a question for the user when there is one (a high-value news item offers a quick read); empty otherwise |
 | `data` | the structured fields (`references/developers.md`) |
 | `next_run_at` | when the next analysis runs: say it in the user's time zone |
 
@@ -109,8 +109,7 @@ open for presence. `scripts/follow_run.py live <id>` is the HTTP fallback (`refe
 - On start: "Live analysis on BTC (15m) is running at every candle close until you stop it; I will report each agent
   and each decision as they land."
 - On each `*_done`: the `say` line.
-- On `decision`: the full plan, "analysis, not investment advice", the next run time, then the `ask`. If the user
-  declines the exchange / broker connection for this symbol, do not ask again this session.
+- On `decision`: the full plan, "analysis, not investment advice", and the next run time.
 - On `session_end`: the `say` line; if the reason is `agent_left`, offer an autopilot.
 - If the user asks what the session uses: it runs the four agents at every candle close until stopped; `GET /v1/usage`
   has the points so far.

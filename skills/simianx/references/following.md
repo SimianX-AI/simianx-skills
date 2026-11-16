@@ -61,7 +61,7 @@ Semantics:
 | `deep.report` | deep | the PDF link (`data.url`) |
 | `deep.paused`, `deep.stopped`, `deep.error` | deep | say it; `paused` is the points exception (see SKILL.md Rules) |
 | `fundamental_done`, `indicator_done`, `intelligence_done` | quick · live · autopilot | one line each |
-| `decision` | quick · live · autopilot | the full plan + the `ask` (exchange / broker) |
+| `decision` | quick · live · autopilot | the full plan |
 | `next_run` | quick · live · autopilot | when the next analysis runs (`data.when`, ISO; say it in the user's time zone) |
 | `session_start`, `session_end` | live | session running / ended (`data.reason`: `stopped`, `agent_left`) |
 | `autopilot.started`, `autopilot.stopped`, `autopilot.paused` | autopilot | one line |
