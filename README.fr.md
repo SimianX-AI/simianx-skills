@@ -75,7 +75,7 @@ Et quand vous en avez besoin :
 - **Pilotes automatiques.** Les quatre mêmes agents en direct tournent selon un calendrier sur un seul symbole, gèrent une position fictive et tiennent un journal d'événements que votre agent peut suivre. → [Pilotes automatiques](https://www.simianx.ai/autopilots)
 - **Le modèle de votre choix.** Choisissez le modèle de chaque agent, après avoir vu comment chacun a tradé. → [Classement des modèles](https://www.simianx.ai/crypto-leaderboard)
 
-Marchés : plus de 13 000 actions et ETF américains, en bougies de `1m` à `1mo`, et plus de 4 000 paires crypto, spot et perpétuelles, de `1m` à `1D`. → [Analyse des actions](https://www.simianx.ai/c) · [Analyse des crypto-monnaies](https://www.simianx.ai/l)
+Marchés : plus de 13 000 actions et ETF américains, en bougies de `1m` à `1mo`, et plus de 5 600 paires crypto, spot et perpétuelles, de `1m` à `1D`. → [Analyse des actions](https://www.simianx.ai/c) · [Analyse des crypto-monnaies](https://www.simianx.ai/l)
 
 ## Installer en une phrase
 

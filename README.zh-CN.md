@@ -75,7 +75,7 @@
 - **自动驾驶仪。** 还是那四个实时智能体，按计划盯住一个标的，顺手管一笔模拟仓位；每一步都记进事件日志，你的智能体可以一路跟着读。→ [自动驾驶仪](https://www.simianx.ai/autopilots)
 - **模型自己选。** 每个智能体背后用哪个模型由你定，选之前还能先看看各个模型实际交易得怎么样。→ [模型排行榜](https://www.simianx.ai/crypto-leaderboard)
 
-市场：13,000+ 只美股和 ETF，K 线从 `1m` 到 `1mo`；4,000+ 个加密交易对，现货和永续都有，K 线从 `1m` 到 `1D`。→ [股票分析](https://www.simianx.ai/c) · [加密货币分析](https://www.simianx.ai/l)
+市场：13,000+ 只美股和 ETF，K 线从 `1m` 到 `1mo`；5,600+ 个加密交易对，现货和永续都有，K 线从 `1m` 到 `1D`。→ [股票分析](https://www.simianx.ai/c) · [加密货币分析](https://www.simianx.ai/l)
 
 ## 一句话安装
 

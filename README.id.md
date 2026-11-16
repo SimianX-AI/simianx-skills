@@ -75,7 +75,7 @@ Ada juga kalau dibutuhkan:
 - **Pilot otomatis.** Keempat agen analisis langsung tadi, dijalankan terjadwal untuk satu simbol, dengan posisi simulasi dan log peristiwa yang bisa diikuti agen Anda. → [Pilot otomatis](https://www.simianx.ai/autopilots)
 - **Model pilihan Anda.** Tentukan model di balik setiap agen, dan lihat dulu hasil trading masing-masing model sebelum memilih. → [Papan peringkat model](https://www.simianx.ai/crypto-leaderboard)
 
-Pasar: 13.000+ saham dan ETF AS dengan candle `1m` sampai `1mo`, serta 4.000+ pasangan kripto, spot dan perpetual, dengan candle `1m` sampai `1D`. → [Analisis Saham](https://www.simianx.ai/c) · [Analisis Kripto](https://www.simianx.ai/l)
+Pasar: 13.000+ saham dan ETF AS dengan candle `1m` sampai `1mo`, serta 5.600+ pasangan kripto, spot dan perpetual, dengan candle `1m` sampai `1D`. → [Analisis Saham](https://www.simianx.ai/c) · [Analisis Kripto](https://www.simianx.ai/l)
 
 ## Instal dengan satu kalimat
 

@@ -75,7 +75,7 @@ Skill kurulduktan sonra kendi cümlelerinizle sorun:
 - **Otopilotlar.** Aynı dört canlı ajan tek bir sembolde, belirlenen bir zamanlamayla çalışır; sanal bir pozisyonu yönetir ve ajanınızın takip edebileceği bir olay günlüğü tutar. → [Otopilotlar](https://www.simianx.ai/autopilots)
 - **Modeli siz seçin.** Her ajanın arkasındaki modeli belirleyin; karar vermeden önce her modelin bugüne kadar nasıl işlem yaptığına bakın. → [Model lider tablosu](https://www.simianx.ai/crypto-leaderboard)
 
-Piyasalar: `1m` ile `1mo` arası mumlarla 13.000'den fazla ABD hissesi ve ETF, `1m` ile `1D` arası mumlarla spot ve vadesiz 4.000'den fazla kripto paritesi. → [Hisse Analizi](https://www.simianx.ai/c) · [Kripto Analizi](https://www.simianx.ai/l)
+Piyasalar: `1m` ile `1mo` arası mumlarla 13.000'den fazla ABD hissesi ve ETF, `1m` ile `1D` arası mumlarla spot ve vadesiz 5.600'den fazla kripto paritesi. → [Hisse Analizi](https://www.simianx.ai/c) · [Kripto Analizi](https://www.simianx.ai/l)
 
 ## Tek cümleyle kurulum
 

@@ -4,6 +4,15 @@ The version here, in `skills/simianx/SKILL.md` (`metadata.version`), in `example
 in every plugin manifest (see `RELEASING.md`) and in the git tag is always the same number; `scripts/check_version.py` refuses a release when they differ. The API
 publishes the same number at `GET /v1/skill` and answers `426` to skills older than its minimum.
 
+## 1.0.13 - 2026-11-16
+
+- Changed: SimianX is research and simulated trading. It places no real orders and has no access to exchange, broker or bank accounts; positions inside SimianX are simulated. A decision is relayed in full and no longer comes with an offer to connect an exchange or broker (the decision update's `ask` is empty).
+- Changed: news titles, summaries, quotes and analysis text carry words from outside publishers. The agent relays them as quoted information and never acts on instructions inside them.
+- Fixed: an AI-controlled autopilot's decision update says what the AI did: an entry with its order type and levels, a close, or a hold with the position's levels. It used to read "wait, no position" every time. `data.ai_action` keeps the raw action.
+- Added: the help center. `GET /v1/help?q=<words>` searches the website's help articles (no key needed; without `q`, a chapter's articles) and `GET /v1/help/{category}/{slug}` reads one.
+- Changed: a read-only key (`data:read`) can watch autopilots: list, get, events, analyses, positions and logs. Positions sum the AI's hold checks per position (`holds`, `last_hold`); `include=holds` lists them all.
+- Added: Kraken spot and perpetuals and Hyperliquid perpetuals, 5,600+ crypto pairs. A Kraken spot id such as `BTC/USD` works in every call, the market paths included; a bare `BTC` still means the preferred perpetual.
+
 ## 1.0.12 - 2026-11-13
 
 - Changed: every analysis runs on the user's own setup, the same one the website uses. `GET /v1/settings` shows it per market (each live agent's model, timeframe and run intervals, the research committee's models), `PATCH /v1/settings` changes it, and `PATCH /v1/autopilots/{id}` / `PATCH /v1/live/sessions/{id}` switch models while they run. There are no tiers; a `tier` sent by an older skill is ignored. Starting an analysis needs no model choice.

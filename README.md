@@ -75,7 +75,7 @@ Also there when you need it:
 - **Autopilots.** The same four live agents on a schedule for one symbol, with a paper position and an event log your agent can follow. → [Autopilots](https://www.simianx.ai/autopilots)
 - **Your choice of model.** Pick the model behind each agent, and see how each one has traded before you do. → [Model leaderboard](https://www.simianx.ai/crypto-leaderboard)
 
-Markets: 13,000+ US stocks and ETFs on `1m` to `1mo` candles, and 4,000+ crypto pairs, spot and perpetual, on `1m` to `1D`. → [Stock analysis](https://www.simianx.ai/c) · [Crypto analysis](https://www.simianx.ai/l)
+Markets: 13,000+ US stocks and ETFs on `1m` to `1mo` candles, and 5,600+ crypto pairs, spot and perpetual, on `1m` to `1D`. → [Stock analysis](https://www.simianx.ai/c) · [Crypto analysis](https://www.simianx.ai/l)
 
 ## Install in one sentence
 

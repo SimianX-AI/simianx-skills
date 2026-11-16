@@ -75,7 +75,7 @@ Bei Bedarf außerdem:
 - **Autopiloten.** Dieselben vier Live-Agenten nach Zeitplan auf einem Symbol, mit einer Papierposition und einem Ereignisprotokoll, dem Ihr Agent folgen kann. → [Autopiloten](https://www.simianx.ai/autopilots)
 - **Freie Modellwahl.** Wählen Sie das Modell hinter jedem Agenten und sehen Sie sich vorher an, wie jedes Modell bisher gehandelt hat. → [Modell-Rangliste](https://www.simianx.ai/crypto-leaderboard)
 
-Märkte: über 13.000 US-Aktien und ETFs auf Kerzen von `1m` bis `1mo` und über 4.000 Krypto-Paare, Spot und Perpetual, von `1m` bis `1D`. → [Aktienanalyse](https://www.simianx.ai/c) · [Kryptoanalyse](https://www.simianx.ai/l)
+Märkte: über 13.000 US-Aktien und ETFs auf Kerzen von `1m` bis `1mo` und über 5.600 Krypto-Paare, Spot und Perpetual, von `1m` bis `1D`. → [Aktienanalyse](https://www.simianx.ai/c) · [Kryptoanalyse](https://www.simianx.ai/l)
 
 ## Installation in einem Satz
 

@@ -75,7 +75,7 @@ Mayroon ding iba kapag kailangan mo:
 - **Mga autopilot.** Ang parehong apat na live agent, naka-iskedyul para sa isang symbol, may paper position at event log na masusundan ng agent mo. → [Awtomatikong piloto](https://www.simianx.ai/autopilots)
 - **Ikaw ang pipili ng model.** Itakda ang model sa likod ng bawat agent, at tingnan muna kung paano nag-trade ang bawat isa. → [Leaderboard ng mga model](https://www.simianx.ai/crypto-leaderboard)
 
-Mga merkado: 13,000+ na US stock at ETF sa `1m` hanggang `1mo` na candle, at 4,000+ na crypto pair, spot at perpetual, sa `1m` hanggang `1D`. → [Pagsusuri ng Stock](https://www.simianx.ai/c) · [Pagsusuri ng Crypto](https://www.simianx.ai/l)
+Mga merkado: 13,000+ na US stock at ETF sa `1m` hanggang `1mo` na candle, at 5,600+ na crypto pair, spot at perpetual, sa `1m` hanggang `1D`. → [Pagsusuri ng Stock](https://www.simianx.ai/c) · [Pagsusuri ng Crypto](https://www.simianx.ai/l)
 
 ## I-install sa isang pangungusap
 

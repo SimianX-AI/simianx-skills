@@ -75,7 +75,7 @@ Khi cần, còn có:
 - **Lái tự động.** Vẫn bốn agent trực tiếp đó, chạy theo lịch cho một mã, kèm một vị thế giả lập và nhật ký sự kiện để agent của bạn theo dõi. → [Thiết bị lái tự động](https://www.simianx.ai/autopilots)
 - **Tự chọn mô hình.** Chọn mô hình cho từng agent, và xem trước mỗi mô hình đã giao dịch ra sao. → [Bảng xếp hạng mô hình](https://www.simianx.ai/crypto-leaderboard)
 
-Thị trường: 13.000+ cổ phiếu và ETF Mỹ với nến từ `1m` đến `1mo`, và 4.000+ cặp crypto, cả spot lẫn hợp đồng vĩnh cửu, với nến từ `1m` đến `1D`. → [Phân tích cổ phiếu](https://www.simianx.ai/c) · [Phân tích tiền điện tử](https://www.simianx.ai/l)
+Thị trường: 13.000+ cổ phiếu và ETF Mỹ với nến từ `1m` đến `1mo`, và 5.600+ cặp crypto, cả spot lẫn hợp đồng vĩnh cửu, với nến từ `1m` đến `1D`. → [Phân tích cổ phiếu](https://www.simianx.ai/c) · [Phân tích tiền điện tử](https://www.simianx.ai/l)
 
 ## Cài đặt bằng một câu
 

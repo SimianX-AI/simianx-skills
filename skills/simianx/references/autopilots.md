@@ -90,7 +90,8 @@ Cursors are stable for 7 days (the stream holds the recent tail; older cursors a
 - `GET /v1/autopilots/{id}/analyses?agent=decision&limit=20&before=<timestamp>&include=text`
   (rows with `agent: "gate"` are decision candles the timing gate skipped; `?agent=decision` lists them with the
   decisions. `gate` is not a filter value of its own: `?agent=gate` is 400 `invalid_parameter`)
-- `GET /v1/autopilots/{id}/positions?status=open|closed&limit=20` (positions with their operations)
+- `GET /v1/autopilots/{id}/positions?status=open|closed&limit=20` (positions with their operations; the AI's hold checks
+  are summed per position as `holds` and `last_hold`, `include=holds` lists them all)
 - `GET /v1/autopilots/{id}/logs`
 
 ## Act on the paper book by hand
