@@ -4,6 +4,10 @@ The version here, in `skills/simianx/SKILL.md` (`metadata.version`), in `example
 in every plugin manifest (see `RELEASING.md`) and in the git tag is always the same number; `scripts/check_version.py` refuses a release when they differ. The API
 publishes the same number at `GET /v1/skill` and answers `426` to skills older than its minimum.
 
+## 1.0.14 - 2026-11-16
+
+- Fixed: the example `decision` frames in `references/live.md` and `references/following.md` still showed the removed question about connecting an exchange; a decision's `ask` is `null`, as the API sends it since 1.0.13.
+
 ## 1.0.13 - 2026-11-16
 
 - Changed: SimianX is research and simulated trading. It places no real orders and has no access to exchange, broker or bank accounts; positions inside SimianX are simulated. A decision is relayed in full and no longer comes with an offer to connect an exchange or broker (the decision update's `ask` is empty).

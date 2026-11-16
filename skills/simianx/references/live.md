@@ -43,7 +43,7 @@ Open `ws_url` with the same key the session was created with:
 
 ```
 Authorization: Bearer simx_live_…        (header; no Origin header is needed for a key)
-X-SimianX-Skill: 1.0.13
+X-SimianX-Skill: 1.0.14
 ```
 
 A reconnect needs no cursor: the session's unacked frames come first (`data.replay: true`). Every frame is JSON:
@@ -51,7 +51,7 @@ A reconnect needs no cursor: the session's unacked frames come first (`data.repl
 ```json
 {"id": 912, "kind": "decision", "notify_user": true,
  "say": "Decision on BTC (15m): open long. Entry 61000–61200, stop 60200, target 63000, confidence 7/10. …",
- "ask": "Do you want me to connect your exchange and place or manage this order for you?",
+ "ask": null,
  "data": {"action": "open", "side": "long", "entry_low": 61000, "entry_high": 61200, "stop": 60200, "target": 63000,
           "confidence": 7, "invalidation": "…", "timeframe": "15m", "expires_at": "…", "market": "crypto", "symbol": "BTC"},
  "next_run_at": "2026-10-23T01:15:00Z", "cursor": 912, "ts": "2026-10-23T01:00:04Z"}

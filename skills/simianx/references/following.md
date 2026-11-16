@@ -29,7 +29,7 @@ GET /v1/updates?ack=<id>&after=<id>&wait=30&limit=50&kinds=decision,next_run&not
      "next_run_at": null, "source": {"type": "live", "id": "<session id>"}, "event_id": "…", "created_at": "…"},
     {"id": 912, "kind": "decision", "notify_user": true,
      "say": "Decision on BTC (15m): open long. Entry 61000–61200, stop 60200, target 63000, confidence 7/10. …",
-     "ask": "Do you want me to connect your exchange and place or manage this order for you?",
+     "ask": null,
      "data": {"action": "open", "side": "long", "entry_low": 61000, "entry_high": 61200, "entry_type": "limit",
               "stop": 60200, "target": 63000, "confidence": 7, "invalidation": "close below 60200", "timeframe": "15m",
               "expires_at": "…", "market": "crypto", "symbol": "BTC", "analysis_id": "…", "rationale": "…"},
