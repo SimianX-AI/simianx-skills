@@ -248,7 +248,7 @@ def main() -> None:
             log(f"{a:10} {done[t]}")
     log("")
     log("Next: create an API key at " + KEY_URL + " (My Account -> API keys) and export it as SIMIANX_API_KEY.")
-    log("Give the key a daily points budget when the agent runs unattended. The agent reads the key from the")
+    log("The key has no points budget unless you set one. The agent reads the key from the")
     log("environment only; never paste it into a repository, a prompt or a log. Verify: GET https://service.simianx.ai/v1/skill")
 
 

@@ -19,8 +19,8 @@ security problem. We acknowledge reports within three business days.
   `www.simianx.ai`) and copy them into the agent's skills directory. They refuse to overwrite a folder that is not
   this skill unless `--force` is given.
 - Keys carry scopes (`data:read`, `analysis:run`, `automation:manage`, `keys:manage`, `billing:manage`), optional
-  daily and monthly points budgets, a per-call cap, an expiry and an IP whitelist. Use the narrowest scope and a
-  daily budget for unattended agents. Revoke a key at any time at My Account → API keys; `GET /v1/usage` shows every
+  daily and monthly points budgets, a per-call cap, an expiry and an IP whitelist. Use the narrowest scope; a key has
+  no points budget unless the user sets one. Revoke a key at any time at My Account → API keys; `GET /v1/usage` shows every
   charge.
 - The skill never asks for card details, never changes a subscription and never pays; a 402 is handed to the human
   as a link.

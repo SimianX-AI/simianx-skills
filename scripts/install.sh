@@ -94,5 +94,5 @@ done
 [ -n "$UNINSTALL" ] && exit 0
 echo
 echo "Next: create an API key at https://www.simianx.ai/#api (My Account -> API keys) and export it as SIMIANX_API_KEY."
-echo "Give the key a daily points budget when the agent runs unattended; never put the key in a repository or a log."
+echo "The key has no points budget unless you set one; never put the key in a repository or a log."
 echo "Verify: GET https://service.simianx.ai/v1/skill"

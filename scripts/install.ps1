@@ -99,5 +99,5 @@ foreach ($a in $agents) {
 if ($Uninstall) { exit 0 }
 Write-Host ""
 Write-Host "Next: create an API key at https://www.simianx.ai/#api (My Account -> API keys) and set it as SIMIANX_API_KEY."
-Write-Host "Give the key a daily points budget when the agent runs unattended; never put the key in a repository or a log."
+Write-Host "The key has no points budget unless you set one; never put the key in a repository or a log."
 Write-Host "Verify: GET https://service.simianx.ai/v1/skill"

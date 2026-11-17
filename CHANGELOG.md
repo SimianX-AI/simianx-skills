@@ -4,6 +4,11 @@ The version here, in `skills/simianx/SKILL.md` (`metadata.version`), in `example
 in every plugin manifest (see `RELEASING.md`) and in the git tag is always the same number; `scripts/check_version.py` refuses a release when they differ. The API
 publishes the same number at `GET /v1/skill` and answers `426` to skills older than its minimum.
 
+## 1.0.15 - 2026-11-17
+
+- Added: a field reference for the paper book and the autopilot events in `references/autopilots.md`: every field of a position, an operation, the paper capital, and the `data` of `signal.fired`, `position.changed` and `analysis.completed`, with their enums. `GET /v1/openapi.json` carries the same as `components.schemas` (`Position`, `Operation`, `Capital`, `PaperState`, `Event`, `PositionChanged`, `Proposal`, `AnalysisCompleted`), so a trading script can be written before the first trade.
+- Changed: a key has no points budget unless the user asks for one. The sign-in examples no longer send `daily_points_budget`, and the install notes no longer tell the agent to set one. On the browser link the budget fields start empty and an empty field means no cap.
+
 ## 1.0.14 - 2026-11-16
 
 - Fixed: the example `decision` frames in `references/live.md` and `references/following.md` still showed the removed question about connecting an exchange; a decision's `ask` is `null`, as the API sends it since 1.0.13.
