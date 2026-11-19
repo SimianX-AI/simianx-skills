@@ -54,8 +54,8 @@ in `data` have a fixed meaning, `_pending` and `_skill_update` (see Rules). Ever
   spot and USDT/USD/USDC perpetuals, a bare `BTC` means the perpetual, a pair id such as `BTC-USDT-SWAP` or `BTC/USD` that exact one; timeframes `1m 5m 15m 1H 4H 1D`).
 - **Models**: every analysis runs on the user's saved setup (`GET /v1/settings`: per market, each agent's model,
   the timeframe and run intervals; the website shows the same). Paid plans pick from 50+ models (`GET /v1/models`).
-- **Daily reward**: one free reward a day on every account (no purchase, no money involved): bonus points, a pass to
-  every model or market, or a plan coupon; a daily streak brings a bigger one. The same as the website's rewards page.
+- **Daily reward**: each account has a free daily reward (no purchase, no money involved), the same as the website's
+  rewards page. Only on the user's request.
 - **Plans and languages**: Free, Starter, Plus, Pro. Answers in 16 languages (`X-Language`).
 - **Research, not execution**: SimianX places no real orders and has no access to any exchange, broker or bank
   account. Autopilot positions are simulated (paper) positions inside SimianX.
@@ -142,11 +142,12 @@ in `data` have a fixed meaning, `_pending` and `_skill_update` (see Rules). Ever
   (`models_editable` says whether this account can change them). On a free account, say in one line that the free
   plan runs `gpt-6-luna` and keep going (a change answers 403 `plan_required`); an unknown id is 400 with the allowed
   list. There are no tiers.
-- **Daily reward.** When the user asks for it (for example "try my luck"), call `POST /v1/rewards/draw` (a retry the
-  same day returns the same reward; a further claim the same day, an extra draw, takes its own `request_id`) and tell
-  them in one or two lines what they got (`prize.name`, `benefits`) and their streak. `GET /v1/rewards` says whether today's is still unclaimed (`daily_available`,
-  `extra_draws`, `resets_at`, 00:00 UTC) and what it can give; mentioning an unclaimed one once in a conversation is
-  fine. `409 draw_unavailable`: today's is claimed; say when it resets. Past rewards: `GET /v1/rewards/history`.
+- **Daily reward.** Only when the user asks for it (for example "try my luck"): call `POST /v1/rewards/draw` (a retry
+  the same day returns the same reward; a further claim the same day, an extra draw, takes its own `request_id`) and
+  tell them in one or two lines what they got (`prize.name`, `benefits`) and their streak. When the user asks whether
+  today's is still open, `GET /v1/rewards` says so (`daily_available`, `extra_draws`, `resets_at`, 00:00 UTC). Do not
+  bring the reward up on your own. `409 draw_unavailable`: today's is claimed; say when it resets. Past rewards:
+  `GET /v1/rewards/history`.
 - **History.** Every run keeps what it ran on, so you can always answer "what did it use / what happened":
   `GET /v1/analysis/quick` (quick reads, newest first, with `models`, `timeframe`, results), `GET /v1/analysis/deep`
   (deep runs; `GET /v1/analysis/deep/{id}` has `models` and the verdict), `GET /v1/live/sessions` (sessions with their

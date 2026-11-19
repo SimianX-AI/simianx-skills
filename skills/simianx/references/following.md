@@ -61,8 +61,8 @@ Semantics:
 | `deep.report` | deep | the PDF link (`data.url`) |
 | `deep.paused`, `deep.stopped`, `deep.error` | deep | say it; `paused` is the points exception (see SKILL.md Rules) |
 | `fundamental_done`, `indicator_done`, `intelligence_done` | quick · live · autopilot | one line each |
-| `decision` | quick · live · autopilot | the full plan |
-| `next_run` | quick · live · autopilot | when the next analysis runs (`data.when`, ISO; say it in the user's time zone) |
+| `decision` | quick · live · autopilot | the full plan; `data.not_executed` (the action the AI chose, e.g. `buy`) means that trade did not take effect, and `data.held` (`position` / `order` / null) says what stays in the simulated book: the `say` line already tells it |
+| `next_run` | quick · live · autopilot | when the next analysis runs (`data.when`, ISO; say it in the user's time zone); after a quick read it is only when the next candle closes: nothing more runs on its own |
 | `session_start`, `session_end` | live | session running / ended (`data.reason`: `stopped`, `agent_left`) |
 | `autopilot.started`, `autopilot.stopped`, `autopilot.paused` | autopilot | one line |
 | `position.changed` | autopilot | the simulated book moved: one line |
