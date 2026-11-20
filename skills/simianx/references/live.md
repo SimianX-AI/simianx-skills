@@ -36,8 +36,9 @@ An autopilot is the same engine running server side without you (`references/aut
   analysis uses them; the saved setup in `GET /v1/settings` stays as it is).
 - `GET /v1/live/sessions` lists the key's sessions (`?status=running`), `GET /v1/live/sessions/{id}` one of them,
   `DELETE /v1/live/sessions/{id}` (on request) stops it (also stops the analysis; the socket receives `session_end`).
-  `{id}` is the live session's `id` or the `session_id` in its `ws_url`. An autopilot's `session_id` is not a live
-  session: there the answer is 404 with `data.autopilot_id` and `data.url`; read it with `GET /v1/autopilots/{id}`.
+  In `GET`, `PATCH` and `DELETE /v1/live/sessions/{id}`, `{id}` is the live session's `id` or the `session_id` in its
+  `ws_url`. An autopilot's `session_id` is not a live session: there the answer is 404 with `data.autopilot_id` and
+  `data.url`; read it with `GET /v1/autopilots/{id}`.
 
 ## Connect
 

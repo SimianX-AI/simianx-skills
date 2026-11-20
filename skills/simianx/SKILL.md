@@ -145,8 +145,8 @@ in `data` have a fixed meaning, `_pending` and `_skill_update` (see Rules). Ever
 - **Daily reward.** Only when the user asks for it (for example "try my luck"): call `POST /v1/rewards/draw` (a retry
   the same day returns the same reward; a further claim the same day, an extra draw, takes its own `request_id`) and
   tell them in one or two lines what they got (`prize.name`, `benefits`) and their streak. When the user asks whether
-  today's is still open, `GET /v1/rewards` says so (`daily_available`, `extra_draws`, `resets_at`, 00:00 UTC). Do not
-  bring the reward up on your own. `409 draw_unavailable`: today's is claimed; say when it resets. Past rewards:
+  today's is still open, `GET /v1/rewards` says so (`daily_available`, `extra_draws`, `resets_at`, 00:00 UTC).
+  `409 draw_unavailable`: today's is claimed and no extra draw is left; say when it resets. Past rewards:
   `GET /v1/rewards/history`.
 - **History.** Every run keeps what it ran on, so you can always answer "what did it use / what happened":
   `GET /v1/analysis/quick` (quick reads, newest first, with `models`, `timeframe`, results), `GET /v1/analysis/deep`
