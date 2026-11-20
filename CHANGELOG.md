@@ -4,6 +4,14 @@ The version here, in `skills/simianx/SKILL.md` (`metadata.version`), in `example
 in every plugin manifest (see `RELEASING.md`) and in the git tag is always the same number; `scripts/check_version.py` refuses a release when they differ. The API
 publishes the same number at `GET /v1/skill` and answers `426` to skills older than its minimum.
 
+## 1.0.16 - 2026-11-19
+
+- Changed: the daily reward comes up only when the user asks for it. `GET /v1/rewards` answers whether today's is still open; the agent no longer mentions an unclaimed one on its own.
+- Added: a `decision` update's `data.not_executed` (the action the AI chose did not take effect in the simulated book) and `data.held` (`position` / `order` / null: what stays open), in `references/following.md`.
+- Changed: after a quick read, `next_run` is only when the next candle closes; nothing more runs on its own (read again after it, or start an autopilot).
+- Added: news `symbols` match a pre-IPO company contract (Anthropic, OpenAI, Samsung, SK hynix) on articles that name the company.
+- Added: `GET` / `PATCH` / `DELETE /v1/live/sessions/{id}` take the live session's `id` or the `session_id` in its `ws_url`. An autopilot's `session_id` is not a live session: there the answer is 404 with `data.autopilot_id` and `data.url`.
+
 ## 1.0.15 - 2026-11-17
 
 - Added: a field reference for the paper book and the autopilot events in `references/autopilots.md`: every field of a position, an operation, the paper capital, and the `data` of `signal.fired`, `position.changed` and `analysis.completed`, with their enums. `GET /v1/openapi.json` carries the same as `components.schemas` (`Position`, `Operation`, `Capital`, `PaperState`, `Event`, `PositionChanged`, `Proposal`, `AnalysisCompleted`), so a trading script can be written before the first trade.
