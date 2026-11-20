@@ -142,7 +142,7 @@ in `data` have a fixed meaning, `_pending` and `_skill_update` (see Rules). Ever
   (`models_editable` says whether this account can change them). On a free account, say in one line that the free
   plan runs `gpt-6-luna` and keep going (a change answers 403 `plan_required`); an unknown id is 400 with the allowed
   list. There are no tiers.
-- **Daily reward.** Only when the user asks for it (for example "try my luck"): call `POST /v1/rewards/draw` (a retry
+- **Daily reward.** Only when the user asks for it (for example "claim my daily reward"): call `POST /v1/rewards/draw` (a retry
   the same day returns the same reward; a further claim the same day, an extra draw, takes its own `request_id`) and
   tell them in one or two lines what they got (`prize.name`, `benefits`) and their streak. When the user asks whether
   today's is still open, `GET /v1/rewards` says so (`daily_available`, `extra_draws`, `resets_at`, 00:00 UTC).
